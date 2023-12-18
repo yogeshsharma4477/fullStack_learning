@@ -1,0 +1,117 @@
+System design - not for beginner, this is not related to course
+Q. System design for video transcode,
+
+Q. how apps are deployed on internet?
+> localhost:3000 this is not accessible to world but how we will share it to world?
+    2 steps are there, 
+    frontend and backend both are deployed different
+    1. frontend is basically a bunch of file html,css,js. these files are same for all the user
+    2. dynamic things we see in website comes from backend, these are backend request
+
+>CDN (content delivery netwoek)
+    there are bunch of servers around the world these are called "POP" or "point of presemce"
+    and when you create index.html(frontend application) you send it to all these "pop" thats not exactly how it happem but just for understanding
+    when you deploy your frontend application you deploy on all these pop and what do they have to do they simply have to store it into file System
+    and whenevr someone from india hit todo.com they get file from inda "pop" and if someone from US hit todo.com they get it from US POP
+
+    "Netlify" and "versel" these are two company which make frontend deployment very easy
+    these company has bought bunch of servers all around the world, and they just said give me your html file i will give to all your users
+    these are generally frontend are deployed using CDN
+
+    Video, images are also deployed on CDN, the biggest usecases of CDN are Videos
+    suppose if CDN didn't exist and you deployed your app on single server, if user asking for video from US and your server is in india then video came from so far
+    this is generally not good
+    generally static files that are images, Videos, html comes from CDN because it usually doesn't changes for different users
+    so just replicate the video all across the world in a bunch of POPs and someone from india wants to see video it comes from nearest POP
+
+    note: if you upload one video it is not upload to all the POPs on the day 0, it seats on the one server initially and if someone from india ask for that video 
+    it pulls from US server and caches to india POP for day 1 or 2, user from india now is server the same video from cache POP for that video request.
+
+
+Q. but it won't work same for backend because every user ask for different request, there comes validation,
+    the request you send or I send are different
+    - you cannot CDN backend because if you POP and cache(you cannot cache backend) my request suppose my username then every one will get my username.
+      everyone has their own username it cannot be cache.
+    - static data are server throught CDN and backend data deployed to 2 3 10 servers
+
+
+Q. Assignment- deploy small project on versel or Netlify
+>  frontend are easy to deploy, backend are hard to deploy
+    cheaps ways to deploy backend -> repl.it, fly.io, firebase function
+     aws/GCP/azure are complex compare to above
+
+
+
+
+
+Q. Video apps are different from HTTP backends
+> if you upload your video on youtube, you don't immediately see in your channel, it takes 20 30 min to reflect, it is stuck in process.
+    youtube takes 10 min to upload it on its server but video is stuck in 20 min in processing
+    what happening in 20 min of processing is that you uploaded vdieo on 4k but in youtube you see 120,360,1080,4k resolution option 
+    you don't have to worry about it youtube internally handling it for that reason it takes time in processing, because not every has the best internet
+    depending upon users internet it show the vdieo. this is common process of video upload.
+
+
+    Transcoding the video for client
+    - suppose a client has a website something like netflix and they let upload user upload video 
+        my job is build a System handles that they initially upload video to their servers and now I have to create a multiple version of it and give them the multiple quality video
+        the process of building these quality video by transcoder is todays Assignment to build
+
+REQUIREMENT:
+1. User can upload video upto 4GB
+2. Once the video is uploaded, it should be transcoded to many formats
+3. it shoudl be play-able on mobile/app/website
+4. Student should be given the option to chose a quality to save bandwith
+5. should be able to handle 10000 video/day
+6. should do it in a cost effective manner
+
+
+Q. Internal working of the transcoder? 
+---> 1080p is uploaded on AWS server ---->
+----> transcoder will formats it in multiple version 720p.480p, 350p
+
+Note: AWS won't tell transcoder to transcode, transcoder need to hit the url and check whether is any vdieo is in queue for transcode,
+    they maintain the queue in their side they don't immediately call the transcoder because we don't need to immediately transcode 
+    this is structure/ best pratices because if we are not maintaining video in queue and directly call the transcoder then 
+    if sometime transcoder is down how the video will be transcoded that is why AWS/ or any other server need to maintain queue in their end 
+    and my transcoder need to hit and check whether any vdieo is on queue if yes transcode it and send back
+
+
+> this is exactly why you need your backend server to talk with other backend server
+> smtp, this also a common ex when you need to send email once user signup
+
+
+Q. Auto scalling the transcoder server
+> if you have 20 video in queue you run 20 transcode server and if theres 0 video in queue you bring down 20 transcode server
+    so this way you are paying only when your server is up this how you save the cost
+    
+    > serverless - there is something known as serverless in which you pay per request 
+    > AutoScaling Group - it kills the instance when all the instance is done complete all the task it cannot kill any specific instance but it can kill any random instance but we dont want that
+    > final best way - node js tells AWS how many instance you need it create it will that many instance 
+                       and every instance automatically come down/kill instance once the Transcoding is done.
+    > there 100 of ways to handle server
+
+
+
+Q. Containeriztion, Kubernative 
+> 
+Imagine you have a big building with many apartments. Each apartment is like a container, and each container can have different furniture and appliances. 
+In a Kubernetes cluster, the building is the cluster, and the apartments are the nodes. 
+Each node can run different containers, and the cluster manages all of the containers for you.
+
+
+Here are the key components of a Kubernetes cluster:
+
+Nodes:              These are the physical or virtual machines that run the containers.
+Pods:               These are groups of one or more containers that are deployed together. 
+                    Pods share resources and can be scaled up or down.
+Services:           These are abstractions that expose pods to other pods or to the outside world.
+Deployments:        These are used to create and manage pods. 
+                    Deployments ensure that the desired number of pods are always running.
+Labels & Selectors: These are used to group and manage pods and services.
+Namespaces:         These are used to isolate groups of resources from each other.
+
+Kubernetes can be used to manage a wide variety of workloads, including web applications, microservices, and batch jobs. 
+It is a powerful tool that can be used to automate the deployment, management, and scaling of containerized applications.
+
+

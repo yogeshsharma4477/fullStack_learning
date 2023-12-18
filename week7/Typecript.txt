@@ -1,0 +1,8 @@
+Q. why Typecript
+> 1. typecript is a superset of js
+  2. it gives you static typecript
+  3. make your code more strict
+
+> let x : number = 10;
+  x = 'hello'
+// this is will give you error

@@ -1,0 +1,34 @@
+Q. Mongoose - mongoose gives APIs which helps connect with database, add database
+
+Q. mongoose.Schema -> Schema, its what your data shape looks like
+    - mongodb is Schemaless database and we can add data without mongoose in mongodb 
+      but with mongoose.Schema we are restricting means we are saying that only schema shape data will be entered in mongodb
+
+const userSchema = new mongoose.Schema({
+    username : string,
+    password : string,
+    purchasedCourses : [{ type: mongoose.Schema.Types.ObjectId , ref : 'course'}]
+                        //it is an array of type id which is a reference to the course 
+                        // what this will do is it will only allow ID which is present in course collection
+                        // even if we pass whole object to purchasedCourses node it will fetch only the ID and store only the id
+})
+
+Q. const user = mongoose.model('user',userSchema)
+             // meaning 1st paramter will be collectionName and 2nd paramter will Schema which define shape of collection
+
+
+Q. Three things to know
+1. create Schema
+2. create model
+3. mongoose.connect('') to connect the mongodb
+
+
+
+Q. mongoose also provide bunch of APIs to add update delete save
+>   model.find()
+    model.findById()
+    model.findone()
+    model.save() 
+    model.findbyIdandUpdate()
+
+

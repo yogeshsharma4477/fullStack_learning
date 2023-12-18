@@ -1,0 +1,57 @@
+Q. Query params, Headers and body to pass data to backend
+Q. Middlewares
+>  Middlewares are ways for you capture request before you enter any route handler. aap.use(Middleware)
+   Middleware is just a function, any request that comes to your express server first go the Middleware and then Middleware pass the request app.get() or stop the request
+   it basically used for Authentication, ex if you have 10 route and you need to check if user is Authenticated or not 
+   that is where Middleware help alot we just need to create on Middleware and pass it to all the route instead of create logic on all the route
+   Middleware takes 3 parameter req,res,next
+
+    And there many Middlewares are available on the internet just like libray for common usecase
+    fs is a library which let you read the file
+    express is framework which let you create http server
+    similarly we have libraries for Middleware written for us to use.
+        few external Middlewares body-Parser
+
+Q. How does express knows that some functions are Middleware 
+>  app.use()
+
+Q.Body to pass data
+>   if you try to get body data without parsing it will give undefined
+    we have Middlewares which parse body, npm i body-parser
+    const bodyParser = require('body-parser')
+    app.use(bodyParser.json()) - it extract the body and give it to req.body
+
+
+Q.STATUS CODE
+>   things that server can sends back are body(STRING,JSON,HTML), Headers and Status code
+    structured way to send data is JSON
+    100 - 599 each no. specify something, you need to learn all these
+    success - 200, 200 is default Status code which express send
+
+    send HTML to client 
+    - res.send("<html><head><head/><body><h1>hello world</h1></body></html>")
+    - res.sendFile(__dirname + "./index.html")
+
+Q. Servers can talk to Servers
+>   Browser,Postman, NODEJS PROCESS -----http server----> Nodejs server
+    backend servers can also talk to eachother
+    ** secondProcess nodejs, java, python can talk to other ---------http server--------------> Nodejs server **
+    how they talk same http server
+
+
+    create a file secondProcess.js
+    fetch("http://localhost:3000", {method:get}).then(res => console.log(res))
+    
+    now start both the server
+    > node secondProcess.js
+    > node index.js
+
+
+
+
+
+
+
+
+
+

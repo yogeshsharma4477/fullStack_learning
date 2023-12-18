@@ -1,0 +1,89 @@
+> EcmaScript Standard is a set of common rules which all the browser should follow 
+so that all the code written in js should work on all the browser
+
+>Nodejs - Nodejs is a js runtime, it is just the engine which was used in chrome (V8) 
+          which was pulled out for the world to everyone to use without the things that you need inside the browser
+
+> higer Order Function
+    A higher order function is a function that takes one or more functions as arguments, or returns a function as its result.
+    function add(index1, index2){
+        return index1 + index2
+    }
+    function sub(index1, index2){
+        return index1 - index2
+    }
+    function div(index1, index2){
+        return index1 / index2
+    }
+    function doArithmetic(index1, index2, arithmecticFun){
+        return arithmecticFun(index1,index2)
+    }
+    
+    // naive code
+    function doArithmetic(index1, index2, whatToDo){
+        if(whatToDo === "sum") return sum(index1,index2)
+        if(whatToDo === "sub") return sub(index1,index2)
+        if(whatToDo === "divide") return divide(index1,index2)
+    }
+
+> Pattern Creation
+  1. star Pattern
+  function star(n){
+        for(let i = 1; i <= n; i++){
+            let starStr = ""
+            for(let k = n-i; k >=0 ; k--){
+                starStr += "-"
+            }
+            for(let j = 1 ; j < i*2; j++){
+                starStr += "*"
+            }
+            console.log(starStr)
+        }
+    }
+
+  2. fiboncii series
+     function fib(n){
+        if(n == 1)return 0
+        if(n == 2)return 1
+        let i = 2;
+        let x = 0;
+        let y = 1;
+        let z = 0;
+        while(i < n){
+        z = x + y;
+        x = y;
+        y = z
+        i++
+        }
+        return y
+    }
+
+// replit js online editor - when we run js code it is not running on browser, code goes to replit server and then return the code at frontend.
+
+> where can JS run
+    1. browser
+    2. Data centers
+    3. Flight TV
+    4. Mobile Devices
+
+> CORE CONCEPT OF JS
+1. Single threaded
+    // every computer has cores there can be many cores, the more core you have in your machine the more powerfull is your machine
+    // core is like a thread to run programs in your machine
+
+    > now Nodejs was written in a shabby manner like as single threaded(single core to perform all the operation)
+    > js and node is single threaded but there are ways to run and 
+      if you deloyed your nodejs on a very powerfull server which has many cores it of no use becz nodjs will run on a single core
+      that is why people says olang, rust, java is faster than js
+
+2. Asynchronous
+    Asynchronous task don't generally run on the same thread as js is running
+    callbacks helps us to achive async task
+    sync means not creating the different thread it means 
+
+3. Loosly type 
+
+3. Interpreted vs compile type
+    Interpreted means line by line, it directlt start executing
+    compiled means first it will compile it is not even executed our code yet
+

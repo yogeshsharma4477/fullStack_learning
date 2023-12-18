@@ -1,0 +1,45 @@
+Q. Reconcilier
+>   Removing the dom elements and adding back to dom is an expensive operation
+    and updating the dom is less expensive compare to Removing.
+
+Q. Virtual DOM
+> 
+
+
+Q. Vite
+> it is framework which let you create basic boiler plate for frontend
+
+Q. JSX
+>   component return bunch of html
+
+Q. useState() and useEffect() hook
+> Hooks are independent it doesn't changes in rerender if this hook is not updated
+
+Q. flexbox
+> to parent div
+    display:flex 
+    justifyContent : "space-between"
+
+    <span> tag is not best way to use for displaying div side by side 
+    <div> tag are block level elements and <span> are inline level elements
+
+Q. useParam() gives you dynamic path value
+Q. use early return, custom hook, use redux instead state
+
+Q. state management libraries
+> Redux, Recoil, Zustand
+    - if we are subcribe to atom/state only then that component will re-render 
+    how to subcribe:- Read DOc for better understanding
+    const coursesState = atom({key:"coursesState",default:0})
+    <RecoilRoot> to wrapp the app component same as <Context.Provider>
+    const courses = useRecoilValue(coursesState) // use this when you want to use state
+    const setCourse - useSetRecoilState(coursesState) // use this when you want to useSetRecoilState
+    const [courses, setCourse] = useRecoilState(coursesState) // when you want both update and value
+
+
+> context API does solve the problem of prop drilling but does not solve the problem of re-rendering
+ that is why we are using Redux, Recoil, Zustand
+ NOTE: Recoil Optimize much more it reduces the number of re-rendering
+
+
+Q. Grid

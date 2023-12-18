@@ -1,0 +1,97 @@
+1. Asynchronous
+    Asynchronous function are functions that don't need the javascript thread, 
+    they are long running task that can be offloaded to other CPU cores and 
+    whenever they're finished the javascript get back the result and do something with it.
+    ex. settimeout() - wait for the delay and once the delay is done it will return the callback and callback will only goes in stack when stack is empty 
+    Asynchronous function does'nt block the thread
+    Asynchronous does not block synchronous code and you can't run 2 things at same time 
+Q. lets build stop watch?
+> let counter = 0;
+    function printCount(){
+    counter++;
+    console.clear()
+    console.log(counter);
+    
+    }
+    setInterval(printCount,1 * 1000)
+
+    let count = 0;
+    for(let i = 0; i < 10000000; i++){
+    count+=i
+    }
+
+    console.log(count)
+
+Q. EVENT LOOP
+
+Q. callback hell and why promise indroduced?
+> // these are asynchronous
+    function med1Get(){
+        console.log('Medicine 1 recieved')
+    }
+    setTimeout(med1Get, 1000)
+
+    function med2Get(){
+    console.log('Medicine 2 recieved')
+    }
+    setTimeout(med3Get, 1000)
+
+    function med3Get(){
+    console.log('Medicine 3 recieved')
+    }
+    setTimeout(med3Get, 1000)
+
+
+
+    > CHAINING CALLBACK(CALLBACK HELL) - show 2 when 1st is done and show 3 when 2nd is done
+        - callback hell becoming unmanageable, unreadable if we have callback hell 
+          that is why promises where indroduced to write cleaner async code
+
+    setTimeout(()=>{
+        console.log('Medicine 1 recieved')
+            setTimeout(()=>{
+                console.log('Medicine 2 recieved')
+                    setTimeout(()=>{
+                        console.log('Medicine 3 recieved')
+                    }, 1000)
+            }, 1000)
+    }, 1000)
+
+Q. Promises - Promises let you write cleaner async code
+>   1. callback Approach :- 
+    function med1Get(){
+        console.log('Medicine 1 recieved')
+    }
+    setTimeout(med1Get, 1000)
+
+    // when we call a async function with promise it immediately gives us a promise[pending] rather than you giving the callback
+    // when we call a async function with callback we give the callback to a function and let that function call our callback once the task is done.
+
+    2. Promises Approach :- 
+
+    function med1Get() {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve();
+            }, 300);
+        });
+    } 
+
+    function Printmed1Get(){
+    console.log("Medicine 1 recieved")
+    }
+
+    med1Get().then(()=>Printmed1Get())
+
+    3. Read file and then do something
+    function fileRead(content){
+        console.log(content)
+    }
+    fs.read("a.txt", fileRead) // 1st ways
+    fs.read("a.txt").then(fileRead) // 2nd way
+
+> PROMISE
+> Promise.all - if all the promise are resolve only then it will responsed back
+> Promise.settled - it response when all the promises are settled 
+> Promise.race - it will response the first settled promise
+> Promise.any - it will response the first success promise

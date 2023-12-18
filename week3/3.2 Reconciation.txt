@@ -1,0 +1,51 @@
+Q. why react, angular were introduced and what was the problem with html,css,javascript
+> having js variables putting them into DOM is how the web was build until 2014
+    createHtml, removeHtml, appenChild these are the three basics function website uses under the hood to remove add delete
+
+    But React, Veu etc came into the picture to hide these complexicity from the developers
+    so now we only need to focus on our state only instead of worry about adding, removing.
+
+    Reconciliation - in general Reconciliation is a process of react or veu taking the update of the state and translating it to the dom by calling appenChild, removeChild
+
+Q. creating Reconciliater of our own?
+>  
+    function OwnReconciler(data){
+            var parentElement = document.getElementById("mainArea");
+            parentElement.innerHTML = ''
+            for (var i = 0; i<data.length; i++) {
+                var childElement = document.createElement("div");
+    
+                var grandChildElement1 = document.createElement("span");
+                grandChildElement1.innerHTML = data[i].title
+    
+                var grandChildElement2 = document.createElement("span");
+                grandChildElement2.innerHTML = data[i].description
+    
+                var grandChildElement3 = document.createElement("button");
+                grandChildElement3.innerHTML = "Delete"
+                grandChildElement3.setAttribute("onclick", "deleteTodo(" + data[i].uid + ")")
+    
+                childElement.appendChild(grandChildElement1)
+                childElement.appendChild(grandChildElement2)
+                childElement.appendChild(grandChildElement3)
+    
+                parentElement.appendChild(childElement);
+            }
+    }
+
+    setInterval(()=>{
+        OwnReconciler([{
+            title : "go to the gym",
+            description : "go to the gym from 5"
+            id:1
+        }])
+    },1000)
+
+    // this is basic Reconciler which appenChild, removeChild but this not an optimal way because
+    we have removing every thing and then again adding to the dom.
+    to optimize the update we need to compare the diff and update the dom this is exactly react is doing
+    main work of react is to add update delete the dom in a very efficient way
+
+Q. create Reconciler with diff check?
+
+

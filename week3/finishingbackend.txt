@@ -1,0 +1,30 @@
+Today:
+- Foundation for databases
+- Connecting frontend to backend
+    AJAX, cors, DOM
+
+Q. three ways to call callbacks
+>   Easy (callback)             app.get('/', callback1)
+    medium (anoymous function)  app.get('/', function(req, res){})
+    Hard (Arrow function)       app.get('/', (req, res) => {})
+
+Q. JSON.parse(data) => "[]" converting this to => [], String, JSON, HTML is send by server
+
+Q. File and DATABASE are ways to store data instead of storing in state becouse if server restarts our state will be cleared but the file is not clear
+
+Q. Connecting to frontend 
+>   1. cors
+    2. ajax request(fetch)
+    3. DOM manipluation
+
+1. cors
+> what if chatgpt send request to google backend server, cors error will be thrown
+    - if the origin is not same cors error will be thrown, if the origin is same cors will not throw error 
+        you can create index.html from backend and send html to client from backend, they will not give cors error becouse we are in same origin 
+    - npm install cors    
+        in backend app.use(cors()) 
+        this way you can tell all browser its fine, let the request come from anywhere
+        ** you should never do this in production app **
+
+
+2. query ?id=1 vs params /:id

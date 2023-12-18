@@ -1,0 +1,52 @@
+ Q. State management
+ >1. if you are not using Recoil/redux, one way to pass props is find the least common ancestor and store the useState in that component.
+     and more easy way is to store all the useState in App.js- but these are the ugliest way to handle state management.
+     because if any of the state changes all the child component who is using that state will re-render even if child component does need to re-render
+
+2. Best way is to use state management libraries like redux, Recoil, Zustand  
+    only those component will re-render who is subcribe to atom
+
+> Profiler in inspect to check how many re-render happened
+
+Q. localStorage vs state
+> if store all variable in localStorage instead of state our app will not re-render if our localStorage value changes
+    re-render only happen when state is change
+
+Q. state management libraries
+> Redux, Recoil, Zustand
+    - if we are subcribe to atom/state only then that component will re-render 
+    how to subcribe:- Read DOc for better understanding
+    const coursesState = atom({key:"coursesState",default:0}) // atom is just like a piece of state
+    <RecoilRoot> to wrapp the app component same as <Context.Provider>
+    const courses = useRecoilValue(coursesState) // use this when you want to use state
+    const setCourse - useSetRecoilState(coursesState) // use this when you want to useSetRecoilState
+    const [courses, setCourse] = useRecoilState(coursesState) // when you want both update and value
+
+
+Q.selector -when a component only need a part of atom selector help us to subcribe to part of atom
+Q. why selector? - because the component only re-render when that part of atom changes rather than re-remdering when whole atom changes
+
+Q. selector to get piece of atom
+> import { userState } from '../atoms/user';
+import { selector } from 'recoil'
+
+export const isUserLoading = selector({
+    key : "userLoadingState",
+    get : ({get})=>{
+        const state = get(userState)
+        if(state.isLoading)return state.isLoading
+        return ""
+       // const state2 = get(userState.name)
+       // return {state, state2}
+       // both can be use
+       
+    }
+})
+
+
+Q.in component how to import
+> const userLoading = useRecoilValue(isUserLoading)
+
+Q. folder structure
+> atoms
+> selectors

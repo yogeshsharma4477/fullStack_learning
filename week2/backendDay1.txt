@@ -1,0 +1,62 @@
+1. HTTP Servers
+2. Authentication
+3. Database
+4. Middleware
+
+1. HTTP Servers 
+    - Request methods
+    - URL Route
+    - Query params, Headers, body
+    - Status codes
+    - Response HTML JSON Text
+
+Q Nodejs 
+> Nodejs is a js runtime, it is just the engine which was used in chrome (V8) 
+  which was pulled out for the world to everyone to use without the things that you need inside the browser
+
+
+Q. what are HTTP method, why do we use, and client server model, HTTP server, Express
+1.  HTTP method
+>   we talk to different server or exchange information, 
+    there is a very defined way on how machines talk to each other that is called PROTOCOL
+    there are many PROTOCOLS, TCP, ODP, HTTP but HTTP are the most common PROTOCOL 
+    SUMMARY - machines talk to each other using HTTP PROTOCOL
+
+2. CLIENT SERVER MODEL
+>   whenevr you want to communicate to each other, one need to be a server and one needs to be a client machines(Browser, mobileapp, desktop app)
+            CLIENT MACHINE                            HTTP                            SERVER        
+    (Browser, mobileapp, desktop app)   ----------------------------------->    (heavy data center, heavy chat gpt server)
+
+Q. how do we hit servers? we have backend urls for every server
+Q. ROUTES - whatever we have after the basePath /users defines the route ex. if we want to access users data from backend we do like www.backend.com/users
+
+Q.  how to do we expose our code to the world, there is where we need http server
+    and there are alot of library that let you write very easily http server
+>   express is one the library which let you create http server very easily
+
+//fs comes with nodejs and there are alot of library that let you write very easily http server
+
+
+1. Query Params, Headers and body are three ways to send some data to backend 
+    > Query Params - www.localhost:3000/route?queryParam=data, req will have queryParams, req.query
+    > dynamicParam - app.req('/:username') - req.query.username
+
+2.Request methods
+    > GET,POST,PUT,PATCH,DELETE
+3. URL route
+4. STATUS code
+
+
+SUMMARY - 
+- CLIENT SERVER MODEL
+- PROTOCOL
+- HTTP METHODS
+- ROUTES
+- QUERY PARAMS
+- REQUEST METHODS
+- EXPRESS
+
+Client server model let anyone from browser talk to a sever(ex. AWS Server)
+Express allow us to write HTTP server easily
+any website on the internet when go to chatgpt a request is goes to internet to the server, listen to the request and send response through http server
+
