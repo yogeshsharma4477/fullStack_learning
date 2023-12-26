@@ -5,7 +5,8 @@
   "main": "./week3/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon ./week3/course_app/index.js"
+    "start": "nodemon ./week3/course_app/index.js",
+    "build": "tsc"
   },
   "author": "",
   "license": "ISC",
@@ -17,6 +18,7 @@
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.3.0",
     "nodemon": "^3.0.2",
+    "tsc": "^2.0.4",
     "uuid": "^9.0.1"
   }
 }

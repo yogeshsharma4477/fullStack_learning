@@ -6,3 +6,162 @@ Q. why Typecript
 > let x : number = 10;
   x = 'hello'
 // this is will give you error
+
+Q. function():datatype is what this function is returning.
+
+function addOrSub(
+  a: number,
+  b: number,
+  type: "add" | "sub"// you can also make paramter strict by specifying what all only type can be passed or expect
+): number {
+  if (type === "add") {
+    return a + b;
+  } else if (type === "sub") {
+    return a - b;
+  } else {
+    return -1
+  }
+}
+let ans = addOrSub(4, 2, "add");
+console.log(ans); 
+
+
+
+Q. how does TS run code?
+> when ts code is run 2 things are happening 
+  1. ts command which take index.ts as input and spit out index.js file
+      in this command it checks your code type during compilation 
+      and whenever there is type error not the run time error, run time happen in 2nd commad
+      in this it only inspect your type if theres an error in type it does not create js file
+  2. js command which run js code as node index.js
+
+> TS can never throw run time error it only compile your and give compilation error if theres a type error(compilation error)
+  JS throws runtime error bcz this is when your code is run line by line and give runtime error(runtime error)
+
+
+Q. What is the TS compiler?
+> there is some process which runs that convert your TS code to JS code
+  - npm install -g tsc
+    tsc // typecript compiler
+    it is same as node === tsc
+    
+Q. tsc --init 
+> it gives tsconfig file in which you can define your ts configutation on how strict you want your ts file should be what errors to ignore all of that
+
+Q. tsconfig.json - here you can define how your ts should convert into js
+> {
+  "compilerOptions": {
+    "target": "es2016",   // it represent what should be the final ecmascript version of the js which is created es16 is most browser understand
+                          es3,es4 - very old if you want to support InternetExplorer
+                          es16-es20 - incrementally better (es16 usual standard)
+                          esnext - latest
+
+    "module": "commonjs", //  when there is js file/ TS file is a module(module is something which can export) 
+                          //  whenever you write a library that export something is called MODULE 
+                          //  and you can represent what kind of module you want to export your file, we have CommonJS ( module.exports = {} )
+                          //  but if you want latest module you can change  "module": "commonjs" to  "module": "es6"
+                          //  if you use module as es6 your js file convert your code into latest moduel ex. import {} from './'
+                          //  if you use module as CommonJS your js file convert you code into old version ex. const a = require('./')
+                          //  if your code is going to run in new machines use es6 module or else use CommonJS
+
+    "esModuleInterop": true,                             /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */
+    "forceConsistentCasingInFileNames": true,  // means your export file name will converted as import number from './NumberPopTextMessage'
+    "strict": true,                                      /* Enable all strict type-checking options. */
+    "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
+  }
+}
+
+
+SUMMARY -> week7 -> 01:00:00 hr
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++ 2nd Half ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Q. Interface, types and enums?
+> if you have complex collection which you don't know the type
+  
+  - one way you can do is 
+  function greet(person : {name: String, age: number}) : String {
+    return "hello" + person.name + "your age is " + person.age. 
+  }
+
+  -  Or you can do is create Interface
+    interface Person {
+        name : String,
+        age : number
+      }
+
+    function greet(person : Person) : String {
+        return "hello " + person.name + " your age is " + person.age
+    }
+
+
+    console.log(greet({name:"yogesh",age:25}))
+
+  // Interface describe the shape of your Object
+  // you use interface to combine data
+  // interfaces can be implemented by classes
+  // interface can extent interfaces
+
+Q. types
+> it is same as Interface but only one thing is that type extends or implemented by classes
+  interface lets you use some extra things which types doesn't let you do
+
+  type Animal = {
+    name : String,
+    age : number,
+  }
+
+ // types are very usefull for union and ors
+
+ interface Circle{
+  radius : number
+ }
+ interface Square{
+  side : number
+ }
+ interface Rectangle{
+  width : number,
+  height : number
+ }
+
+ type shape = Rectangle | Circle | Square
+//    final type will look like 
+//    {
+//     radius : number,
+//     side : number,
+//     width : number,
+//     height : number
+//    }
+
+ function renderShape(shape : shape){
+  console.log("rendered")
+ }
+
+ function calculateArea(shape : shape){
+  console.log("calculate Area");
+ }
+
+ renderShape({
+  radius :10
+ })
+
+
+
+
+
+ Q. enums =>  means optional paramter
+ > interface Circle{
+    radius : number,
+    borderWidth?: number
+  }
+
+  function render(Circle : Circle){
+    console.log("Circle created")
+  }
+
+  render({
+    radius:10
+  })
+
+  // you don't necessorly need borderWidth its optional
