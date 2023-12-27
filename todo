@@ -1,0 +1,13 @@
+cron job and child process for 1month validity for course access
+(Cron and Agenda) for jobs
+Agenda can be used for location wise job 
+
+
+Zod
+Recoil
+Process manager
+customHook - for reusablility
+useMemo
+
+403 - unauthorized can be used in middleware
+411 - if user has send wrong input 

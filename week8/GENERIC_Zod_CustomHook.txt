@@ -1,0 +1,90 @@
+Q. Optimizing types
+>   Zod for validation
+    useSur
+    customHook
+
+Q. describe array in TS
+> arr : number[]
+  arr : string[]
+
+Q. types inference
+> if the parameter type if number of array ts can explicitly identifies the return type is types inference
+    
+    type Input = (number | string)[];
+
+    function getFirstElement(arr: Input):(number | string) {
+    return arr[0];
+    }
+
+    let a = getFirstElement([1, 2, 3, 4]);
+    let b = getFirstElement(["one", "two", "three", "four"]);
+    console.log(a)
+    in this you cannot do b.tolowerCase() because b type is number or string
+    
+    Solution to this is ? GENERIC
+
+Q. GENERIC -> 
+    <T> it stands for template
+    T[] it means if you pass number as parameter then it will return number if passed string it will return string
+
+    function getFirstElement<T>(arr: T[]){
+        return arr[0];
+    }
+
+    let a = getFirstElement<number>([1, 2, 3, 4]);
+    let b = getFirstElement<string>(["one", "two", "three", "four"]);
+    b.tolowerCase()
+
+Q. parameter can be multipe type?
+    // You can add multiple generics 
+
+    function swap<T,U>(a:T, b:U):[U,T]{
+    return [b,a]
+    }
+
+    console.log(swap(1,"2"))
+
+Q. Partial to make all the types generics
+>    Partial<interface>
+
+
+//======================================2nd half=======================================
+
+Q. Why we need backend validation?
+> Erronous input can break your server
+    we have libraries for handling input validation
+    TRPC is a library which let you write validation in backend and same validation can be used at client side
+
+
+Q. there are others way you backend can go down, to handle that we can use is 
+> Process managers
+  Try catches
+  Doing input validation
+
+  1. Process managers - it is Process that keeps running and checks if your index.js is up and if not it comes up automatically
+  2. we have 2 famous libraries for Process manager - 
+        - forever
+        - pm2
+    > npm i -g pm2
+    > pm2
+    > pm2 start index.js
+    > pm2 kill
+    > pm2 log
+    > pm2 list
+  
+ // this way your backend will go down
+ // best way is your backend should go down and how will we do? using input validation 
+
+
+
+Q. input validation
+> Zod is a library for input validation
+
+Q. is zod and ts is same?
+> TS is compile time checks, compile time checks are that you know username and password is same but in backend we don't know 
+  user can send anything
+  we don't use TS for backend because end user can send you anything and there no use of using TS in backend
+
+
+Q. customHook
+> reusable functions that a React JS developer can use to add special and unique functionality to the React applications.
