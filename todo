@@ -8,6 +8,12 @@ Recoil
 Process manager
 customHook - for reusablility
 useMemo
+clustering 
+child process
 
 403 - unauthorized can be used in middleware
 411 - if user has send wrong input 
+
+mono repo frameworks - turborepo, lerna - week 8
+
+

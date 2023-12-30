@@ -1,0 +1,63 @@
+Q. why packages/modules?
+>   sometimes there are functions which need to used by frontend and backend both,
+    one way is to write same code in frontend and backend both
+    or you can create a package/module that both frontend and backend can import from
+    - re-useable code
+    - Seperation of cencern
+    - Teams can work on modules independently
+
+Q. Zod inference 
+> const userSchema = z.object({
+    username: z.string().max(10),
+    password: z.number().min(6),
+    email: z.string().email(),
+    phone: z.string().length(10)
+});
+
+//zod inference
+type SignupParams = z.infer < typeof signupInput >
+
+
+Q. Registries in npm
+> this is a place people put their code
+    ex. react, express
+
+    to add project to npm
+    > npm login
+    > change package name accourding to you and entry point
+    // to publish 
+    > npm publish --access=public // you can create a private repo as well if you have paid subscribtion
+    > npm pack // creates a compressed of your package and it shows you what files you have published to npm 
+    > vi .npmignore // it is same as .gitignore add files names which you don't want to publish
+    > npm pack // once you add some changes again do npm pack then
+    > npm publish // change the version in 
+    > // declaration:true // to ts config to create d.ts file, it doesn't contains js code it only contain types of your code
+                             because when we publish this to npm and the person who is importing it, 
+                             it is good enough to know the types of the functions, they don't need to know about js logic
+
+// Never push your typecript file to npm
+
+
+Q. what are mono repos?
+>   it lets you contains multiple modules in your project i.e frontend/backend in same repos
+    The term "monorepo" is derived from the words "monolithic" (single) and "repository" (storage).
+    Rather publishing to NPM and then import the function we can import it from our local folder but how?
+    mono repo libraries - yarn workspaces, lerna, turbo repo
+    
+    the most popular repo is turbo repo
+    Turborepo is an intelligent build system (the process of converting react code into javascript is call building system) optimized for JavaScript and TypeScript codebases.
+    > npx create-turbo@latest
+    // it create nextjs frontend repo 
+    // in apps/web/packages/ui you create all your component
+    to get access apps/web/packages/ui component in all your project make your sure you have ui:"*" in all your projects package.json 
+
+    SUMMARY :
+    1. you can publish module to npm but if you want to specifically understand mono repo 
+       there are frameworks like lerna, turborepo that let you write code in a modular fashion 
+       where you can create a component in ui module and this component can be used by multiple frontend application 
+       infact we can have react native app and react js app in same repo and both native and js has access to ui component
+
+    2. what trubo repo exactly is?
+    >  it helps you write small submodules and share code between them, it actually does bundling under the hood 
+       and if you have application that has next, react, frontend, backend and bunch of other thing and if you want to put under the same repo turbo lets you do it.
+       
