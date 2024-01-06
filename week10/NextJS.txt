@@ -95,3 +95,33 @@ Q. Facts about Nextjs/SSR
 
 Q. getServerSideProps(){}
 > even before rendering html getServerSideProps runs first
+ // use cookies for authentication because in server side you cannot access localStorage so need to store tokens in cookies to validate from server side
+
+Q. to move react to next?
+>  just remove react router to pages 
+
+Q. client side components("use client") vs server side components
+> to untill now whatever you had in pages and whatever components you had in that pages would initially render on server and then they would go to the client 
+  now what if one of the components initially use something which is not present on server like localStorage 
+  in those scenarios you can mark those components as "use client" means this components don't render on server it will render on client side only
+
+Q. Hydration
+> means first rendering
+  Hydration is the process of taking that pre-rendered HTML and attaching it to the existing DOM (Document Object Model) on the client side, effectively "hydrating" it with React components.
+
+Q. Deployment
+> you can user netlify or versel to Deploy your nextjs both frontend and backend can be Deployed from nextjs unless you don't have load on your website
+
+
+Q. Im using 13.2.4 next version
+
+Q. you cannot cache backend because for every user we need different data only frontend can be cache/ CDN because it static file same for all the users
+
+Q. dynamic routes
+
+
+__________IMPORTANT__________________
+**** instead of useEffect for first render you getServerSideProps so that your search engine finds the indexing ****
+**** the pages that google need to be indexing only those should be render server side 
+     but after login whatever page is there that don't need to called on server side render
+     because those page would not be used for indexing ******
