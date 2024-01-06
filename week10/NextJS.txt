@@ -1,0 +1,97 @@
+Q. Problem with react, why even SSR, Why NextJS is taking over react?
+>   Versel introduced NextJS, NextJS Solves below things : 
+    1. Waterfalling
+    > in react what happens, when you go to websites ---> you hit the server --->
+      ---> get back with index.html and it has script tag(JS file) which has bunch of react code in it.
+      ---> then hit the backend server to get the user details, when you get the user details you render them into the screen until then there is flash on the screen
+    
+        these are the lifecycle event happen in most of the react application which has backend
+        1. you get empty index.html, it has JS file but html is completely empty that is why you see flash on the screen for ms which is very minute
+        2. then comes the first render which means rendering all the screen that don't require the backend 
+        3. and finally our userDetails or button which is depending upon the backend data whether you need to show login btn or sign in btn both depend upon whether user is loggedin or not, so you need to wait for server to response
+        This is one problem that NextJS Solves
+    
+
+    2. Not SEO Optimised
+    > Search engine don't run js, it just check what is index.html file what does it contain. 
+      Search engine are meant to scrap the html and based on that, it decide what websites is doing.
+
+      This is what react loads initially and Search engine is not able to decide what this website is doing
+      This information is nothing for Search engine.
+      and when react people wrote react code they realised that the search engine are not indexing them 
+      the problem is the initial html that you server return is very empty so your search engine are not able to decide what is your website doing
+      <!DOCTYPE html>
+        <html lang="en">
+
+        <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            <meta name="theme-color" content="#000000">
+            <!--
+            manifest.json provides metadata used when your web app is added to the
+            homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
+            -->
+            <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+            <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+            <!--
+            Notice the use of %PUBLIC_URL% in the tags above.
+            It will be replaced with the URL of the `public` folder during the build.
+            Only files inside the `public` folder can be referenced from the HTML.
+
+            Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+            work correctly both with client-side routing and a non-root public URL.
+            Learn how to configure a non-root public URL by running `npm run build`.
+            -->
+            <title>React App</title>
+        </head>
+        <body>
+            <noscript>
+                You need to enable JavaScript to run this app.
+            </noscript>
+            <div id="root"></div>
+            <!--
+            This HTML file is a template.
+            If you open it directly in the browser, you will see an empty page.
+
+            You can add webfonts, meta tags, or analytics to this file.
+            The build step will place the bundled scripts into the <body> tag.
+
+            To begin the development, run `npm start` or `yarn start`.
+            To create a production bundle, use `npm run build` or `yarn build`.
+            -->
+        </body>
+        </html>
+
+
+    3. React will not work in a place where that cannot run JS ex. emails
+    > when you receive any mail from makemytrip, yatra that not plain text it looks very pretty becz of HTML CSS 
+     and email don't let run JS becz of security reasons
+     if you writen any JS inside your email it won't run 
+     what is initial HTML come from server for react app is the above code which means if i write a react app and 
+     try to send this(above code) to an email it won't work because it will simple render empty page 
+     it will never execute the JS which actually do the re-rendering and renders the whole things this is the 3rd problem
+
+
+
+Q. Server side rendering 
+> SSR means you write your code in react but your server where the first render happens, 
+  here render means simply converting this(above) HTML file into filled HTML file for 1st render atleast
+  
+  1st request means you need to worry about any fetch request happening after words , 
+  the code that appear first without the backend request that checks signin or signout to display, this check if you do at first render 
+  this can helpfull to create filled HTML/ dynamic html at render so that at first render itself is create static page with dynamic data can be used to send in email
+
+  - SSR : the process of doing initial render on the server is called SSR.
+  - another usecase of SSR - suppose there is library only need during the initial render to get some data what you can do is 
+    use on the server and not send back to client so that client bundle become smaller 
+
+
+Q. Facts about Nextjs/SSR
+> 1. No access to browser construct(localStorage,window)
+  2. Can't run hooks, doesn't understand state
+  3. Only renders once on the serve, future rendering(based on state change) happen on the browser
+  4. Also lets you write HTTP backend routes(no need for express)
+
+
+Q. getServerSideProps(){}
+> even before rendering html getServerSideProps runs first
