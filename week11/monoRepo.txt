@@ -15,3 +15,7 @@ Q. Internal  Packages in Turborepo vs external package?
   Summary:
   Any packages which does not have build as a commond in their package.json is concider as Internal package
   And whenever there is internal you have to make sure whoever is using it, it should me mention in config file in nextjs else next will fail
+
+
+Q. npx create-turbo@latest
+> it create a basic boiler plate for monorepo
