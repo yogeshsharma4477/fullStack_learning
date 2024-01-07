@@ -1,0 +1,17 @@
+Q. why mono repo?
+> to share component, code accross various apps
+    state management should be sperate module
+    backend should be sperate module
+    frontend module
+
+Q. Internal  Packages in Turborepo vs external package?
+> like before when people want to share Packages they create a package and deployed to npm registries 
+  and then other packages in frontend can pick it up from npm
+
+  the difference `between Internal and external package is:
+  Internal packages are packages which are only to be used inside your monorepo. theyre extremely usefull for sharing code between apps in closed-source monorepo.
+  Internal package quick to create and can be turned into external packages if you end up wanting to publish them to npm.
+
+  Summary:
+  Any packages which does not have build as a commond in their package.json is concider as Internal package
+  And whenever there is internal you have to make sure whoever is using it, it should me mention in config file in nextjs else next will fail
