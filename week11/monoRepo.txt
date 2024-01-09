@@ -19,3 +19,28 @@ Q. Internal  Packages in Turborepo vs external package?
 
 Q. npx create-turbo@latest
 > it create a basic boiler plate for monorepo
+
+Q. ui folder 
+> this is where you write all your component and ui is your internal package, it is bydefault and to add any package as internaal
+go to apps/web/next.config.js you'll see
+module.exports = {
+  transpilePackages: ["@repo/ui"],
+};
+
+to add the react mono repo or express backend as internal you need to add in next.config.js in transpilePackages
+
+Q. boiler plate
+> it has 2 folder docs and web
+what we will have 2 module 
+1. courseSelling frontend 
+2. courseSelling Admin frontend
+
+
+Q.Mono repo structure
+> Add db module, store module, ui/component which is default module , all the internal module should be inside package folder
+  in db module connect your db using mongoose and create schema as well and use that db and schema model 
+  in nextjs inside api folder write your backend code inside api and remove express 
+  db should be in seperate module becz other frontend might want to use the db so instead of copy pasting use db as intenral package and use accross the application
+
+  whatever module you are adding add it package.json and next.config.js transpilePackages: ["@repo/ui", "db","store"],
+  so that all the apps can access these internal module in their application.

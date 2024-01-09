@@ -1,0 +1,73 @@
+Q. auth/token should be in cookie
+> always use cookie for auth for first getServerSideProps because localStorage cannot be access throught getServerSideProps 
+
+
+Q. Login with fb, email, google, how does these company provide auth?
+> to get login with these you have to register your website and tell them you need to use their authentication in our website
+
+    High Level of google auth working?
+    1. if you click login with google from www.ourwebsite.com 
+    2. I will be directed to google login page 
+    3. and once you login there and google will validate that it is a valid user Google will redirect back to our website, 
+       in the google url itself we will attach our our website url so that from url param google will redirect us to our page ALONG with a TOKEN
+    4.and with the TOKEN which we get we will again share that TOKEN to google to validate and once google validate it will share use username, profile
+
+
+Q. create google credential
+> https://console.cloud.google.com/apis/credentials?project=youtube-395310
+    create credential -> oauth client id -> configure consent screen -> external app
+    -> add scopes( what all data you need from google ) in our case username, profile 
+    Authorized JavaScript origins - http://localhost:3000
+    Authorized redirect URIs 
+    http://localhost:3000/api/auth/callback/google
+    http://localhost:3000/api/auth/callback/github
+    -> in this you need to add your website url which you need google to redirect back to your page
+
+
+    client id in env - 626551388553-egj2hpst0fed0ihl18ltm4j4tr2mrlqe.apps.googleusercontent.com
+    client secret in env - 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
+
+
+Q. page/api/auth/[...nextauth].ts vs [nextauth]
+>  it means if anyone goes to localhost:3000/auth/anyRandomUrl will catch this [...nextauth].ts file 
+   doesn't matter what the route is and doestn't matter how many slash / is after auth, everything will be caught here in [...nextauth].ts file 
+   
+   and if it was like  page/api/auth/[ID].ts it will catch only one route after the auth
+
+
+Q. nextAuth library
+>  it works on node version 18, read doc 
+      <SessionProvider session={pageProps.session}>
+          <Component {...pageProps} />
+      </SessionProvider>
+    this is what it injects session throught out your application 
+
+Q. import { useSession } from 'next-auth/react';
+> give the status related to login
+
+
+Q.http://localhost:3000/api/auth/signin - this route is handle by nextauth
+
+Q. next auth Cookie set
+> it just store in your browser, you don't have to specify as long as the cookie sets it automatically and send with session request
+  which validate and send back user information
+  Q. how does cookie sets? 
+  - it comes with response and whenever set-cookie comes from response header the browser will set cookie for that cookie
+    and everytime you refresh the page your cookie is changing and this is known as refresh token
+  Q. Refresh token
+  - everytime you refresh the page your cookie is changing and everytime you refresh your expire time also extend
+    but if you leave that website for long time and cookie is not refreshing you will be logged out
+
+
+Q. to solve waterfall issue for login/signin button
+>  const session = useSession(); 
+   // because this session check is happening on client side and when our data comes from server, 
+      user login or not is not yet checked it is checked on client side that is why is waterfall issue is happening
+
+    Hot do we solve this?
+    > we have getServerSession in nextAuth for getServerSideProps
+
+
+Q. credentialsProvider - to add username password fields and inside [...nextAuth] connect with db and check if user is valid or not
+
+Q. impersonate assignment
