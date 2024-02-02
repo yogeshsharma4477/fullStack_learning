@@ -1,0 +1,58 @@
+> Javascript is a synchronous, blocking, single-threaded language
+> To make async programming possible we need the help of libuv
+
+Code Execution in Node.js
+ 1. V8 Engine - Memory heap
+              - call stack
+ 2. libuv - whenever there is an async operation it is moved to libuv   
+
+ Event Loop
+ > C program and is a part of libuv
+   A design pattern that co-ordinated the Execution of synchronous and asynchronous code in nodejs
+
+Q. 6 different event loop which holds different callback and push to callstack
+A. 1. timer queue - setTimeout and setInterval 
+   2. I/O queue - it is associated with fs and http module
+   3. check queue -  it associated with setImmediate and callbacks
+   4. close queue - this contains callback associated with the closed events tasks
+   // above four queues are all part of libuv
+
+   // and microtask queue are not part of libuv
+   5. microtask queue - i. nextTick queue -  process.nextTick callbacks
+                        ii. promise queue - promise callbacks
+
+Q. what are the priority of queues?
+> - synchronous code takes priority over async code that the runtime would like to Execute
+  - Only after the call stack is empty, the event loop comes into picture
+
+    EVENT LOOP - Execution Order
+     microtask queue 1. nextTick queue
+                     2. promise queue
+    3. timer queue
+    4. I/O queue 
+    5. check queue
+    6. close queue
+
+Q. process.nextTick provides a way to schedule a function to be executed as soon as possible in the current iteration of the event loop, 
+   before the event loop moves on to other phases like timers or I/O events
+   Note before any of the async task executed firstly the synchronous task always runs
+   
+Q1.console.log("start")
+   process.nextTick(() => console.log("this is process.next 1"))
+   console.log("end")
+
+   Output - start
+            end
+            this is process.next 1
+
+   
+Q2. Promise.resolve().then(() => console.log("promise 1"))
+    process.nextTick(() => console.log("nextTick 1"))
+
+    Output - nextTick 1
+             promise 1
+
+NOTE : using nextTick everywhere it not recommended
+       reason to use nextTick - to allow user to handle errors, 
+       cleanup any then unneeded resources or try the request again before event loop continues
+       

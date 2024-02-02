@@ -1,0 +1,8 @@
+A Promise has four states
+Pending: Before the event has happened, the promise is in the pending state.
+
+Settled: Once the event has happened it is then in the settled state.
+
+Fulfilled: Action related to the promise has succeeded.
+
+Rejected: Action related to the promise has failed.

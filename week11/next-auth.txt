@@ -36,7 +36,7 @@ Q. page/api/auth/[...nextauth].ts vs [nextauth]
 
 
 Q. nextAuth library
->  it works on node version 18, read doc 
+>  it does not works on node version 18, read doc 
       <SessionProvider session={pageProps.session}>
           <Component {...pageProps} />
       </SessionProvider>
@@ -71,3 +71,16 @@ Q. to solve waterfall issue for login/signin button
 Q. credentialsProvider - to add username password fields and inside [...nextAuth] connect with db and check if user is valid or not
 
 Q. impersonate assignment
+
+
+
+SUMMARY
+1. create api route api/auth/[...nextAuth] 
+2. import Provider ex. github provide, google provide
+3. create authOption, inside authOption add Provider with id and secret(google its different and for github its different)
+4. in _app.js -> use SessionProvider from 'next-auth/react' to wrapp to whole application, so that session is available throught the app
+     <SessionProvider session={pageProps.session}> // pageProps has automatically session as key
+          <Component {...pageProps} />
+      </SessionProvider>
+5. useSession()
+6. signIn and signOut -> from next-auth/react to login and sign in

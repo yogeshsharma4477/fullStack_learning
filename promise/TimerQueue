@@ -1,0 +1,39 @@
+// after every execution inside a timeout queue the event loop goes back and checks the microtask queue
+// note timer queue is not a queue is a mean heap data structure but just for our understanding we say it is a queue
+setTimeout(()=>console.log("timeour 1"),0)
+setTimeout(()=>{
+  console.log("timeout 2")
+  process.nextTick(()=>console.log("nexttick inside timer"))
+},0)
+setTimeout(()=>console.log("timeour 3"),0)
+process.nextTick(() => console.log("nextTick 1"));
+process.nextTick(() => {
+  console.log("nextTick 2");
+  process.nextTick(() => console.log("inner nextTick"));
+});
+
+process.nextTick(() => console.log("nextTick 3"));
+
+Promise.resolve().then(()=>console.log("Promise 1"))
+Promise.resolve().then(()=>{
+  console.log("Promise 2")
+  process.nextTick(() => {
+    console.log("inner Promise nextTikc");
+  });
+})
+
+Promise.resolve().then(()=>console.log("Promise 3"))
+
+// output
+// nextTick 1
+// nextTick 2
+// nextTick 3
+// inner nextTick
+// Promise 1
+// Promise 2
+// Promise 3
+// inner Promise nextTikc
+// timeour 1
+// timeout 2
+// nexttick inside timer
+// timeour 3

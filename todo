@@ -15,5 +15,7 @@ child process
 411 - if user has send wrong input 
 
 mono repo frameworks - turborepo, lerna - week 8
-
+nextAuth
+redis
+dynamic route
 
