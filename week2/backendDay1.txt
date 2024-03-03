@@ -13,8 +13,21 @@
 Q Nodejs 
 > Nodejs is a js runtime, it is just the engine which was used in chrome (V8) 
   which was pulled out for the world to everyone to use without the things that you need inside the browser
+  - Node.js is designed to be non-blocking and event-driven, allowing for efficient handling of concurrent operations. 
+    This is achieved through the event loop, which enables asynchronous I/O operations.
+  - Node.js can run on various platforms
+  - With Node.js, JavaScript can be used both on the server side and the client side
+  
+Q. is Node js single threaded? 
+> Node.js is often described as single-threaded, but it is more accurate to say that it has a single-threaded event loop.
+  The main event loop runs in a single thread. However, Node.js can take advantage of multi-core systems through
+    1. The Cluster module is a built-in module in Node.js that allows you to create child processes, 
+       each running its own instance of the Node.js event loop
+    2. Worker Threads: Node.js introduced the Worker Threads module, which allows developers to create true parallel threads. 
+       Worker threads are separate instances of the V8 engine, each running in its own thread. 
+       This enables parallel execution of JavaScript code.
 
-
+       
 Q. what are HTTP method, why do we use, and client server model, HTTP server, Express
 1.  HTTP method
 >   we talk to different server or exchange information, 
