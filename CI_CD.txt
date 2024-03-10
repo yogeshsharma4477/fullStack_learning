@@ -1,0 +1,299 @@
+Q. how to deploy backend on the internet via CI_CD
+> 
+
+Q. Pre ci/cd days
+>   before github ci was introduced there was no concept of automatic deployments
+    whenever you push to github, you also pull your code to the server
+
+Q. why is backend deployment is hard?
+> whenever you go to your fb you will get your data and whenever i go to my fb my data comes, for every user has diferent data is fetched
+  and there's no concept of CDN is there and not a lot of data is cached
+  simple html css js react application is easy to deploy and 
+  nextjs is slightly difficult to deploy as they have server side rendering
+
+Q. public ip
+> AWS whenever you a rent a machine or gcp it gives the machine similar to your localhost and it give a public ip 
+  which you will eventually use to connect your domain name to that public ip 
+  so that if someone reaches your domain name it will connect with your public ip where backend code is running
+
+  > public IP && dynaimcic IP = same( mostly used for server)
+    Private IP && Fixed IP && static IP = same ( different wifi difference ip, Private Ip is used within a local network (e.g., home or office network) and is not directly accessible from the internet )
+    system IP && Mac Address = same ( system unique ID )   
+
+
+=================================== AWS Hosting ===================================================================================================================================================================================
+
+
+Q. AWS - host you server (this is the dumpest way to deploy)
+> 1. After sign in -> search for ec2 in search bar
+      EC2 - Amazon EC2 is a web service provided by AWS that offers resizable compute capacity in the cloud. 
+            It allows users to rent virtual servers, known as instances, to run their applications and workloads. 
+            EC2 enables users to easily scale compute resources up or down based on demand, 
+            pay only for what they use with a pay-as-you-go pricing model, and choose from a variety of instance types optimized for different use cases.
+  2. click on "launch instances" // we are going into the process of renting a server/machine on the internet
+  3. then give it a name 
+      --> then scroll, it also give bunch of options to what operation system you want for the server (we selected ubuntu)
+  4. scroll now the other important thing you need to select is the size that you need
+     Micro is usaly free if you have a new account as long as you are not running for 7 20 hours 
+     NOTE : close the server when your application is not running
+  5. ssh "Key Pair" - this kind a server secret key, whoever has this key can access your server.
+     After creating "key pair" you'll get one file
+     ** save that file we'll add our file when we will be cloning our code to the server **
+  6. now click on "Launch Instance" // now it will give you a machine.
+     once the launch is completed it will you a ID if you click that id it will redirect to your ec2 instances page
+  7. In your instances you'll get the "public IPV4 DNS" this is the link where your code is running
+
+  8. Opening firewall on the machine on port 80/443/22 (3000,3001?)
+     localhost:3000
+       url     port
+     -  the url is how you reach the machine 
+        ex. ec2 url and whenever anyone reach that url they reach on my server but server has many ports and you can run various process on various port
+        and usually are 3000 port on our local.
+     -  but the most important once are 80/443
+        so whenever your on the internet and goes to google.com, the port you are hitting the google.com is 443
+        when you are not specifying which port to go to bydefault it will go to 80 or 443 based on what protocol is in the beginning 
+        if https protocol the 443 port and if http protocol port 80 will be hit. that how browser have been build
+     
+     -  when you buy ec2 instance it is closed by default, how do i know?
+        go to ec2 instance ---> click on security, it has inbound rules and outbound rules 
+        > outbound rules - so the machine you bought the outbound rules represents whether the machine can access the internet or not
+          you can also mention which website should not use your machine, generally it should be available to internet
+        > inbound rules - ( click on your instance --> security --> inbound rules --> click security groups link )
+          this is where your firewall magic happen
+          firewall are basically network partition and you making sure what is accessible in internet and what not.
+        > click on "edit inbound rule" - you'll one default port i.e ssh 22
+            * what is ssh? it is protocol which let me to connect to that instance over there 
+              if we delete this port we won't be able to connect to that instance 
+              but aws give this ssh 22 port bydefault 
+        >  Now the things you should add now are you app need to deployed on the internet on port 443 and 80 
+          -  click "Add rules" 
+                            1. select port = 80 and source = anywhere 1pv4
+                            2. select port = 80 and source = anywhere 1pv6
+                            3. select port = 443 and source = anywhere 1pv4
+                            4. select port = 443 and source = anywhere 1pv6
+          // these at the very least you should open because you want people to hit your server
+             unless your user wont be able to use the server because bydefault port are 80 and 443 and you havent open that port so aws wont responsed 
+                            5. select port = 3000 and source = anywhere 1pv6
+                            6. select port = 3000 and source = anywhere 1pv6
+  
+  9. cloning your code to the machine.
+  > 1. paste your certifcate( which you have generated when creating ssh "key pair" ) in your local path where you backend is
+      > go to your ternimal where your code and certifcate is there
+        
+      Commands
+      > ssh -i todo-app-class.cer ubuntu@ec2-2-3-106-245.ap-southeast.compute.amazonaws.com
+        ssh -i "name of your certifcate" "operation system which you selected"@"public IPV4 DNS"
+        enter |_ 
+        it will give error that private key is not accessible
+      > ls --ltr todo-app-class.cer  // it will show how can access or has permession
+  i.  > chmod 600 ./todo-app-class.cer // this you have to do everytime when you have generated key pair, meaning only once 
+  ii. > ssh -i todo-app-class.cer ubuntu@ec2-2-3-106-245.ap-southeast.compute.amazonaws.com // to connect to your aws server
+        // now you have connected to your instance through your secret key from your ternimal
+        // now whatever Commands you are running you are running on your aws server
+    
+
+  10. Installing node/npm (why docker is usefull)   
+  > so now your are connect to your aws server through ternimal, clone your project 
+      > git clone https://github.com/yogeshsharma4477/Learnify.git
+        # once cloned go to the server folder
+      > cd /server
+        # now you need to do npm install but node is not present on that server, so first install node
+      > curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash // this Commands will install nvm and give 3 line of Commands paste that also
+      > export "NUM_DIR="$HOME/.num"
+        [ -s "NUM_DIR="$HOME/.num"] && \."NUM_DIR="nvm.sh" #this load nvm
+        [ -s "NUM_DIR/bash_completion ]
+       #now we can run nvm Command because above 3 line we installed
+      > nvm 
+      > nvm install node
+
+        # now we have npm
+      > npm
+      > npm install
+      > npm run start
+        #now our code is running on our aws server
+      
+
+      
+  11. pm2 (Process Manager) -  if you want your process to keep running, we will use pm2 (process manager)
+      > npm i -g pm2 
+      > pm2 start index.js
+
+      #to edit any file on the server 
+      > vi index.js
+
+      # till now what is ugly?
+        1. our code is running on http
+        2. we have mention our port to our url :3000
+    
+  
+======================================= 2nd phase - CI CD =========================================================================================================
+
+1. How to update our server if did some changes in our code? 
+>   1. ssh into machine
+    2. pull your latest code
+    3. stop existing process ( pm2 kill  )
+    4. re-build the code ( npm install #might have added new dependencies )
+    5. re run the code (using pm2) 
+
+
+2. create a script which does all of the process automatically which is known as bash file
+> go to the root path in your aws server ternimal
+  > vi deploy.sh 
+    # paste the commond
+      export PATH=$PATH:/home/ubuntu/.nvm/versions/node/v20.5.0/bin
+    # the above line gives access to pm2, node
+      cd backend
+      git pull origin master
+      cd server
+      pm2 kill
+      pm2 start index.js
+
+  > source ./deploy.sh 
+    #what this will do is it will automatically run all the 5 commond one by one
+  
+  > rm deploy.sh 
+    # don't run this commond, it is used to delete file
+
+
+3. till now we have reduce to all the process in 3 commonds
+>   > ssh -i todo-app-class.cer ubuntu@ec2-2-3-106-245.ap-southeast.compute.amazonaws.com
+    > source ./ deploy
+    > exist
+    # problem is it involes developer to do this
+
+
+4. to make it more easy.
+>   we have script-local.sh file 
+    > ssh -t -i "todo-app-class.cer" ubuntu@ec2-2-3-106-245.ap-southeast.compute.amazonaws.com  "sudo bash ~/deploy.sh"
+      ssh -t -i "cert-file.cer" ubuntu@ec2-url  "sudo bash ~/deploy.sh"
+
+    # now simple on my local i can run only one commond which is step easier for the developer
+      1. ssh into the server
+      2. then run deploy.sh which will re deploy the code
+    # but here developer need to do 
+      1. git push origin master 
+      2. ssh -t -i "cert-file.cer" ubuntu@ec2-url  "sudo bash ~/deploy.sh"
+
+
+5. complete CI CD pipeline, once the developer push his code on git and on server it should automatically gets updated
+> # people only want to push their code to github and then whenever this happens some process should run to deploy their ec2 instances
+    so github, gitlab, bitbucket gave you some construct ke bro put a certain file in a certain folder 
+    and tell me what to do what cammond to run whenever a new commit happen.
+    so github, gitlab, bitbucket gave some construct actions which is you specifies when a process should run 
+    and what the process should do and github somehow bring the server for you run the process for you
+
+    so any time a code pushed to gitub a long script runs which connect to your server and runs all neccessary commonds so this is CD ( continuos deployment)
+
+  Q. how does github expect you to provide it inputs so that it knows what to do? - check part-3-ci-cd
+  Q. what is yaml?
+  >  like json, xml, yaml - these are way to just represents data 
+     - json 
+      {
+        "name":"yogesh",
+        "age" : 25
+      }
+      
+      - xml 
+        <name> yogesh </name>
+        <age> 25 </age>
+      
+      - yaml
+        name : yogesh
+        age : 25
+        
+      .yaml file are also way to cluster information together 
+      and whenever you are doing ci cd, devOps this is most popular format to write whatever you want to write
+      in our case what should happen when someone commit
+
+      how do i write this in a format the format that github accept and github accept is .yaml format 
+
+
+
+=================================      cd-easy.yaml file        =================================
+      name: Deploy   # name for an action, what action we are performing it just a name 
+
+      on:            # when should it run                             
+        push:
+          branches:
+            - master # or the branch you want to deploy from
+
+      jobs:         # what action should it do
+        deploy:
+          runs-on: ubuntu-latest  # specifying on which machine it should run, its github machine
+
+          steps:
+          - name: Checkout code       # clone the my code on your own ubuntu machine 
+            uses: actions/checkout@v2
+
+          - name: SSH and deploy      
+            env:
+              SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }} # get my secret key from github secret 
+            run: | 
+              echo "$SSH_PRIVATE_KEY" > keyfile      # this command create a file "keyfile" and paste SSH_PRIVATE_KEY env data init      
+              chmod 600 keyfile                      
+              ssh -t -i "cert-file.cer" ubuntu@ec2-url  "sudo bash ~/deploy.sh"
+
+
+
+
+# whenever you write a github action in our case a commit is pushed in our repository we want some thing to happen this thing always ahppens on a machine
+# so you tell github anytime a commit happen run somehting on an ubuntu machine 
+   step 1 clone/bring my github code 
+   step 2 push my github code to my AWS machine
+
+# you should not push your secret to your github, for that we have github secret
+  if the certificate file is on github then you can run > ssh -t -i "cert-file.cer" ubuntu@ec2-url  "sudo bash ~/deploy.sh" command
+  you should never put your certificate file on your github becz if you put anyone can see it,
+
+# for this you can use like github secret
+# on your repo create one folder 
+  -> .github (folder) //all github actions are put in this folder this is where github picks your action files
+    -> workflows (folder)   
+      -> ci.yaml (file) and copy paste the cd-easy.yaml code
+
+Github Secret
+#  github repository -> go to setting -> click on secrets and variable -> click on action -> new repository secret
+   any thing that you want CI_CD to access to but you don't want to commited on github 
+   meaning those variable CI_CD has access to but they are not on your github is secret
+   it .env for your github actions
+   only admins has access to create a new repository secret
+#  after all the changes has been done on local push it to github
+#  .yaml file made github do somehting anytime you commit but for the first time it will not work 
+    because the first time you ssh into any machine it will ask 
+    and when you are on github a new ubuntu machine is created by github where they try to ssh and there also it will ask that machine the same questiona and they denied
+    so the problem is first time you ssh into the machine you need to say/enter yes 
+    
+    Q. what happen under the hood when you type YES and enter?
+    >  somehting goes into a file into your local machine. what is that file? that file is "known_hosts"
+       what if known what content it goes into that "known_hosts" file and we add them mannually that git will get error when they ssh for the first time.
+       what is this content?
+       > ssh-keyscan ec2-url >> known_hosts   # cammond to add content in known_hosts file, just change the ec2 url
+                                              # make sure you are in the same repository i.e on master, then it will create a new "known_hosts" file
+    
+    Q.After the known_hosts file is created at your local now you have to add that known_hosts file to the github ubuntu machine.
+      how do you tell the github machine?
+    > run: |
+        echo "$SSH_PRIVATE_KEY" > keyfile
+        chmod 600 keyfile
+    ->  mkdir -p ~/.ssh
+    ->  cp known_hosts ~/.ssh/known_hosts
+        ssh -t -i keyfile ubuntu@ec2-13-211-144-149.ap-southeast-2.compute.amazonaws.com "sudo bash ~/deploy.sh"
+
+        just need to add 2 command which will add known_hosts to github ubuntu machine
+        now there is not need to enter yes for the first time.
+
+    
+
+        
+
+                                                      
+      
+
+
+
+
+
+
+
+
+

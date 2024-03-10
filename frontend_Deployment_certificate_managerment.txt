@@ -1,0 +1,176 @@
+Q. Domain name service
+>  in the world all the ec2 instances that aws exist it has an IP they don't really has an domain name, they is but its some random doamin 
+   if you buy an doamin name you can point it to any server
+   once you add your IP to domain name it takes time to propogate all around the world, it might take 24 hours, there are websites to check if your domain name is propogate www.DNCChecker.com
+
+Q. so port 80 usually a node process don't have access, don't run directly your node process on port 80 run somehting else?
+Q. reverse proxy (nginx)?
+>  Recape till now : 
+   1. we started an aws machine
+   2. pulled our code over there
+   3. we ran it on port 3000, and it was working when go on ec2URL:3000
+   4. replaced our ec2URL to domain name, and it was also working when we go to doamin_name:3000
+   5. now we are trying to replace doamin_name:3000 to doamin_name:80
+
+   # Reverse proxy : nginx is not a reverse proxy, the process called nginx which does a bunch of things we are goin to use it as a reverse proxy
+   Q. what is a Reverse Proxy?
+   > so when you are out on internet and you are on ec2 instances, ec2 instances can be very big you don't run single process on ec2 instances
+     you run multiple instances, you run multiple http, 
+     ex. on aws machine, you will run multiple instances
+            1. Nodjs backend1 - 3000 
+            2. Nodjs backend2 - 3001
+            3. Frontend - 5172
+            4. Frontend - 5173
+    now you have 3 process running now one of the process lets say one process take port 80 but other one cannot 
+    we want our end user to always it port 80 because we want their URL to look clean.
+    user will not add port in every url we want somehow to point to correct url 
+    if user add Frontend1 we will point this to Frontend1:3000
+    if user add Frontend2 we will point this to Frontend1:3001
+    we want end user to hit 80 port but the url they are hitting is always different 
+    Q. REVERSE PROXY
+    >  now we need somehting to run on port 80 based on the input url of the user we will hit the port on our server
+       given a backend server running, you hit an another process running before your end process hits
+       Browser --------> Reverse Proxy ---------------> backend server
+       nginx also use for load balancer
+
+
+======================  STEP 1. ===================================
+   Q. first you need to insatll nginx on your ubuntu machine 
+   >  sudo apt-get insatll nginx      # this is enough to bring nginx on your machine and start a process on port 80, 
+                                      # means nginx is running on our machine on port 80 and anyone hit our website nginx will be hit 
+                                      # now try to go on port 80 on your website, you'll see "Welcome to nginx" on browser
+                                      # now we have to tell nginx that if request comes from www.ourwebsie.com please route it to www.ourwebsie.com:3000
+                                      # how do you do it? using nginx config file
+
+
+======================  STEP 2. ===================================
+# open the nginx.conf file on the ubuntu machine on the server
+Q. how do you open nginx.conf file?
+>  sudo vi /etc/nginx/nginx.config
+   # once you open the file you'll see some default configuration, which was "Welcome to nginx" when you first hit the browser 
+   # we want to replace it with our own configuration, so delete the content and paste below code 
+
+nginx.config file
+> events {
+      worker_connections 1024;
+   }
+
+   http {                                                # this says on the http port which is 80 
+      server {                                           # run a server if the request comes to port 80 
+         listen 80;
+         server_name todo-app-backend.100xdevs.com;      # and the domain name looks like this somehting
+
+         location / {                                    # then route the request or proxy the request 
+               proxy_pass http://localhost:3000;         # on http://localhost:3000
+               proxy_http_version 1.1;
+               proxy_set_header Upgrade $http_upgrade;
+               proxy_set_header Connection 'upgrade';
+               proxy_set_header Host $host;
+               proxy_cache_bypass $http_upgrade;
+         }
+      }
+   }
+
+   Q. once you pasted the code run this command to restart the nginx
+   >  sudo nginx -s reload
+
+   Q. local Hosting
+   >  sudo vi /ect/hosts
+      add ec2_ip : my_domain_name
+
+   Q. difference between forword proxy (burp proxy) and reverse proxy
+   > if i go to google.com and before the process leaves my machine, Burp proxy lets you capture it and see what it looks like, 
+     like what url you are hitting what cookies it is using what params youre passing because its run on your machine it is known as forword proxy
+     Burp proxy used in information security is a tool which lets you do forword proxy 
+
+     from the browser to burp proxy is forword proxy
+     from sever to nginx is reverse proxy
+
+     before nginx introduced there was only proxy which was when browser hit backend and in the middle before hitting backend there was somehting known as burp proxy
+     but after the nginx introduced people start calling nginx as reverse proxy and burp proxy as forword proxy 
+
+     Q. is forword proxy sits on the client machine? 
+     > No. so wherever the request is originating and if on the same machine you are capturing it is proxy or forword proxy
+      and if the machine that its going to and before it reaching to end process you put somehting in the middle is reverse proxy
+
+
+======================  STEP 3. ===================================
+Q. certifcates, how to deploy certifcates
+> so whenevr you go to url you'll see a lock there and on some url which says its not secure
+  
+  Q. so what is this and why does browser highlight this so much?
+  >  Network Capture
+          wifi Router
+         |     |     |
+         |     |     | 
+         P1    P2    Person3
+   
+   # whenevr a website running which says not secure, google is warning you that you shouldn't any sensitive data on there like credit card, password
+     because it could be stolen by attackers and how the can attack?
+     you could be connected to your house wifi or you are connected to college router and your friends also connected to same router
+     and when any request are send to google or facebook it goes through this same wifi router, you can capture all the request that are going through this router
+     and its affectively package going through wires 
+     suppose if Person1 go to google.com request go through --> college wifi Router ---> to goes through ----> some bigger wifi in Mumbai --->
+     from there it goes through google server 
+     and through out this process, its bunch of package going across a bunch of wires, you can always very easily reques check on that wifi
+     what requests? like TCP, UDP, protocol, port everthing you can see, to do this there are bunch of tool the most famouse tool is wireShark
+     wireShark tool is alot of security groups uses to see whats going on your wifi.
+     and whenever you go through any on site hackaton or ctf(security) they give a router to hack where they are using wireShark to see what request goes through that router.
+     so never host your website on http hacker can easily see all the request going on that website and router
+
+     Q. how does https requests work?
+     >  Transport Layer Security (TLS) is a cryptographic protocol that protects Internet communications.
+        TLS is equivalent to http with bunch of security, it encrypt the data between you and backend 
+        whenever you want to start a https server you need to have some certifcates, some private keys, some secret key on the backend and you will share those with Frontend. ( this is whole cryptographic thing )
+        You need put your website on https so that no one can see the requests you are sending on that website
+
+     Q. How do you get certifcates to make your website https?
+     > CA authorities ( Godaddy ), Amazon -> paid
+       Free Certs ( certbot ) -> Free
+      https://certbot.eff.org/instructions?ws=nginx&os=ubuntufocal
+      just follow the steps and run your command --> video week 10.1 time: 57:00 min
+      
+      what have we done yet, 
+      1. we run a bunch of command which create a bunch of private file in your nginx file 
+      2. it edited my nginx to now listen to 443, any requests comming on port 80, send it to 443 bcz https runs on port 443
+
+      *** BACKEND DEPLOYMENT IS DONE ***
+
+
+
+==================================== Frontend Deployment ==========================================================
+
+Q. host your Frontend on CDN bcz they serve static files in case of react not in nextjs 
+> some famous CDN are cloudfront, cloudflare, akamai
+  what they do is as name suggest content delivery Network, 
+  # unlike your backend which is running on a single ec2 machine and irrespective of the world where you are all the users are hitting to same ec2 machine
+  # In case of Frontend like cloudfront, cloudflare, akamai all those CDNs they copy your file to various pop servers out on the internet
+    so that if one from the US can get from US pop and if one from India want to get our website can get from India pop
+    and we can't to do same for backend bcz every users can have their own different data
+
+   when you run > npm run build   
+      # it create your react code into html css and JavaScript and puts it into a dist folder
+      # and if you can serve dist folder on a port then without the need of our react files
+      # and this dist folders are distributed through CDNs and get serve through out the world when you are running on react application in Vercel
+      # when you use Vercel it run build command takes the dist folder and puts it on a bunch of server all aorund the world and people can access through CDN
+  Easy way to deploy is using Vercel/ netlify
+  check "serve" to run your build file 
+
+  Q. question is how you do this in backend?
+  >  in backend in package.json file
+      "start" : "cd ../frontend && npm run build && rm -rf ../server/public && mkdir -p ../server/public && mv ./dist/* ..server/public && cd ..server && node index.js"
+      # it says first go to the frontend folder once it reaches here and 
+        then it run npm run build which is the process of creating dist folder 
+        then it deletes public folder from server once this is deleted it recreates public folder on server 
+        and then moving all files in dist into the server public folder 
+        then go back to the server folder and then run node index.js 
+      
+      now if we run > npm run start
+      # now we have our full stack application running on same port 
+
+      app.use(express.static("public"))
+      app.use("/*", (res,res) => {
+         res.sendFile(path.join(__dirname,'/public/index.js'))
+      })
+      
+
