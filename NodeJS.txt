@@ -1,0 +1,69 @@
+Q. Put vs Patch 
+> The PUT method is used to replace an existing resource entirely with a new one.
+  The PATCH method is used to make partial updates to an existing resource.
+
+
+Q. security Implementation in nodejs services?
+> 1. Implement input validation and output encoding to prevent common attacks like Cross-Site Scripting (XSS) and SQL injection
+  2. we can use Helmet middleware 
+
+Q. how to make API fast?
+> 1. Caching:
+    Utilize caching mechanisms like Redis or in-memory caching to store frequently accessed data and reduce response times
+  2. Optimized Database Queries:
+    Optimize database queries by indexing, using query optimization techniques, and avoiding N+1 queries to enhance response speed
+  3.Asynchronous Processing:
+    Implement asynchronous processing using tools like Promises, async/await, or libraries like Bluebird to handle multiple tasks concurrently and improve response times
+  4. CDN Integration:
+    Integrate Content Delivery Networks (CDNs) to cache static assets closer to users geographically, reducing latency and speeding up content delivery
+
+Q. how to enable Cors
+> const cors = require('cors');
+  const app = express();
+
+  // Enable CORS for all requests
+  app.use(cors());
+
+Q. promises and async await 
+
+Q. common middleware used
+> body-parser: Parse HTTP request body.
+  compression: Compress HTTP responses.
+  cors: Enable Cross-Origin Resource Sharing (CORS).
+  cookie-parser: Parse cookie header.
+  errorhandler: Development error-handling/debugging.
+  morgan: HTTP requests logger.
+  multer: Handle multi-part form data.
+
+Q. char and varchar in SQL
+> CHAR: Used when expecting data values of the same length.
+  VARCHAR: Used when expecting variable-length data values.
+
+Q. Event Loop
+Q. clusturing
+Q. child Process
+Q. how to optimise sql query
+Q. caching between node and db
+Q. protoype chaining
+Q. Generator
+Q. how to secure your api
+=======================================week2 ============================================
+Q What is Nodejs 
+Q.is Node js single threaded? 
+Q. HTTP method
+Q. how do we hit servers? we have backend urls for every server
+Q. ROUTES - whatever we have after the basePath /users defines the route ex. if we want to access users data from backend we do like www.backend.com/users
+Q.  how to do we expose our code to the world, there is where we need http server
+    and there are alot of library that let you write very easily http server
+>   express is one the library which let you create http server very easily
+
+//fs comes with nodejs and there are alot of library that let you write very easily http server
+1. Query Params, Headers and body are three ways to send some data to backend 
+    > Query Params - www.localhost:3000/route?queryParam=data, req will have queryParams, req.query
+    > dynamicParam - app.req('/:username') - req.query.username
+
+2.Request methods > GET,POST,PUT,PATCH,DELETE
+3. URL route
+4. STATUS code
+
+================================================================================
