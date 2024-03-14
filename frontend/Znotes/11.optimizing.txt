@@ -1,0 +1,109 @@
+<------------- LAZY LOADING, SUSPENSE, CUSTOM HOOK ------------->
+
+
+why do we need our custom hook?
+1. reuseablilty
+2. readablity
+3. seperation of concern ( maintainibility )
+
+
+
+>> use "use" everytime you create a custom hook ex. useCustom, 
+    *** custom hook are js function but the difference is we connot use useState, or any other hook in normal js function ***
+   - const userInfo = useGetUserInfoData(userId)
+   - const isAuth = useAuth()
+   - put api links inside constant/config
+   - create util/helper folder for common functions
+
+>> create a custom hook for no data connection, if the user data/net is off we will ristrict them to click anywhere because it can fail api call for that click
+    we have "window : online event"
+    we will check before our main body render and check if isOnline is true/false and do early return check
+
+    - const isOnline = useOnline()
+
+    export const useOnline = () => {
+        const [isOnline,setIsOnline] = useState(true)
+        useEffect(()=>{
+            const handleOnline = () => {
+                setIsOnline(true)
+            }
+            const handleOfline = () => {
+                setIsOnline(false)
+            }
+            window.addEventListener("online",handleOnline)
+            window.addEventListener("offline",handleOnline)
+
+            return () => {
+                window.removeEventListener("online",handleOnline)
+                window.removeEventListener("offline",handleOfline)
+            }
+
+        },[])
+        return status
+    }
+
+    // do early return
+
+    if(!isOnline){
+        return <h1>No data connection</h1>
+    }
+
+// this is how drogom game was build when the net is off
+// everytime you need to clean up the event listener, it always a good pratice to clear the event listener everytime you move to another component
+
+
+// parcel bundle up your code and it bundle up and create only one single js file, and from that single js file we runnig our whole app, it does optimization, HRMy, tree shaking etc
+// when we bundle development code it create large bundle file and when we build for prooduction it creste small bunlde compare to development
+
+// suppose if your bundler took the code of those hundreds of component (makemytrip) and put it up into one single index.js. what will happen?
+   it will just blast, it will make our app very slow, because the size of that index.js will become very huge and it does not make any sense to put all our component into one file
+   if you are creating a huge project it cannot be crested by just one bundle
+   so, we should do chunking/code spliting/dynamic bundling/lazzy loading/on demand loading/dynamic import
+   bundling is good but at some limit, you have to make logical bundling in your app
+
+    how to create a prooduction ready app in just few line of code?
+    //suppose in makemytrip how many people come and go to bus ticket or how many people go to charter flight?
+    //and if i am come to book flight will i go to bus ticket i might go but most of time will not go
+    //and suppose if created the whole bundle what will happen is it will load 100 component for train, 100 component for flight,bus,cab,hotels and load to the browser
+     is it a good idea? No 
+     so generally in your large scale application you create a difference bundle for different use case it is depend on the developer
+     they do a system desgn,
+    // when interviewer ask you to design a makemytrip, you have to tell the interviewer that when i make makemytrip i will use code spliting for all my code
+    when i be doing bundling(webpack or parcel) will make sure my bunlde does not include some random code 
+    and makemytrip is a image heavy site so i will keep all my image in cdn, i will compress those images
+
+// what we will build now when our app load we wnat to load our flight bundle only and when we click on train button we will load our train bunlde
+
+Q> how do we do chunking/lazzy loading?
+a) so where ever you have a import, so there you have to do a lazy loading/dynamic loading
+   there is something known as lazy() , & this lazy comes from my react library 
+   & this lazy takes a function lazy(()=>{}) & now do a dynamic import
+   comst InstaMart = lazy(()=> import('/pathOfTheFile')) // this is Promise & can be handle async by <Suspense /> component
+
+   so this InstaMart is not our main index.js bunlde
+   when we call InstaMart component we can see in a network call we can see one InstaMart.js file is loaded, this is on demand loading/dynamic loading/code splitting/chunking
+
+   when react call a lazzy laod component, react takes time to get the bundle file/code/ it dynaimcally load from server, 
+   this lazy load component is not in our main index.js bundle, it is calling alltogether a different chunk for specific component, 
+   but once the data is loaded it won't take time or give any suspend/error but at the initial load it will take time , but we can handle the error for initial load how?
+   
+   when you are loading your component on demand, react trys to suspend it because the code is not loaded yet it take some time to load suppose it take 50ms but here react was trying to render it even before 50ms 
+   // upon on demand loading --> upon render --> react will suspend loading (because the code is not there) 
+   Q) but how can we handle it?
+   a) react has SUSPENSE( means it a suspense which is going to come )
+      just wrap your component inside SUSPENSE component & react will take care of suspense automatically
+      <Suspense>
+            <InstaMart />
+      </Suspense>
+
+    // suspense you on demand component takes 3sec we need to show something in between, something like loader/shimmer
+
+    <Suspense fallback={<shimmer/>}> take a props fallback in this fallback we need to pass what you need to show until you dynamic component is not loaded
+
+    // if you we are build a large scale application we can keep how different component into chunks
+
+
+
+
+
+

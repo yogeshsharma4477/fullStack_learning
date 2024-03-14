@@ -1,0 +1,137 @@
+Class based component
+
+//class always has render() method and this render method return jsx
+class Profile extend React.Component{
+    render(){
+        return(
+            <h1>class component</h1>
+        )
+    }
+}
+
+// "this" in class component
+
+// class has a constructor, it take the props
+// super(props) //and take props in super
+// constructor is a place that is use for iniliatization 
+
+
+constructor(props){
+    super(props);
+    this.state={
+        count:0
+    }
+}
+
+in class base first constructor if called and then render is called
+
+constructor, render, componentDidMount these are lifecyle method
+
+and the sequence are 
+1. constructor
+2. render
+3. componentDidMount // why api call here , first we will render and then we will update it later
+
+componentDidMount(){
+    //after render will be called
+}
+
+*********React lifecyle - for Mounting***************
+
+- it has 2 phase 
+    1. render phase
+        this phase include constructor and render
+    2. commit phase
+        this is phase where react is modifying your dom
+        & your componentDidMount is done after you updated your dom right
+
+
+there two phase
+render phase and commit phase 
+in the render phase constructor is called and render method is called
+after that react actualy updates the dom then everything happen behind the scene
+
+when there are two children component, 
+so first react try to batch up the render phase(render phase means it is dealing with object, it forming the html which is easy compare to commit phase which is slow) 
+for all the children component because render phase is fast
+once the render phase is finished then the commit phase will start ( componentDidMount will be called ) and then react will update the dom
+
+>> you cannot do make async callback function in useEffect but you can async componentDidMount() why?
+
+//render phase
+1.parent constructor
+2.parent render
+3.child constructor
+4.child render
+
+//commit phase
+//children componentDidMount (async API call)
+//it is async operation so it will delay the child componentDidMount
+
+5.parent componentDidMount
+6.children componentDidMount
+
+// we did api call in children componentDidMount and did setState
+// what setState will trigger? -> next render
+// it will re render the Component quickly
+// it will trigger the Reconcilation process and render the same component again so and what is this re-render cycle know as ? updating
+
+<-- componentDidUpdate -->
+
+7. children render
+
+//whenever setState is called it updated or updating starts
+& it update the update cycle 
+what happen you update a Component?
+it will renders ---> updated the DOM ----> trigger another method ( componentDidUpdate ) 
+
+// componentDidMount will called after first render
+// componentDidUpdate will be called after every next render
+
+8. child componentDidUpdate
+
+<-- componentWillUnmount --> // as soon as our component will unmounts componentWillUnmount will be called
+
+9.componentWillUnmount
+
+
+
+--------------------------------------------------
+why do we need componentWillUnmount?
+A) componentWillUnmount will be called when we are leaving the page(component)
+    we need to clear a lot of thing when we are leaving the page
+    when we go from one component to another react is not reloading the page it just rendering the component but it a bad thing in react, the react is reconciling
+
+    so to clean up we will write our clean up function in componentWillUnmount
+
+
+
+
+    super
+    async componentDidMount
+    pratice
+    
+
+
+
+
+---------------our note -----------------------
+useEffect with empty dependeciy and return function so here this return function will be called only when Component unmounts(when component changes)
+useEffect with dependeciy and return function so here this return function will be called when our dependeciy changes
+
+function App() {
+  const [counter, setCounter] = React.useState(60);
+
+  // Third Attempts
+  React.useEffect(() => {
+    const timer =
+      counter > 0 && setInterval(() => setCounter(counter - 1), 1000);
+    return () => clearInterval(timer);
+  }, [counter]);
+
+  return (
+    <div className="App">
+      <div>Countdown: {counter}</div>
+    </div>
+  );
+}

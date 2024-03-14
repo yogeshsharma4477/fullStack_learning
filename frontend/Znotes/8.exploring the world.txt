@@ -1,0 +1,93 @@
+MicroServices
+
+MONOLITH : 
+Prevoiusly everything everycode(API, sms, ui) were kept in one project and if we change just one button in code we need to build our proejct for that one button change
+it is such a mess 
+it has its own advantage such as we don't need to maintain different repository
+this project architecture is known as MONOLITH
+
+but most of the bigger porject is still using MONOLITH architecture
+but the world is moving into MicroServices architecture
+
+MicroServices:
+instead of having one project we now have small small different project
+ex:
+one project for UI //123
+one project for Reacts API //PORT://234
+one project for Notification //PORT://673
+one project for Logs //PORT://9743
+one project for authentication //PORT://4245
+
+and all are running on different port 
+and also we don't have same databse as well even the db has multiple replica
+
+Advantage of MicroServices
+1: easy to test, maintain ex: backend team can clone project and UI team dosn't has to worry about
+
+SEPERATION OF CONCERN (SOC) || single responsiblity
+> every small MicroServices have their own work to do, they don't have to worry about what other MicroServices are doing
+
+and all different MicroServices can have different stack 
+ex. ui can be build in react
+    API can be build in JAVA
+    Notification can be done in python
+    authentication can be done in Golang
+
+Q> how these MicroServices are connected to each other?
+> suppose there is swiggy.com
+  different port are mapped to different MicroServices
+
+  ex. www.swiggy.com:3000 ---mapped to --> /
+                    :4000              --> /API
+                    :5000              --> /Notification
+
+ all these porjects are deployed on different port but the same domain Name
+ but some company also change the domain and they call using different domain
+
+this is how large applicatoin are build
+
+it is very bad question to ask does google use javascript or python or java 
+they use everything depending upon the usecase
+
+currently we are build UI MicroServices
+so now our ui MicroServices will be using different MicroServices(exploring the world)
+
+
+
+useEffect => useEffect is being called after component renders and then useEffect is called
+
+
+CORS:
+swiggy API - https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.4054486&lng=72.8308692&page_type=DESKTOP_WEB_LISTING // it s public api we can call it
+CORS video Aksay saini
+
+if we call swiggy api our browser ristrict us to call swiggy api from browser and gives a CORS error
+we can add cors plugin for browser it won't give any cors error, browser won't ristrict
+
+
+Shimmer until data has not called
+
+condition rendering
+
+Early return (not render component) - we can add return null if our actual data is not called
+
+difference between javascript expression & statement
+in react inside {} we can only write js expression
+{
+    javascript expression
+}
+
+
+why your application is fast?
+there are so many things are there which makes our application fast bundler whihc is doing minification, transpiliton, which is removing the console logs,
+which is doing the optimization also we have react which has virtual dom,whihc has Reconcilation, 
+which has diff algorithm which tracks at every state update a diff of the trees are calculated only that perticular portion on my dom is changes and react does it very fast
+
+
+where is diff algorithm writen react or reactDom?
+> diff algorithm is the core of react and the dom updates via reactDom
+> reactNative also use the same diff algorithm
+
+if single btn is changes then button is Reconcilating 
+whenever i click on btn -> the component is re-rendering -> it is just triggering the Reconcilation algorithm -> it is finding the diff between trees and checking
+and react is so powerfull it exactly know which node need to be change and only that node(in our case btn) is updating ->  this is Reconcilation

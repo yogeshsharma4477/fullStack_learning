@@ -1,3 +1,4 @@
+=============================================== DAY 1 ==============================================================
 Q. Put vs Patch 
 > The PUT method is used to replace an existing resource entirely with a new one.
   The PATCH method is used to make partial updates to an existing resource.
@@ -17,14 +18,28 @@ Q. how to make API fast?
   4. CDN Integration:
     Integrate Content Delivery Networks (CDNs) to cache static assets closer to users geographically, reducing latency and speeding up content delivery
 
+
+Q. sql injection
+> const query = 'SELECT * FROM users WHERE username = ? and mobile= ?';
+  connection.execute(query, [userInput, mobileInput], (error, results) => {
+    // Handle the results
+  });
+  // what this is do is if in any input it find and execute commond or ; it it will break it there only and wont be able to attack
+
 Q. how to enable Cors
 > const cors = require('cors');
   const app = express();
 
+  // Define CORS options for specific URLs
+  const corsOptions = {
+    origin: ['http://specificurl1.com', 'http://specificurl2.com'],
+  };
+
+  // Enable CORS with specific options
+  app.use(cors(corsOptions));
   // Enable CORS for all requests
   app.use(cors());
 
-Q. promises and async await 
 
 Q. common middleware used
 > body-parser: Parse HTTP request body.
@@ -39,14 +54,33 @@ Q. char and varchar in SQL
 > CHAR: Used when expecting data values of the same length.
   VARCHAR: Used when expecting variable-length data values.
 
+SUMMARY
+Q. SQL injection
+Q. promises and async await 
+Q. Put vs Patch 
+Q. common middleware used
+Q. how to enable Cors
+Q. how to make API fast?
+Q. security Implementation in nodejs services? or Q. how to secure your api?
+====================================================DAY 2 ============================================================
+
 Q. Event Loop
+> EVENT LOOP - Execution Order
+     microtask queue 1. nextTick queue
+                     2. promise queue
+    3. timer queue
+    4. I/O queue 
+    5. check queue
+    6. close queue
+
+Q.when to use sql and nosql? how to optimise sql query(can use indexing)
+> no-sql should be use when your application is more of readablilty ex. match score
+  and sql should be used when you have a big data and there are many updates concurrently ex. banking
+
 Q. clusturing
 Q. child Process
-Q. how to optimise sql query
-Q. caching between node and db
 Q. protoype chaining
 Q. Generator
-Q. how to secure your api
 =======================================week2 ============================================
 Q What is Nodejs 
 Q.is Node js single threaded? 

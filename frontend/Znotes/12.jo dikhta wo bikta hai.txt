@@ -1,0 +1,19 @@
+Tailwind
+ 
+scss --> converted into css
+
+ant design
+material ui
+chakra ui
+
+cons
+`bundle size bigger
+loss control
+
+Tailwind - 
+less bundle size, customizable, once you install Tailwind it will reomve all the default css it will tell use in my way
+
+configure .postcssrc to tell our bundle we are using Tailwind css and convert into a normal css
+
+vs code plugin for Tailwind - Tailwind css intelliSense -> it will give suggestion for Tailwind css class
+

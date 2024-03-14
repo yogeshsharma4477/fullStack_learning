@@ -1,0 +1,96 @@
+js engine has all the keyword like function, while
+data structure use for memory storage - memory heap
+
+NPM =  is use to manage all our packages
+
+bundler combine/bundle all our file into one single file
+minify means in a single file it compress all our code 
+
+Redux is synchronous 
+to make async we had Thunk, redux saga is now more popular for async api call
+
+everything must be handle by state or useRef
+directly targeting dom is not a best practice
+
+JS  -   
+threading(client handling as well),
+cluster, 
+file handling(client handling in next is fully handled)
+catching
+
+
+to get npm in you code just do => npm init 
+
+
+PARCEL(bundler)
+npm install -D parcel (-D,--save both are same and means dev dependency)
+
+we should never put our packagelock.json into git ignore we should always push our lock,json into git
+
+
+Node_module - is kind a database of your npm
+how parcel will minify your code - 
+
+
+ReactDOM is the glue between React and the DOM. Often, you will only use it for one single thing: mounting with ReactDOM.render().
+Another useful feature of ReactDOM is ReactDOM.findDOMNode() which you can use to gain direct access to a DOM elemen(Something you should use sparingly in React apps, but it can be necessary.) If your app is "isomorphic", you would also use ReactDOM.renderToString() in your back-end code.
+
+For everything else, there's React. You use React to define and create your elements, for lifecycle hooks, etc. i.e. the guts of a React application.
+
+when we run npx parcel index.html
+it just creates a devolpment build and it host it on a server
+
+and how do we tell parcel to build a production build?
+>> npx parcel build index.html
+and where does this build will pushed?
+inside dist folder 
+
+>parcel also clearing the code ex console.log()
+>what does take a lot of time to load in a website = media images
+>parcel does also optimsied you images 
+>also do the caching while devolpment (first time it will take longer time but the next time you build it will take less time
+because this time now taking build of only updated code we are not building the whole code again)
+>compressing
+>it also add compatible with older version of browser
+>parcel aslo give functoin to run our code in HTTPS on dev but how the cmd is >> npx parcel index.html --https
+>we should add parcel.cache in our git.ignore file
+// IMPORTANT - Anything that can be auto genrated should be put in our git.ignore file ex- parcel.cache, Node_module
+> it also use consistent hashing algorithm 
+> parcel come with zero configuration other bundler come with many configuration
+
+all the above things are not done only by the parcel it uses its own dependencies which is inside of Node_module module
+if you want to see what all dependencies does parcel use go to package-lock.json you can see the parcel dependencies
+and all that dependencies use their own dependencies its like inception these term is known as transitive dependency
+
+what does react make fast?
+when you are building your app react is just a small part of it
+react uses parcel(bundler) parcel uses dependencies
+
+
+browserlist is a thing which will be make our code compatible to all the browser
+
+
+let heading1 = React.createElement(
+    "h1",
+    {
+        id: "heading 1",
+        key: "h1"
+    },
+    "Created by Pure React Heading1"
+)
+
+console.log("check babel remove or not console")
+
+let heading2 = React.createElement(
+    "h1",
+    {
+        "id": "heading 2",
+        key: "h2"
+    },
+    "Created by Pure React Heading2"
+)
+
+//JSX
+let heading3 = <h1>JSX Heading 3</h1>
+
+let container = React.createElement("div", { id: "container" }, [heading1, heading2, heading3])
