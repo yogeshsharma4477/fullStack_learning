@@ -1,0 +1,92 @@
+Types of DBs
+1. Sql   -  strict schemas( Structured query language )
+            Very hard to change schemas, involves migration, need to add more boiler plates code
+2. NoSql -  Schemaless
+            Faster to produce apps
+
+Q. in Sql normalisation means you break it down your database in sub database which somehow related to each other(this is sql relationship)
+
+Q. Types of Sql databases
+>  Postgres, MySQL
+
+Q. how to create Postgres database
+>  you can go to elephantsql and get a free storage of 20mb 
+   after login, you can create Postgres instance which is shared instance because we are using free instances, 
+   after creating instances you'll get your connection string
+
+Q. connecting to Postgres
+>  using query string: Postgres://[username]:[password]@[host]/[database_name] , this how query string look like
+
+Q. npm install pg and @types/pg ( think of it as mongoose for postgres )
+> its library which lets you connect your backend with database just like we have mongoose
+ 
+
+Q. how our database will look like
+> users table - id            email             password
+                1          test@gmail.com       password1
+
+  todos table - id          title            description             user_id           done
+                1          buy milk          dairy milk                 1              false
+            
+
+  1. step is to create table
+  > before even you are starting writing your application you have to tell postgres that this is how our table look like (Schema)
+    
+    Create TABLE users (
+      id SERIAL PRIMARY KEY,                 # SERIAL (means keep increasing one by one), PRIMARY KEY ( unique id for every row )
+      email VARCHAR(255) UNIQUE NOT NULL,    # VARCHAR(255) means it will accept string of 255 length not more than that, UNIQUE (means you cannot have 2 same email added in row),
+      password VARCHAR(255) NOT NULL         # NOT NULL (you never want your email/password to null )
+    )
+
+  2. todos table
+
+    CREATE TABLE todos (
+      id SERIAL PRIMARY KEY,
+      title TEXT NOT NULL,
+      description TEXT,
+      user_id INTEGER REFERENCES users(id), # REFERENCES ( foreign key to users id) 
+      done BOOLEAN DEFAULT FALSE            # the DEFAULT value will be false 
+    )
+
+
+   3. insert 
+   > INSERT INTO todos (title, description, user_id, done) VALUES ("buy grocery", "milk,vegetable", "", "")
+
+   4. updates
+   > UPDATE "todos" SET title = "buy grocery from dmart"
+
+
+
+
+
+
+
+
+
+Q. what is relationship in sql
+Q. sql vs no-sql
+Q. create a database put million of entries 
+   2 query -> give all the user with todo
+           -> then the fill todo with million row and then add indexs to it
+
+   check with how it works with indexs and not with indexs
+
+
+Q. postgres stepup locally
+>   sudo sh -c 'echo "deb https://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+    wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+    sudo apt-get update
+    sudo apt-get -y install postgresql
+# after installation is done > sudo -i -u postgres // to go to postgres cli 
+                             > psql
+                             > createdb my_pgdb
+                             > psql -d my_pgdb
+                             > \conninfo
+# pgadmin -> to get cli 
+> sudo -i -u postgres
+> psql
+> \password postgres
+            postgres
+
+# username - email/jdgitpassword
+

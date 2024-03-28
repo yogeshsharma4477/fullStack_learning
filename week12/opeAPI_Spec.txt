@@ -1,0 +1,13 @@
+Q. what is OpenAPI Spec?
+> OpenAPI Spec defines an interface like if you check the file there is a get route /todo there is post route /todos 
+  it just write down in long json or yaml file and benefit of this is by just looking at the file you can undertsand what the API does
+  that is usefull to you when you are going through what does APIs do and computers understand what does this api does
+  if you need chatgpt plugin you need to expose an openAPI file for backend BECAUSE AI doesn't have acces to your backend code, 
+  it need a very long file which clearly define hit this end point to get this result, hit that end point to get that result 
+  
+  If you want to go to chatgpt and want to create plugin of your own like if you want eraser plugin, in the background the AI is hitting eraser backend
+  when you ask chatgpt to create diagram so chatgpt will hit the eraser backend to create the backend, if you have your own application which you need to add in chatgpt
+  you will have to create a file for it which is openAPI Spec 
+
+Q. how to create an openAPI Spec file for express application?
+> you should not write your openAPI spec you should alway auto generate from you code

@@ -82,7 +82,7 @@ function sum(a){
 // 5. Manipulation DOM - real world scenario 
 function updateElementText(id){
     return function (content){
-           document.querySelector("#"+id).textContent = content 
+           document.querySelector(id).textContent = content 
     }
 }
 

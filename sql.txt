@@ -1,0 +1,56 @@
+Q. char and varchar in SQL
+> CHAR: is used to store fixed-length character strings
+  VARCHAR: is a variable-length character string data type in SQL.
+
+Q. TEXT vs VARCHAR
+> TEXT - it doesn't has any limit
+  VARCHAR - it has limit
+
+Q. DROP vs DELETE 
+> Use "DROP" when you want to remove an entire object (like a table) from the database.
+> Use "DELETE" when you want to remove specific rows from a table while keeping the table structure intact.
+> "TRUNCATE" is used to remove all rows from a table.
+  It is similar to "DELETE", but it is faster because it does not log individual row deletions and it does not fire any delete triggers.
+  
+
+Q.Can you classify SQL commands into different categories based on their purpose and functionality ? 
+> 1. DDL (Data Definition Language):
+        DDL statements are used to define the structure and schema of the database objects.
+        Examples of DDL statements include:
+        CREATE: Used to create new database objects like tables, views, indexes, etc.
+        ALTER: Used to modify the structure of existing database objects.
+        DROP: Used to delete database objects.
+        TRUNCATE: Used to remove all rows from a table (though some databases consider this as part of DDL while others as part of DML).
+
+    2.DML (Data Manipulation Language):
+        DML statements are used to manipulate the data stored in the database.
+        Examples of DML statements include:
+        SELECT: Used to retrieve data from the database.
+        INSERT: Used to add new rows of data into a table.
+        UPDATE: Used to modify existing data in a table.
+        DELETE: Used to remove specific rows of data from a table.
+
+    3.DCL (Data Control Language): 
+        DCL statements are used to control access to data within the database.
+        Examples of DCL statements include:
+        GRANT: Used to grant specific privileges to database users.
+        REVOKE: Used to revoke previously granted privileges.
+        There are also other types of statements like TCL (Transaction Control Language), which are used to manage transactions in the database, but DDL, DML, and DCL are the primary types.
+
+
+
+Q. Types of relationship
+> one to one
+  one to many
+  many to many 
+  
+
+Q.pagination in sql vs prisma
+> select * from table OFFSET 0 limit 10
+  select * from table OFFSET 10 limit 10
+  select * from table OFFSET 20 limit 10
+  
+  await prisma.post.findMany({
+    take: 3,
+    skip: 10
+  })

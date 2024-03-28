@@ -1,0 +1,150 @@
+Q. Problems with raw SQL
+> 1. You have to write raw sql queries.
+  2. migration are hard
+     as your application grows you need to change your database structures this is called migration meaning you change 1set of schema to aonther set of schema
+  3. you dont get the best types
+     means it doesn't give auto suggest if you go to vs code, because it doesn't know how does your table look like 
+
+# SOLUTION --> 
+Q. ORM ( Object relation mapping ) and Prisma
+>  1. Primsa ORM gives basic function which we can use instead of writing row sql, data model (how you define your model),
+      creating and updating your schema become easy (automated migration), type-safe & auto-completion
+   2. it is a layer between before your database and so you could have mongodb database or postgres database and primsa syntax in your nodejs application is same 
+      you as a application developer use the high level that write them this is the high level advantage of using Prisma ORM
+    
+   # there are bunch of ORM in the market like sequalize, Mongoose, but the Prisma is like a growing now a days 
+   # libraries which encapsulate bunch of raw query in a function for application developer are ORM
+
+Q. Primsa provide 3 libraries to achieve things it says we can do
+> 1. Primsa Client - this is similar to like pg client but the differece is 
+                    1. you don't have to write raw sql
+                    2. it is auto Generated and type safe 
+  2. Primsa Migrate - this is the library that take cares of your migration, if you change your schema ever it simply create a migration file 
+                      which you simply run on your production database you don't have to go to your database and manually do the migration
+  3. Prisma Studio - it is similar like mongodb compass to visualize how does your data look like 
+
+
+Q. Creating the database schema
+> model User {
+   id      Int      @id @default(autoincrement())
+   email   String   @unique
+   name    String?
+   posts   Post[]
+   }
+
+   model Post {
+   id        Int      @id @default(autoincrement())
+   createdAt DateTime @default(now())
+   updatedAt DateTime @updatedAt
+   title     String   @db.VarChar(255)
+   published Boolean  @default(false)
+   author    User     @relation(fields: [authorId], references: [id]) # this is not going to create a row in db but you have to tell primsa that authorId is an INTEGER but connect to user through this relationship
+   authorId  Int
+   }
+
+Q. now run->  npx prisma migrate dev --name init
+> once you create a model you need to run this command which will create a raw query automatically by mapping the prisma model
+  and every time you add new model you need to run "npx prisma migrate dev --name todos" that will have a very nice log of what all change has been done as your application grow
+  
+
+# whenever primsa is creating migration it creates like a hidden table which might not work for elephantsql free database because it need whole access to your db
+   or you can use NEON database
+# in database primsa create _prisma_migration table, which keeps track of what all changes has been happen in migration file
+
+
+Q. normalisation 
+> means breaking your database in sub database and they are related well together 
+
+SUMMARY:
+   it a replacement for the pg library, pg library let you connect to postgres database
+   and primsa library give good type, automated migration if you tell me what your database schema look like in a language 
+   that i understand in one single file, with just one single file i will Generate migration fields
+   Two things to remember 
+      1. prisma is an ORM 
+      2. it makes your life very easy, it create migration file
+
+
+Q.npm install @prisma/client
+> - The install command invokes prisma generate for you which reads your Prisma schema and generates a version of Prisma Client that is tailored 
+  - Whenever you update your Prisma schema, you will have to update your database schema using either prisma migrate dev or prisma db push. This will keep your database schema in sync with your Prisma schema. The commands will also regenerate Prisma Client.
+
+   const { PrismaClient } = require('@prisma/client')
+
+   const prisma = new PrismaClient()
+
+   async function main() {
+   // ... you will write your Prisma Client queries here
+   primsa.user.update({ where : { id : Number(id), data : { name : name} } })
+   }
+
+   main()
+   .then(async () => {
+      await prisma.$disconnect()
+   })
+   .catch(async (e) => {
+      console.error(e)
+      await prisma.$disconnect()
+      process.exit(1)
+   })
+
+
+
+# you as a application developer you just need to create a primsa.schema file define your schema run migrate command 
+  and go to your express server and start using it using const prisma = new PrismaClient() and you can use all the prisma methods to add update delete
+
+Q. pagination
+>  select * from table OFFSET 0 limit 10
+   select * from table OFFSET 10 limit 10
+   select * from table OFFSET 20 limit 10
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=======================================Primsa YT==================================
+> install express
+> npm install Prisma
+> npx primsa
+> npx prisma init
+> create a folder DB to connect your database
+> npm install @prisma/client
+   db/db,config.js
+   const { PrismaClient } = require('@prisma/client')
+   const prisma = new PrismaClient({
+      log: ["query"], // to check what query primsa is hitting when using its methods
+   });
+
+   export default prisma
+
+> now crud operation -> create a schema/model in primsa/schema.prisma file 
+
+   model User{
+      id          Int @id @default(autoincrement()) // SERIAL PRIMARY KEY,
+      name        String? // not mandatory
+      email       String @unique 
+      password    String? //if we are using google auth we don't need password
+      created_at  DateTime @default(now())
+   }
+
+> now add this model in db, primsa provide one command and this command will create a migration file with sql query 
+> npx prisma migrate dev --name create_user_schema
+
+# prisma methods CRUD
+> await primsa.user.findMany({})
+  await primsa.user.findUnique({ where : { email : email }})
+  await primsa.user.create({ data : { name : name }})
+  await primsa.user.findFirst({ where : { id : Number(id) }})
+  await primsa.user.update({ where : { id : Number(id), data : { name : name} } })
+  await primsa.user.delete({ where : { id : Number(id) }})
+
+# relationship in Primsa

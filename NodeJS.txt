@@ -50,10 +50,6 @@ Q. common middleware used
   morgan: HTTP requests logger.
   multer: Handle multi-part form data.
 
-Q. char and varchar in SQL
-> CHAR: Used when expecting data values of the same length.
-  VARCHAR: Used when expecting variable-length data values.
-
 SUMMARY
 Q. SQL injection
 Q. promises and async await 
@@ -100,4 +96,4 @@ Q.  how to do we expose our code to the world, there is where we need http serve
 3. URL route
 4. STATUS code
 
-================================================================================
+========================================= DAY 4 SQL =======================================

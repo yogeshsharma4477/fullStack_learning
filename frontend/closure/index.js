@@ -2,7 +2,7 @@
 // a scope refers to your current context of your code, it can be globally or lacally defined
 // with the help of es6 we also can define blocked scope
 
-//lexical scope in js define outside a function can be accesible inside of an another function 
+// lexical scope in js define outside a function can be accesible inside of an another function 
 // but the opposit is not true a variable inside an function is not accesiible outside of a function
 
 

@@ -1,0 +1,26 @@
+{
+  "name": "sql",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^5.11.0",
+    "@types/pg": "^8.11.4",
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.1",
+    "nodemon": "^3.1.0",
+    "pg": "^8.11.3",
+    "Prisma": "npm:prisma@^5.11.0"
+  },
+  "devDependencies": {
+    "prisma": "^5.11.0"
+  },
+  "keywords": [],
+  "description": ""
+}

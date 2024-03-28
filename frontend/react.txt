@@ -1,0 +1,49 @@
+1. stack vs heap
+2. ReactDom
+3. useState vs useRef
+4. NPM, Node_module, bundler, PARCEL(bundler), webpack
+5. forEach vs map
+6. JSX
+7. how does this jsx execute?
+8. react.createElement
+9. react element
+10. react component
+11. key reconcilation
+12. React composition
+13. why do we need React Component when you can render our element?
+14. React.Fragment
+15. config driven UI, optional chaining
+16. Virtual DOM, Reconcilation
+17. hooks
+18. why react is fast? bcoz of it fast dom manipluation => how it is done using diff algorithm it compares both the tree
+19. default import and Named import 
+20. Monilith vs microservices
+21. useEffect
+22. condition rendering
+23. Early return
+24. difference between javascript expression & statement
+25. react or reactDom?
+26. react router dom
+27. why is cdn a great place to store an images? 
+28. cookie vs session vs localStorage
+============================HTML===========================================
+29. Semantic HTML tags
+30. Selector => Class Selector : (.)class, ID Selector : (#)id, Universal Selector(*) : select all element
+31. position => static, relative, absolute, fixed, sticky
+32. html5 advantage => <header>, <footer>, and <nav>, <audio> and <video> tags, Cross-Platform Support, Mobile Optimization:
+33. box model - padding border margin
+34. z index - to re-render element layer
+35. grid(two dimention) vs flex(one dimention)
+===========================================================================
+36. access token vs refresh token
+37. life cycle method
+    it has 2 phase 
+    1. render phase
+        this phase include constructor and render
+    2. commit phase
+        this is phase where react is modifying your dom
+        & your componentDidMount is done after you updated your dom right
+38. chunking/code spliting/dynamic bundling/lazzy loading/on demand loading/dynamic import
+39. useContext
+40. useMemo vs useCallback
+41. types of component -> function, class, pure, HOC

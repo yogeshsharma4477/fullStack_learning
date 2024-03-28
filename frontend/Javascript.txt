@@ -1,0 +1,78 @@
+1. Closure
+    - Time Optimization
+    - Block scope and setTimeout, print increamentally using var
+    - how would you use a clsoure to create a private counter?
+    - currying
+    - Once function 
+
+2. function currying
+    - convert function(a,b,c,d) ==> function(a)(b)(c)(d)
+    - Manipulation DOM - real world scenario
+    - Infinte currying
+
+3. bubbling(false) vs capturing(true)
+
+4. CRP (Critical rendering path) 
+
+4. Event Delegation
+
+5. Debouncing
+
+6. this keyword
+
+7. call, apply, bind
+
+8. Prototype, Prototype chaining, Prototype inheritance
+
+9. pollyfill of map, filter, reduce, forEach
+
+10. Promises and pollyfills
+    Promises.all
+    Promises.settled
+    Promises.race ( first settled Promise )
+    Promises.any ( first promise in the array to fulfill )
+
+11. async vs defer
+   <script src="script.js" ></script>      : html parsing but when script tags comes it stops html parsing and fetch script then executes then html parsing continous
+   <script src="script.js" sync></script>  : fetch script parallel and once data is fetch html parsing stops and script executes and then html parsing continous 
+   <script src="script.js" defer></script> : fetch script parallel but script executes when html parsing is fully done
+
+12. Hoisting
+
+13. function statement/Declaration vs function expression
+        can be hoisted                  cannot hoist
+
+14. shallow copy vs deep copy ( structuredClone(obj) )
+
+15. es5             vs  es6
+   (var,use strict)     (let, const, arrow function, array destruction)
+
+16. Event Loop
+
+17. cookie vs session vs localStorage
+
+18. map vs forEach
+
+19. Object.freeze vs Object.seal     and    splice vs splice
+
+20. nullish coalesing operator and optional chaining, ceil vs floor
+
+
+
+// future pratice - pollyfill of call, apply, bind, debouncing, throlling
+//used lazy loading for fast app render
+//api optimization used caching for data storage and prevent api call if data already present, abort controller
+//prevent memeory, clear all the events when component unmount
+//design pattern - in daily routine like closure, currying where ever needed
+//understand CRP - not related to project
+//optimaztion search using debouncing and also use throlling to prevent multiple submits
+//handled multiple api calls efficiently
+//web worker for thirdparty api such as tracker , hotlead, lead logs
+//accessibility - for disabled person used attribute tab-index = 0, arail-label, 
+//obeserver element observe on a viewPort and perform action based on it
+//SEO - web vital , cls - lighthouse
+//image optimzatoin using next Image, used CDN instead of storing in folder also compressed it
+//XSS cross side scripting - innerText returns all text contained by an element and all its child elements. innerHtml returns all text, including html tags, that is contained by an element. 
+//   avoid using innerHtml whenever possible
+// useRef for error handling because if synchronous
+// e.preventDefault
