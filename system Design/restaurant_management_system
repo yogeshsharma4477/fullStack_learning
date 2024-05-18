@@ -1,0 +1,48 @@
+class reservation
+    attribute - id, time, number of people
+    methods - createReservation
+              cancelReservation
+              changeReservationTime  
+        |
+        |
+        | For
+        |
+        v
+class Table
+    attribute - tableNo, status, maxCapacity
+    method - addReservation
+
+
+
+
+class Customer
+    attribute - name, contact, id
+    methods - checkin, 
+              checkout, 
+              lastVisited, 
+              cancelOrder, 
+              modifyOrder
+        |
+        |
+        | makes
+        |
+        v
+class Order
+    attribute - orderId, status
+    method - addMenuItem, removeMenuItems
+
+
+
+
+class Menu
+    attribute - menu,menuItem[refernce]
+        |
+        |
+        | refernce
+        |
+        v
+class menuItem
+    attribute - id, title, description, price
+    method - updatePrice, deleteItem
+
+

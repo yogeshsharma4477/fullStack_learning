@@ -1,0 +1,63 @@
+as soon as food is ordered we need to do 2 thing
+> 1. we need to tell the exact restaurant that this is food needs to be prepared
+  2. the other need to be take care is delivery 
+     so by the time food is being prepared the delivery partner should assign and reaches the restaurant as soon as possible
+     and delivery to correct user
+
+# what we did is divide a entire big system and break it down into smaller system 
+ 1. one small system will take care of food part 
+    even before recieving the order the food sub system should take care of showing the correct menu of the restaurant,
+    what are restaurant are present near by and then what are foods are available, it serving right now or not and thing like that 
+ 2. and the delivery subsystem obviosuly take care of assign the delivery partner, making sure that they reach on time and every thing relate to delivery
+
+# we should also have something to connect these two subsystem
+1. so obviosuly our Order is going to connect.
+   Order Manager -  
+    1. so the first thing of order Manager is to recieving the order and it will generate an order id 
+       and the same orderid is passed to delivery partner subsystem and food subsystem to stitch the entire system.
+
+    2. Order Manager is also responsible to tell the delivery partner that this is the order id and 
+       this is your job to send the food from this restaurant and delivery to this address.
+       Similarly this will also tell the food manager that this is the food is being ordered and you need to start prepare this food
+    
+    3. the order data is send to delivery partner and restaurant is going to be different, why is that because
+       delivery partner should not need to know what food items are there in order
+       and food subsystem should not care where the food is being delivery
+
+    4. so our Order manager will have all the details related to our order 
+       but the order manager need to take care of what data need to share to delivery partner and what data needs to share to food subsystem
+
+#
+1. lets look at the food subsystem, so our Order manager will send a request to Food manager
+   Class Food_Manager{
+    PrepareFood(OrderId, restaurantId, map{dish, quantity, dish_Addon})
+   }
+   # so what dish actually means suppose i have order food from subways and i'm going to customise my subs in a percular way
+     and i need to add 2 addons, so is to going to be 2 dish or 2 quantity
+   # so how does Food_Manager will know which restaurant need to start the Food, we need another Class which will manage all our restaurant
+
+   # so this restaurant_manager will be responsible for giving the restaurant, 
+     basically it will take a id and give the object that this is the object for your requested restaurant
+   
+   # suppose if the dominos has 2 branchs in malad and goregaon, will the object will be the same?
+     so it should not be same, because it has two different owners and also availibity timing will also be different
+
+   Class restaurant_manager{
+    <rest_id, rest>
+    return <rest obj>
+   }
+
+
+v
+
+
+
+
+
+
+
+
+
+
+
+

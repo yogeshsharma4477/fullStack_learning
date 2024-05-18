@@ -7,6 +7,9 @@ Q. Put vs Patch
 Q. security Implementation in nodejs services?
 > 1. Implement input validation and output encoding to prevent common attacks like Cross-Site Scripting (XSS) and SQL injection
   2. we can use Helmet middleware 
+  3. authenication and authorization
+  4. cors
+  5. maintaing logs and email trigger if any inconsistence happen
 
 Q. how to make API fast?
 > 1. Caching:
@@ -97,3 +100,8 @@ Q.  how to do we expose our code to the world, there is where we need http serve
 4. STATUS code
 
 ========================================= DAY 4 SQL =======================================
+
+why choose nodejs
+> for I/O operation
+  for event emmitter
+  

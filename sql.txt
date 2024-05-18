@@ -54,3 +54,35 @@ Q.pagination in sql vs prisma
     take: 3,
     skip: 10
   })
+
+
+Q.query to find second highest marks from table?
+> SELECT Max(salary) as second_highest_salary from EMPLOYEE where 
+  salary < (SELECT Max(salary) from EMPLOYEE)
+
+Q.indexing, normalization?
+> indexing is use for fast query search
+  when you create an index on table,the DBMS creates a separate data structure that stores the values of the indexed column(s) along with pointers to the corresponding rows in the table.
+
+  1. never store value as comma separated
+  2. never combine 2 entities in 1 table
+  3. never put all data in one table, create relationship, because as column size grows retriving of data get slow down
+
+
+Q. Difference between Where and Having
+> where clause is used before groupby clause
+  and having clause is used after the grouping is done on the grouping data it filters groups of rows based on aggregate values computed for each group
+
+
+Q. Describe ACID properties in DBMS.
+> Atomicity, Consistency, Isolation, and Durability.
+
+
+Q.how would you design tables if user have multiple address in mongodb?
+> 2 way you can do.
+  1. one way is to add in the same document with address:[{},{}] which can be fast to read
+  2. second way is to create separate documenet and refernce them which is efficient when update is happening
+  
+
+Q. If you need to fetch data from some resource and store it in cache and access same cached data how would you do ?
+> using redis

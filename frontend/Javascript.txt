@@ -30,7 +30,7 @@
     Promises.all
     Promises.settled
     Promises.race ( first settled Promise )
-    Promises.any ( first promise in the array to fulfill )
+    Promises.any ( first resolve promise)
 
 11. async vs defer
    <script src="script.js" ></script>      : html parsing but when script tags comes it stops html parsing and fetch script then executes then html parsing continous
@@ -57,7 +57,67 @@
 
 20. nullish coalesing operator and optional chaining, ceil vs floor
 
+21. prefilght request
 
+22. pagination
+23. Infinte scrolling
+
+24. HLD and LLD
+
+25. cors
+
+26. synthic event, event polling, obeserver, how to center div
+
+27. output question
+ >   var x = 1;
+    function y(){
+        x =10;
+        return;
+        function x(){
+            
+        }
+    }
+    y()
+    console.log(x) // 1
+
+>    var x = 1;
+    function y(){
+        console.log(x)
+        var x =20;
+        return
+    }
+    y();
+    // undefined
+
+>    var x = 1;
+    function y(){
+        console.log(x)
+        let x =20;
+        return
+    }
+    y();
+    // connot access x before initialize
+
+
+29. shopping cart with products and coupons and calculate the net price after applying coupons on products. Coupons can be of different types with certain conditions.
+    1. N% off that is 10% off for all the individual
+    2.P% off on next item
+    3.D% off on Nth item of Type T.
+
+30. Kth Missing Positive Number
+
+31. Create idgenerator function which will incrementally add number to provided prefix Clone an object specifically using ES5 without using Object assign or Json parse 
+>   function increamentFun(){
+        let inc = 0;
+        return () => {
+            inc++
+            return inc
+        }
+    }
+    let getIncrementValue = increamentFun()
+
+32. Palindrome
+33. Given a matrix. You have to make whole row and column filled with zero whenever you encounter a zero.
 
 // future pratice - pollyfill of call, apply, bind, debouncing, throlling
 //used lazy loading for fast app render
@@ -76,3 +136,5 @@
 //   avoid using innerHtml whenever possible
 // useRef for error handling because if synchronous
 // e.preventDefault
+
+gathered functional and non functional requirement in HLD 

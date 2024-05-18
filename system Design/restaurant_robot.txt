@@ -1,0 +1,3 @@
+Parking lot system design interview.
+How would you design an elevator system? (OO)
+How would you design restaurant run by robots using high level classes and block diagrams.

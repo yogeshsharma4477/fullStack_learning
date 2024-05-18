@@ -137,7 +137,7 @@ Q. pagination
    }
 
 > now add this model in db, primsa provide one command and this command will create a migration file with sql query 
-> npx prisma migrate dev --name create_user_schema
+> npx prisma migrate dev --name  
 
 # prisma methods CRUD
 > await primsa.user.findMany({})

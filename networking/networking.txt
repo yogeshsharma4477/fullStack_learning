@@ -1,0 +1,43 @@
+Q. Protocal - are just rules that are defined by internet sociaty
+> TCP (Transmission control protocol ) - it will ensure that the data will reach its destination and data will not be corrupted 
+  UDP (user datagram Protocal) - you will use this when you don't care your data is not completly reaching its destination or not, for example - video conferencing
+  HTTP (hyperText transfer protocol ) - it is being used by web browser i.e wwww
+  packets - when you share large files on the server it doesn't send at once it share files in chunks
+  IP address - by ip address internet finds which servers to hit
+               DHCP protocol, so your ISP gives global ip address everyone who is connected to tha
+  Ports-
+  LAN,MAN,WAN - together all of this is internet
+  Topologies:
+    Bus - bus Topology is connected to just one cable and only one person can send data to another at once
+    Ring - computers are connected in a ring with each other and every computer talks to each other 
+           if you want to share computer A to computer D then computer B and C will also have the data.
+           Limitation : if one of the cable brakes then no can send data, and unnecessory data sharing to other computer if you want to share data to A to D
+    Star - there is one controlling device from which all the computers are connected and if one computer need to send data to another it has to go to the controlling
+           Limitation :  if the controlling device goes down no one can share the data
+    Tree - it is a combination of bus and star Topology
+           here many trees are connected to bus Topology meaning a single wire
+    Mesh - single computer is connected to every single computer
+           Limitation : it is very expensive and if you want to add one more computer need to add in mesh then we need to connected this computer to all the other computer so scalibilty is the issue
+
+    
+    Structure of the network:
+    lets take an example of amazon if you order any product amazon will arrange your order and movre to delivery company and
+    it is then transported to country(india) and then it is then transported to indian delivery company amd they will arrange the delivery then the user recived the product
+
+    same internet also work like this, if you try to get video from youtube, youtube will send the video to india server and then the indian server send video to user 
+    
+    OSI ( open system interconnection ) Model : 
+      1. Application layer - UI
+      2. Presentation layer
+      3. session layer
+      4. transport layer
+      5. network layer
+      6. data link
+      7. physical layer
+
+   1. Application layer - its implemented in softwore ex. Application where user can interact, suppose you send a sms to friend it is then send to Presentation layer
+   2. Presentation layer - it will take the data from Application layer and it will converted that text to ascii and also does the compression to reduce the size and encryption so that it is read only then it is send to session layer
+   3. session layer - session layer is just creates the connection between transport layer and it assume that everything will be handled by below layers
+   4. transport layer - 
+
+    
