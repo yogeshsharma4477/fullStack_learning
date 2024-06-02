@@ -1,0 +1,12 @@
+XSS ( cross side scripting )
+
+// suppose theres a website ex. banking website and hacker injected any script in it then whaterver details user is sharing
+   that is accessible to the hacker is type of hacking is known as XSS
+
+vulnerability
+- User session hijacking 
+- unthorized activies ( can access you authority and can do in the name of you )
+- capturing keyStrockes ( suppose you went any website where whaterver you are type an attacker can see all the key you are typing )
+- phishing attack ( attacker can run a script which can be render in your website and you think that it is website form and you fill the form but that form is of attacker )
+
+# initially browser used to allow to run script tag in the url but now a days browsers has become smart and hence does allow

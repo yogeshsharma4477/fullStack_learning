@@ -222,35 +222,39 @@ isCalled()
 
 //Q8. generic once pollyfill
 function Once(func, context){
-    let run;
-    return () => {
-    if(func){
-        run  = func.apply(context || this, arguments)
-        func = null
+    let hasBeenCalled = false;
+        let run = null;
+        return (...args) => {
+            if (!hasBeenCalled) {
+                run = func.apply(context || this, [...args]);
+                hasBeenCalled = true;
+            } else {
+                run = 'function already called';
+            }
+            return run;
+        };
     }
-    return run
-}
-}
-
-const hello = Once((a,b) => console.log("hello",a, b))
-hello(2,3)
-hello(2,3)
-hello(2,3)
-hello(2,3)
+    
+    const myOnce = Once((a,b) => {
+        return a + b
+    })
+    console.log(myOnce(2,3))
+    console.log(myOnce(2,3))
+    console.log(myOnce(2,3))
 
 
 //Q9. caching/memoised pollyfill - cars 24
 
-function myMemoise(func,context){
-    let res = {};
-    return function(...args){
-        let argsCache = JSON.stringify(args);
-        if(!res[argsCache]){
-            res[argsCache] = func.call(context || this, ...args);
-            return res[argsCache]
+function myMemoise(func, context){
+    let obj = {};
+    return (...args) => {
+        let node = JSON.stringify(args)
+        if(!obj[node]){
+            obj[node] = func.call(context || this, ...args)
+            return obj[node]
         }else{
-            return res[argsCache]
-        }
+            return obj[node]
+        }    
     }
 }
 

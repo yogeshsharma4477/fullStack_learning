@@ -3,72 +3,76 @@
     - Block scope and setTimeout, print increamentally using var
     - how would you use a clsoure to create a private counter?
     - currying
-    - Once function 
-
+    - Once function - Polyfill
+    - memoization - polyfill
 2. function currying
     - convert function(a,b,c,d) ==> function(a)(b)(c)(d)
     - Manipulation DOM - real world scenario
     - Infinte currying
+    - doOperation.add(2).add(10).subt(1).subt(1).getValue()
+    OBJECT - merge two object, unflatten object, flatten array
 
 3. bubbling(false) vs capturing(true)
-
 4. CRP (Critical rendering path) 
-
 4. Event Delegation
-
 5. Debouncing
-
-6. this keyword
-
+6. this keyword , Event loop
 7. call, apply, bind
-
 8. Prototype, Prototype chaining, Prototype inheritance
-
 9. pollyfill of map, filter, reduce, forEach
-
 10. Promises and pollyfills
     Promises.all
     Promises.settled
     Promises.race ( first settled Promise )
     Promises.any ( first resolve promise)
-
 11. async vs defer
    <script src="script.js" ></script>      : html parsing but when script tags comes it stops html parsing and fetch script then executes then html parsing continous
    <script src="script.js" sync></script>  : fetch script parallel and once data is fetch html parsing stops and script executes and then html parsing continous 
    <script src="script.js" defer></script> : fetch script parallel but script executes when html parsing is fully done
-
 12. Hoisting
-
 13. function statement/Declaration vs function expression
         can be hoisted                  cannot hoist
-
-14. shallow copy vs deep copy ( structuredClone(obj) )
-
+14. shallow copy vs deep copy  => ( structuredClone(obj) ), JSON.parse(JSON.stringify(obj));
 15. es5             vs  es6
    (var,use strict)     (let, const, arrow function, array destruction)
-
 16. Event Loop
-
 17. cookie vs session vs localStorage
-
 18. map vs forEach
-
 19. Object.freeze vs Object.seal     and    splice vs splice
-
 20. nullish coalesing operator and optional chaining, ceil vs floor
-
 21. prefilght request
-
 22. pagination
 23. Infinte scrolling
-
 24. HLD and LLD
-
 25. cors
-
 26. synthic event, event polling, obeserver, how to center div
+27. setTimeout+closure increamentally
+28. How to convert string to integer and integer to string in javascript. - parseInt() , Number() and string to Int - 10.toString(), String(10)
+    FYND 
+        - web fundamentals
+        - improving web performance
+        - web security 
+        - what keeps me motivated 
+        - recursively construct a nested object
+        - Any challenging problem that you have faced in your experience
+        - What are promises? Can you write a promise? What are closures? How does they work?
+        - debouncing, promise.all
+        - Implement memoization , strict mode , closures, Polyfill of promise.all
+        - infinte scrolling
 
-27. output question
+28. Create idgenerator function which will incrementally add number to provided prefix Clone an object specifically using ES5 without using Object assign or Json parse 
+>   function increamentFun(){
+        let inc = 0;
+        return () => {
+            inc++
+            return inc
+        }
+    }
+    let getIncrementValue = increamentFun()
+29. flatten Array, Kth Missing Positive Number
+30. Palindrome
+31. Given a matrix. You have to make whole row and column filled with zero whenever you encounter a zero.
+32. output question
  >   var x = 1;
     function y(){
         x =10;
@@ -97,27 +101,12 @@
     }
     y();
     // connot access x before initialize
-
-
-29. shopping cart with products and coupons and calculate the net price after applying coupons on products. Coupons can be of different types with certain conditions.
+33. shopping cart with products and coupons and calculate the net price after applying coupons on products. Coupons can be of different types with certain conditions.
     1. N% off that is 10% off for all the individual
     2.P% off on next item
     3.D% off on Nth item of Type T.
 
-30. Kth Missing Positive Number
 
-31. Create idgenerator function which will incrementally add number to provided prefix Clone an object specifically using ES5 without using Object assign or Json parse 
->   function increamentFun(){
-        let inc = 0;
-        return () => {
-            inc++
-            return inc
-        }
-    }
-    let getIncrementValue = increamentFun()
-
-32. Palindrome
-33. Given a matrix. You have to make whole row and column filled with zero whenever you encounter a zero.
 
 // future pratice - pollyfill of call, apply, bind, debouncing, throlling
 //used lazy loading for fast app render

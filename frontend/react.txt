@@ -34,6 +34,8 @@
 33. box model - padding border margin
 34. z index - to re-render element layer
 35. grid(two dimention) vs flex(one dimention)
+Q.  How to centre a div? using flex, grid, position
+Q. Flex-layout 
 ===========================================================================
 36. access token vs refresh token
 37. life cycle method
@@ -47,3 +49,4 @@
 39. useContext
 40. useMemo vs useCallback
 41. types of component -> function, class, pure, HOC
+42. What are ES6's features? How to improve the performance of the React App?

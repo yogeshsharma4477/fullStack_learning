@@ -130,3 +130,24 @@ function curry(func){
 const summ = (a, b, c, d) => a + b + c + d
 const totalSum = curry(summ)
 console.log(totalSum(1)(2)(3)(4));
+
+
+
+function evaluate(initialValue = 0){
+    let result = initialValue;
+    return {
+        add: function(a){
+             result+=a
+             return this
+        },
+        subt : function(b){
+            result -= 1
+            return this
+        },
+        getValue: function (){
+            return result;
+        }
+    }
+}
+let doOperation = evaluate();
+console.log(doOperation.add(2).add(10).subt(1).subt(1).getValue())
