@@ -1,0 +1,9 @@
+LCP - Largest contentfull paint
+
+LCP, or Largest Contentful Paint, is a metric that measures the time it takes for the largest content element on a web page to be rendered. It's crucial for user experience and SEO, indicating how quickly users can see meaningful content. Factors like server response times and render-blocking resources affect LCP. To optimize, focus on image and resource loading, and use tools like Lighthouse for measurement
+
+and how fast your largest content loads defines your LCP score
+
+improve -
+make sure your first load image is not lazy loaded, use CDN for load images, use NEXT Image
+

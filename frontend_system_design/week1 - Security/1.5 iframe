@@ -1,0 +1,28 @@
+iframe - you can load any other website in your web application
+and what if the other website you are loading or ads you are loading in your website try to steal your website credential?
+
+Vunerability
+- clickhijacking - 
+- data theft - using document.innerHTML
+- cookie and session theft - using window.cookie but modern browser doesn't allow to share any data to other origin
+
+Mitigation
+- using Headers 
+            - suppose I don't want to inject my website to any other web app using iframe
+              set Headers 
+                - X-Frame-Options   X-Frame-Options: DENY
+                                    X-Frame-Options: SAMEORIGIN
+                - CSP: frame-ancestor
+                    res.setHeader('content-Security-Policy', 'frame-ancestors "self"')
+
+ once you set this header no one will be able to run your website using iframe
+
+- Sandbox iframe 
+- setting cookie - set httpOnly: true
+                       secure: true // cookie will be send to the client if the client is https 
+                       sameSite: 'strict' // if you trying to access data from another domain your cookie will not be travelled
+
+
+
+
+            

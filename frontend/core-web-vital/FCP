@@ -1,0 +1,8 @@
+first contentfull paint
+
+First Contentful Paint (FCP) measures the time from when a web page starts loading to when any content is first displayed on the screen. It helps assess how quickly users see the first visual feedback. Improving FCP involves optimizing server response times, reducing render-blocking resources, and leveraging efficient loading of critical resources. Tools like Lighthouse and PageSpeed Insights can be used to measure and optimize FCP.
+
+	eliminate render-blocking resources 
+	minify css
+	remove unused css 
+	light speed plugin

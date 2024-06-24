@@ -1,0 +1,6 @@
+
+Server component - it is a react feature
+generally client component
+
+
+

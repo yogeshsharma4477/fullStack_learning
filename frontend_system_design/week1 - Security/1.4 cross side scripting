@@ -1,0 +1,44 @@
+XSS ( cross side scripting )
+
+// suppose theres a website ex. banking website and hacker injected any script in it then whaterver details user is sharing
+   that is accessible to the hacker is type of hacking is known as XSS
+
+vulnerability
+- User session/cookie hijacking 
+- unthorized activies ( can access you authority and can do in the name of you )
+- capturing keyStrockes ( suppose you went any website where whaterver you are type an attacker can see all the key you are typing )
+- phishing attack ( attacker can run a script which can be render in your website and you think that it is website form and you fill the form but that form is of attacker )
+
+# initially browser used to allow to run script tag in the url but now a days browsers has become smart and hence does allow
+
+1. how retriveing data from query param can be horrible if not handle properly?
+>  avoid innerHTML  - if not then session hijacking can happend because inside innerHTML js code can be excuted
+   handleUser Input - if not handle unthorized activies can happend
+   keyStrockes attack which means attacker can run script in your query param and whaterver a user is typing, attacker can monitor your keyStrockes
+   Stealing critical information - attacker can run a js script using img='api?output=${document.body.innerHTML}' now attacker can ready your whole dom 
+   phishing attack - attacker can run a js scripting which will create a nice looking UI form in your application and you'll think that it website form but your credential is shared with attacker
+
+Q. Solution  
+>  List all possible way to take user Input
+>  instead of using innerHTML, try using with textContent or innerText
+>  Escaping JS tags ex. </> and replace with '&gt'
+>  using library like React
+>  never use eval() // because it execute all js code
+>  avoid using dangerouslyHTML instead use libray like DOMPurify
+>  Content Security Polcy(CSP) Header and types are 
+                                                   - Allowed Sources
+                                                   - Script Nonces
+                                                   - Report only mode
+
+
+> res.setHeader(
+   'Content-Security-Policy',
+   'default-src 'self'' // which means load from my domain only not from any 3rd party domain
+                        // suppose i want to load image from linked but because i set headers to default-src self i cannot load
+   "script-src 'self' 'unsafe-inline' 'nonce-randomKey' http://unsecure.com;" 
+                        // inline script can be execute if we allow unsafe-inline
+                        // and also we can defined from which domain you can load image
+                        // if you set nonce in your header then only those script will be executed who has nonce-id in the script tag <script nonce=randomKey>
+
+)
+

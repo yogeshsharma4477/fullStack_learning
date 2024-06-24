@@ -11,11 +11,21 @@
     - Infinte currying
     - doOperation.add(2).add(10).subt(1).subt(1).getValue()
     OBJECT - merge two object, unflatten object, flatten array
+    SCOPE - block, global scope and function scope
+
+2. Shadow DOM - shadow dom is kind of hidden dom which does not affect the real dom
 
 3. bubbling(false) vs capturing(true)
 4. CRP (Critical rendering path) 
 4. Event Delegation
 5. Debouncing
+    - function debounce(func, wait) {
+        let timeout;
+        return (...args) => {
+            clearTimeout(timeout);
+            timeout = setTimeout(func.apply(this, ...args), wait);
+        };
+    }
 6. this keyword , Event loop
 7. call, apply, bind
 8. Prototype, Prototype chaining, Prototype inheritance
@@ -38,11 +48,20 @@
 16. Event Loop
 17. cookie vs session vs localStorage
 18. map vs forEach
-19. Object.freeze vs Object.seal     and    splice vs splice
+19. Object.freeze vs Object.seal     and    splice( Does not modify the original array; returns a new array.) vs splice ( Modifies the original array ) 
 20. nullish coalesing operator and optional chaining, ceil vs floor
-21. prefilght request
+21. prefilght request - suppose we have 2 apps on different domain and they want to share resource
+                        how do they? when AppA is requesting from AppB so what happens is generally a cors prefilght machanism is followed
+                        means a prefilght options call is made before the actual API call is made.
+                        suppose AppA wants to post data to AppB, 
+                        a prefilght request or options call is made and now the browser now uses additional http headers to verify this request first.
+                        and then the server/AppB takes the responsibilty of verifying that this AppA can access or not and 
+                        then AppB will sets some http header which will client let the know that this is safe and then the actuall request is made. 
+                        some common headers are - [ accept-control-allow-origin : * or 'www.justdial.com']
+                                                    access-control-allow : get,post // which lets you know what request can be made
+
 22. pagination
-23. Infinte scrolling
+23. Infinte scrolling - window.innerHeight + document.documentElement.scrollTop == document.documentElement.offsetHeight
 24. HLD and LLD
 25. cors
 26. synthic event, event polling, obeserver, how to center div
@@ -108,6 +127,7 @@
 
 
 
+// reomved unused css from website
 // future pratice - pollyfill of call, apply, bind, debouncing, throlling
 //used lazy loading for fast app render
 //api optimization used caching for data storage and prevent api call if data already present, abort controller

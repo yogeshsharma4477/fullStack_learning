@@ -1,0 +1,11 @@
+every time a web application is opened a dom tree is created 
+shadow dom is kind of hidden dom which does not affect the real dom
+
+Q. why do we need?
+> suppose we are using multiple css library and also internal css library and 
+if any of the classes matches with some other library then it will override and then css will be inconsistent
+
+Q. how to check shadowDOM?
+> inspect -> setting -> preference -> checkbox show shadowDOM element
+
+

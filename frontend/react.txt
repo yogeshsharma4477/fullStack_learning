@@ -1,17 +1,17 @@
-1. stack vs heap
-2. ReactDom
-3. useState vs useRef
-4. NPM, Node_module, bundler, PARCEL(bundler), webpack
-5. forEach vs map
-6. JSX
-7. how does this jsx execute?
-8. react.createElement
-9. react element
+1.  stack vs heap
+2.  ReactDom
+3.  useState vs useRef
+4.  NPM, Node_module, bundler, PARCEL(bundler), webpack
+5.  forEach vs map
+6.  JSX
+7.  how does this jsx execute?
+8.  react.createElement
+9.  react element
 10. react component
 11. key reconcilation
 12. React composition
 13. why do we need React Component when you can render our element?
-14. React.Fragment
+14. React.Fragment( can accepts key props) vs <></> (cannot accept key prop)
 15. config driven UI, optional chaining
 16. Virtual DOM, Reconcilation
 17. hooks
@@ -29,13 +29,26 @@
 ============================HTML===========================================
 29. Semantic HTML tags
 30. Selector => Class Selector : (.)class, ID Selector : (#)id, Universal Selector(*) : select all element
-31. position => static, relative, absolute, fixed, sticky
+31. position => static, relative, absolute, fixed, sticky(relative + fixed)
 32. html5 advantage => <header>, <footer>, and <nav>, <audio> and <video> tags, Cross-Platform Support, Mobile Optimization:
 33. box model - padding border margin
 34. z index - to re-render element layer
 35. grid(two dimention) vs flex(one dimention)
-Q.  How to centre a div? using flex, grid, position
-Q. Flex-layout 
+Q.  How to centre a div? using flex, grid (display:grid; place-items:center, height:10vh), position
+Q.  Flex-layout 
+Q.  display -  
+        block by default ( div ) 
+        span by default inline, - doesn't let you set width and height
+        inline-block - lets you set height and width
+        none - it acts as the element is delete from the dom
+        Flex
+        grid
+Q. "display:none" - it will not take any space to ui VS "visibility:hidden" - it will take any space to ui but it will be hidden
+Q.  px: Fixed unit, does not change with the viewport or parent element.
+    %: Relative to the parent element’s size.
+    em: Relative to the font size of the parent element.
+    rem: Relative to the root element’s font size.
+    vh: Relative to the viewport height.
 ===========================================================================
 36. access token vs refresh token
 37. life cycle method

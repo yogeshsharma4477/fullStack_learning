@@ -1,0 +1,3 @@
+Cumalative Layout Shift
+
+Cumulative Layout Shift (CLS) measures the total unexpected layout shifts on a webpage, impacting visual stability. A low CLS score indicates a stable layout, enhancing user experience. To improve CLS, use size attributes for images and videos, avoid inserting content above existing content, and minimize the use of animations that trigger layout changes. Tools like Lighthouse and PageSpeed Insights can help measure and optimize CLS

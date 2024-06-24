@@ -4,7 +4,7 @@ function unflatten(obj){
    let result = {};
    for(let key in obj){
        let keys = key.split('.')
-       keys.reduce((acc,k,i)=>{
+       keys.reduce((acc,k,i) => {
            if(keys.length - 1 == i){
                acc[k] = obj[key]
            }else{

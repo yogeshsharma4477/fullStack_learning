@@ -1,0 +1,43 @@
+# Interface is type which combines everything or Interface is use to combines type
+classes can implement Interface 
+when classes you Interface then it says that you need to use all the properties of interface
+Interface can use other interfaces
+interface doesn't let you do union and ors
+Interface lets you extend Interface meaning that if you do
+    interface address{
+        room:number,
+        area:string
+    }
+    interface1 person1 extend address{
+        name:string,
+        age: number 
+    }
+
+    // so now person1 interface has copied the the address interface
+
+
+# TYPES is same as interface the only difference is how you call types and you cannot extends or implements types
+types can use interface
+types are very usefull for union and ors
+
+# Optional properties
+interface person{
+    name:string,
+    age?: number
+}
+
+# ENUMS - whenever you know there is type you use enum
+enum Arithmetic{
+    Add,
+    Sub,
+    Div,
+    Mul
+}
+
+function calculateArea(a: number, b: number, type: Arithmetic){
+    // type = will be 3 because enums share the index
+}
+calculateArea(1,2,Arithmetic.Mul)
+
+
+
