@@ -1,0 +1,27 @@
+Q> app.use(express.json()) 
+json() is a built-in middleware function in Express. 
+This method is used to parse the incoming requests with JSON payloads and is based upon the bodyparser. 
+This method returns the middleware that only parses JSON and only looks at the requests where the content-type header matches the type option.
+
+from frontend we are not passing the json we pass multipart/form-data
+and to parse form-data we need to use middleware(express.urlencoded || express.json()) which will allow us to parse form-data
+
+
+Q> Multer
+app.post('/profile', upload.single('avatar'), function (req, res, next) {
+  // req.file is the `avatar` file, avatar is node name||name attribute from FE which is comming from frontend
+  // req.body will hold the text fields, if there were any
+})
+
+> multer.diskStorage({}) object accept 2 key value pair 1. destination 2. filename
+  const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, '/tmp/my-uploads') // this cb function accept 2 parameter, 1. is error 2. path in which file will upload
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+    cb(null, file.fieldname + '-' + uniqueSuffix)
+  }
+})
+
+const upload = multer({ storage: storage })

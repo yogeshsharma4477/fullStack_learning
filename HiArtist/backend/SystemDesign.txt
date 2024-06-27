@@ -1,0 +1,62 @@
+System Design
+>Function Requirement
+    1. View feed
+    2. create a post (picture/text)
+    3. Like & comment on a post
+    4. Search for users
+    5. Follow users
+    6. can chat with friend
+
+>Non-functional Requirement(smoother gameplay)
+    1. Like/comment(low latency)
+    2. View Posts(Eventual Consistency)
+
+>Capacity Estimation
+    2B MAU
+    DAU =  2B users/30 days
+    50% of the user post 3 time in a month
+    50% is 1B users * 3 post/30 days => gives a total number of post per days i.e 100M post per day
+Assume that average post is 10mb size
+Storage Requirement for posts = 100M posts/day * 10mb per post => 100TB per day
+
+> Database Design
+    1. User Database
+        UserName:(String)
+        FirstName:(String)
+        LastName:(String)
+        Email:(String)
+        Phone:(Number)
+        CreatedTime:(DTTM)
+        LastLogin:(DTTM)
+
+    2. Directed Graph - Instagram where is it necessay that both the user has to follow each other
+       UnDirected Graph - Facebook both the user has to follow each other
+
+    3. Post Database(Text/Photo/Video)
+        UserId:(FK)
+        CreatedTime(DTTM)
+        Description(String)
+        Url(for Images/Video): (String)
+
+    4. Interaction Database(nested Comment)
+        {
+            postId : "123"
+            UserId(person who has commented on the post) : "983"
+            Like : (Boolean(true/false))
+            comment: "this is comment text"
+            Media : (link to emoji files)
+        }
+
+> API
+    1. GetFeed(UserId) - Get method - return a list of 20 posts as a feed
+    2. CreatePostService(UserID, MediaAttachment, Description) - Post method - return Boolean
+    3. InteractionService(Postid, Userid,like(Boolean),commentDescript,MediaAttachment) - post method
+    4. SearchService(search String) - get method - return 30 search result
+    5. followService(user1,user2) - Post method return Boolean
+
+> High level System Design
+    1.load balancer to make sure load is equally distributed accross on different server
+    2. cache the usersFeed who frequently login
+    3. upload media service to check if image/Video contains any virus then upload to media Storage
+    4. create instances(replica of Database) of every services coz if one fail 2nd should work or if one crashes we should have data of users
+    5. for celebrity user we should have different Database

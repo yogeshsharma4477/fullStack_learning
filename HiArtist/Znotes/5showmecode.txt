@@ -1,0 +1,53 @@
+good pratices,
+Header 
+    -Logo(Title)
+    -Nav Items(right side)
+    -Cart
+Body
+    -search bar
+    -RestaurantList
+        RestaurantCart (may cards)
+            -Image
+            -Name
+            -Rating
+            -Cusine
+Footer
+    -links
+    -copyright
+
+
+
+React.Fragment is a componet which is exported by React libary
+it is like an empy tag
+
+style={} //accepts obj => obj={{}}
+
+arr = ["veg","non-veg"]
+arr.join(",") veg,non-veg
+
+
+config driven UI - when you build a real world Application so you want your website should work on mumbai, pune, bangalore
+backend should control the website that how should how website look like in pune, mumbai
+what offers should run in bangalore should control by backend
+
+optional chaining
+                                                                                                cloudinary Id
+https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/ "697f82a44ce19e4ef51c9c93dd38bdf3"
+
+props = passing properties inside my componet
+
+
+virtaul dom - it is not just about react, it a software engineering thing
+Representation of a real dom
+why do we need? = for Reconcilation
+Reconcilation - Reconcilation is an algorithm(diff algorithm) which react uses to diff one tree(actual dom) from another(virtual dom), 
+and its determinds whats need to change and what not in UI.
+and this process is known as Reconcilation
+
+diff algorithm finds out the differnce between one tree and other 
+now if we have found out the differnce it will only update that portion 
+//it is kind of git diff
+
+
+
+

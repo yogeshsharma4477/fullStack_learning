@@ -1,0 +1,402 @@
+Advantages
+> SEO.
+> easy crwalling
+> file base Routing
+> Fullstack
+> serverless API endpoint -> with route.js
+> Hot Module Reloading
+> by default automatic code splitting when needed like lazy loading
+
+
+> LAYOUT.js  - entry point
+> metadata(object) api- SEO
+> page.js => home page route of the application // localhost:3000
+> </LINKS> instead <a> 
+> by deault all component inside app folder are react server component if you want to use it as client component "use client"
+    "use client" => By default, any component in the /app directory comes as a react server-side component. And this brings some serious performance advantages.
+    However, there are things that we can't do on the server side. Things like using the window object or managing the client-side state. For situations like these, we have the client components.
+    You can declare a NextJs component as a client component by using the "use client" directive:
+    when to use server vs client component? https://nextjs.org/docs/getting-started/react-essentials
+    if you want usestate useffect interactiviy use "use client"
+
+Data fetching
+    1>Server side Rendering(SSR) fetch(`----`,{cache:'no-store'})
+    2>Static site generation (SSG) fetch(`----`) //it will cache data and by default nextjs uses SSG 
+    3>Increamental static generation (ISR) fetch(`----`,{next: {revalidate : 10} }) // refresh the data after specific time
+    
+backend in nextjs
+    route.js special file name inside app folder => this is going to act as backend api route
+    // we don't need to configure any express configurtion in nextjs
+
+Next.js supports the following http method
+1. **GET** 
+2. **POST** 
+3. **PUT**: updates by replacing the entire entity
+4  **PATCH**: only updates the fields that you give it.
+5  **DELETE**
+6. **HEAD**: Retrives the header of a specific resource without fetching its body
+7. **OPTIONS**: Retrivesthe supported HTTP methods and other communication options for a resource
+
+Metadata
+//we can define metadata in two ways: static and dynamic 
+//Next 13 provide metadata api
+
+1.static
+// export const metadata = {
+//   title: 'Home'
+// }
+// Output:
+// <head>
+//     <title>Home</title>
+// </head>
+
+2.Dynamic Metadata
+// export async function generateMetadata({params, searchParams}){
+//   const product = await getProduct(params.id)
+//   return {tite : product.title}
+// }
+
+
+// the latest Next is by default server side so now dom is created on server and send to the client 
+// to make client side write "use client" on the top so here dom will be crated on client side
+// server side does not make our application fast but make our app secure, also helps in crwalling
+// if you are using getserversideprops make sure you are returning the props in encrpted formated and then decryrpt the props on component 
+   beacuse is you don't encrpt you can see the api respoonse in next object in inspect element
+// getserversideprops is for only api or setheader, cookies
+// nextjs bydefault handle bundler more efficient with lazy loading.
+// webpack => just minify you code in a bundler,  to use it - 
+    >npm i --save-dev webpack webpack-cli
+    >script{
+        "build" : "webpack"
+    }
+    >npm run build
+    
+    //now you can use packages 
+
+    webpack.conig.js -  
+    //the file itself is a js module that exports an object that customizes the behavoior of webpack
+    //the 1st point is entry:"./src/index" which defines the entry point of your application
+    module.exports = {
+        entry : './src/index.js',
+        output: 
+    }
+
+
+    eg : if (i < 3){
+        console.log("test")
+        alert()
+    }
+    minified => if(i<3){console.log("test")alert()}
+// babel => convert code from es6 to es5 so that every browser understand code.
+
+// import/export are js module
+
+MONGODB_URI="mongodb+srv://yogeshwarsharma4477:TCCXqZaYIonMUMRP@artconnect.g2t6kup.mongodb.net/?retryWrites=true&w=majority"
+
+> getserversideprops dosn't work in _app.js because _app.js is not a page getserversideprops runs when page get hit and _app.js is not a page
+> ISR swc -> hmr ka support -> changes update
+
+Q <StrictMode> lets you find common bugs in your components early during development.
+<StrictMode>
+  <App />
+</StrictMode>
+
+
+Q <Suspense> lets you display a fallback until its children have finished loading.
+
+<Suspense fallback={<Loading />}>
+  <SomeComponent />
+</Suspense>
+
+//package.json ->
+ "build:staging": "export APP_ENV=staging && next build", // for development, next bydefault handle this
+ "start:staging": "export APP_ENV=staging && next start", // for development,
+ "build:production": "export APP_ENV=production && next build", // for production, whaterver handling needs to be done on production next will hanlde itself
+ "start:production": "export APP_ENV=production && next start", // for production,
+
+// to check if the our project is running on production or development => process.env.APP_ENV
+
+
+========================================Promise.all======================
+
+console.log("Promise.all")
+
+function promiseOne(){
+    return new Promise((resolve,reject)=>{
+        console.log("promise one called")
+        return setTimeout(()=>{
+            resolve()
+            console.log("promise one resolved")
+        },100)
+    })
+}
+
+function promiseTwo(){
+    return new Promise((resolve,reject)=>{
+    console.log("promise Two called")
+        return setTimeout(()=>{
+            resolve()
+            console.log("promise Two resolved")
+        },100)
+    })
+}
+
+async function sequential(){
+console.time("await")
+await promiseOne()
+await promiseTwo()
+console.timeEnd("await")
+
+console.log("----------")
+
+console.time("await")
+await Promise.all([promiseOne(),promiseTwo()])
+console.timeEnd("await")
+
+}
+console.log(sequential())
+
+
+======================================Promise question========================================
+Q1. 
+console.log('start')
+
+const fn = () => (new Promise((resolve, reject) => {
+  console.log(1);
+  resolve('success')
+}))
+
+console.log('middle')
+
+fn().then(res => {
+  console.log(res)
+})
+
+console.log('end')
+// start
+// middle
+// 1
+// end
+// success
+
+Q2.
+console.log('start');
+
+const promise1 = new Promise((resolve, reject) => {
+  console.log(1)
+})
+
+promise1.then(res => {
+  console.log(2)
+})
+
+console.log('end');
+// start
+// 1
+// end
+
+Q3.
+console.log('start');
+
+const promise1 = new Promise((resolve, reject) => {
+  console.log(1)
+  resolve(2)
+  console.log(3)
+})
+
+promise1.then(res => {
+  console.log(res)
+})
+
+console.log('end');
+// start
+// 1
+// 3
+// end
+// 2
+
+Q4.
+console.log('start');
+
+const promise1 = new Promise((resolve, reject) => {
+  console.log(1)
+  resolve(2)
+})
+
+promise1.then(res => {
+  console.log(res)
+})
+
+console.log('end');
+// start
+// 1
+// end
+// 2
+
+Q6. setTimeout vs Promise
+Tasks with higher priority are called microtasks. Includes: Promise, ObjectObserver, MutationObserver, process.nextTick, async/await .
+Tasks with lower priority are called macrotasks. Includes: setTimeout , setInterval and XHR .
+
+console.log('start')
+
+setTimeout(() => {
+  console.log('setTimeout')
+})
+
+Promise.resolve().then(() => {
+  console.log('resolve')
+})
+
+console.log('end')
+
+// start
+// end
+// resolve
+// setTimeout
+
+
+Q7.: Microtasks mix Macrotasks
+
+const promise = new Promise((resolve, reject) => {
+  console.log(1);
+  setTimeout(() => {
+    console.log("timerStart");
+    resolve("success");
+    console.log("timerEnd");
+  }, 0);
+  console.log(2);
+});
+
+promise.then((res) => {
+  console.log(res);
+});
+
+console.log(4);
+
+// 1
+// 2
+// 4
+// timerStart
+// timerEnd
+// success
+
+Q8: Prioritise Between Microtasks and Macrotasks
+
+const timer1 = setTimeout(() => {
+  console.log('timer1');
+  
+  const promise1 = Promise.resolve().then(() => {
+    console.log('promise1')
+  })
+}, 0)
+
+const timer2 = setTimeout(() => {
+  console.log('timer2')
+}, 0)
+
+// timer1
+// promise1
+// timer2
+
+Q9. A Typical Interview Question
+console.log('start');
+
+const promise1 = Promise.resolve().then(() => {
+  console.log('promise1');
+  const timer2 = setTimeout(() => {
+    console.log('timer2')
+  }, 0)
+});
+
+const timer1 = setTimeout(() => {
+  console.log('timer1')
+  const promise2 = Promise.resolve().then(() => {
+    console.log('promise2')
+  })
+}, 0)
+
+console.log('end');
+
+// start
+// end
+// promise1
+// timer1
+// promise2
+// timer2
+
+
+Q6.
+
+console.log('start')
+
+Promise.resolve(1).then((res) => {
+  console.log(res)
+})
+
+Promise.resolve(2).then((res) => {
+  console.log(res)
+})
+
+console.log('end')
+
+// start
+// end
+// 1
+// 2
+
+Q6.
+
+function one(){
+    return new Promise((resolve,reject) => {
+        console.log(1)
+        resolve("1")
+    })
+}
+
+function two(){
+    return new Promise((resolve,reject) => {
+        setTimeout(()=>{
+            reject("failed");
+        },1000)
+    })
+}
+
+function three(){
+    return new Promise((resolve,reject) => {
+        console.log(3)
+        resolve("3")
+    })
+}
+
+function four(){
+    return new Promise((resolve,reject) => {
+        // console.log(4)
+        reject("four")
+    })
+}
+
+one()
+.then(res => two())
+.catch(e => console.log("two failed"))
+.then(res => three())
+.then(res => four())
+.catch((e) => console.log("error",e))
+
+
+
+=============================Asynchronous JS===================================
+
+console.log("start");
+function test(name,cb){
+  return setTimeout(cb,1000)
+}
+let val = undefined
+function callback(n){
+    val = n
+    return n
+}
+let a = test("yogesh",callback)
+ setTimeout(()=>{
+     console.log(a)
+    },2000)
+

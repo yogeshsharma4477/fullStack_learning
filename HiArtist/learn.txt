@@ -1,0 +1,5 @@
+// 1) Module : A module in JavaScript is just a file containing related code.
+// In JavaScript, we use the import and export keywords to share and receive functionalities respectively across different modules.
+
+
+black blue purple

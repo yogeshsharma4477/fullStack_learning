@@ -1,0 +1,139 @@
+Testing - React Testing Library, Jest
+
+<--------------------Theory Part-------------------------------->
+
+// setting up test cases are more complex
+
+Q) why do we need test case?
+a) when we are working in v big project there are many developers working on it and 
+   there will be 100 of components, 100 of dependencies 100 of data passing from 1 component to another and all these component are integrated
+   and there can be possibilty one developers new feature can break my existing feature
+   we write test cases to ensure that our code is properly intact, whatever we are writing passes test case, suppose we are adding new code it is not breaking our new code
+   writing unit test gives us confidence that I'm not breaking other code this is why we need Testing
+
+   // we write test cases even before we write our code that is TEST DRIVEN DEVELOPMENT
+   // when we write test driven development the development process become very slow but it will ensure our code
+   // but most of the company doesn't follow test driven development
+
+Q) what are different type of Testing
+1. Manual Testing ( not that efficient, require humans )
+2. automated test ( code testing a code ex selliumn tool for testing )
+3. End to End( whole flow of application , Covers entier user journey this part is offloaded to QA team who write test casee in headless browser) testing ( crypress )
+  
+  HEADLESS BROWSER : we headless browser in crypress or any tool which does'nt need human.(it means replacing the manual testing with code)
+  - We know that the User Interface or UI of any software is its most integral part. So, when it comes to Headless Browsers (Yep! You heard it right, it is called “headless”), 
+    it means a browser without a user interface or “head.” So, when the browser is headless, the GUI is hidden. 
+    Therefore, when you use a headless browser to access any website, you can’t see anything. However, the program runs in the background.
+
+  - A headless browser is similar to a normal browser that performs functions such as navigating pages, clicking links, downloading content, and many more. 
+    But, with a normal browser, you can check each step and proceed with the help of a GUI presentation. At the same time, you will use Command-line or Console Interface to keep track of changes.
+
+    // we can write test case faster in headless browser because it doesn't has paint on the browser
+
+( this is the core job of developer )
+4. unit testing - small component unit testing
+5. integration testing - testing the integration between the component
+
+enzyme is the older verion for testing and now we use React Testing Library
+
+
+<-------------------------------------------------------------------------->
+//Testing Library has many testing library like for angular, vue, native, react
+// React Testing Library is a part of Testing Library
+
+We are using JEST - Javascript Testing Library
+React Testing Library is using JEST Behind the scene, React Testing Library make testing very efficient in react
+
+
+<--------------------------------SET UP------------------------------------------>
+
+1. npm install --save-dev @testing-library/react
+2. npm i -D JEST
+3. configure Jest ( by creating jest.config file using - npx jest --init ||  you can create manually) 
+    npm run test - to test 
+4. npm i -d jest-environment-jsdom //for new jest we need to install this manually
+
+5. create test file -  __tests__   -(dunder) this file name is mandotory, jest will consider this folder as testing folder
+    file name convention : fileName.test.js
+
+//how do we write test case - 
+    test("sum of two number",()=>{
+        expect(sum(2,5)).ztoBe(7)
+    })
+    1st argument name of the test , 2nd argument takes function where we will expect something
+
+// import { sum } from '../sum' - 
+// jest run in an different environment, its not rendering on browser, thats why it does'nt understand import it use jsdom(it a small machine which runs our code)
+//this file expect only js it doesn't understand import so, we eill take help of babel
+// we will use jest babel config    
+6. configure babel -> npm install --save-dev babel-jest @babel/core @babel/preset-env
+
+// after install --> we need to configure so that our test file to understand import because default jest doesn't know what is import
+// for configuration we need to create babel.config.js
+7. create babel.config.js || if we have babelrc we can write in that also
+    module.exports = {
+    presets: [
+        ['@babel/preset-env', {targets: {node: 'current'}}],
+        '@babel/preset-typescript',
+    ],
+    };
+
+    babelrc expect json not js object so always write your configuration in json format else it will give error
+   
+8. Coverage folder is created when we test, we will ignore in my gitignore because we don't need this folder in my git
+
+<--------------------------------Unit Test in React------------------------------------------>
+Q) let write test case for Header, what can we expect? we want logo to be display on page load, default value, cart count 0
+A) jsdom - it a small machine which runs our code in that machine i will just load my Header using - {render} which will come from testing-library/react
+
+    just like root.render(document.getElementbyId('root'))
+    we will load our header inside render(<Header />)
+
+    const header = render(<Header />) 
+    // jest also doesn't understand jsx, we again take help of babel
+    // inside babelrc configuration-> ["@babel/preset-react" , {"runtime":"automatic"}]
+    // runtime means where you code is running
+    // jsdom also doesn't understand image,png file it only understand Javascript, we will use of jest configuration to understand our image and we create a mock
+        dummyLogo.js -> export default "dummyLogo.js"
+        inside jest.config { moduleNameMapper: { "\\.(png|jpg)": "../mocks/dummyLogo.js"} }
+
+    // import { staticRouter } from 'react-router-dom/server' // this router can work without browser
+
+
+    import { render } from '@testing-library/react'
+    import { Header } from '../Header'
+    import { Provider } from 'react-redux'
+    import store from '../../store/store'
+    import { StaticRouter } from 'react-router-dom/server'
+    import { expect, jest, test } from '@jest/globals';
+    //npm run test
+    test("logo should load on rendering header", () => {
+        const header = render(
+            <StaticRouter>
+                <Provider store={store}>
+                    <Header />
+                </Provider>
+            </StaticRouter>
+        );
+        // this header is virtual dom object just like we have window object here we have VD Object
+        // in window - we can find dom using document.getElementById() etc similar we can have find in Virtual dom like
+        // header.getAllByTestId("logo") -> in my logo tag instead id we have to write data-testid="logo" jest understand data-testid
+        const logo = header.getAllByTestId("logo")
+        console.log(logo[0])
+        // to check if our logo is loaded or not
+        expect(logo[0].src).toBe("https://marketplace.canva.com/EAEzOw_ovvE/1/0/1600w/canva-watercolor-food-logo-0GcpZ9_7Xls.jpg")
+    })
+
+
+
+    // to check what is render inside header just pass wrong testID you will then can see in terminal
+
+    // This is unit testing
+    // we checked 
+    // if the status is online or not
+    // if our image is loaded or not
+    // check if the initail value of cart is 0 or not
+
+
+<--------------------------------Integration Test in React------------------------------------------>
+Search.test.js

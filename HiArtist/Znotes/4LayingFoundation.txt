@@ -1,0 +1,177 @@
+Pollyfill - 
+ex Array.map() some browser might not support map()
+so Pollyfill means creating our own map function which works same as Array.map()
+
+what convert the new code into older code?
+Babel
+
+so what babel do is it Pollyfill some function which some browser doesn't understand
+ex Array.map() => to Pollyfill of map() so that all browser able to understand that function
+
+==============================Pollyfills======================================================
+
+let arr = [1,2,3,4,5,6,7,8,9,10]
+
+
+Array.prototype.myReduce = function (callback,initalValue){
+    let curr = initalValue
+    for(let i = 0; i < this.length; i++){
+        curr += callback(initalValue,this[i])
+    }
+    return curr
+}
+
+Array.prototype.myfilter= function (callback){
+    let result = [];
+    for(let i = 0; i < this.length; i++){
+        if(callback(this[i],i,this)){
+        result.push(this[i])
+        }
+    }
+    return result
+}
+
+Array.prototype.myMap = function (callback){
+    let result = [];
+    for(let i =0; i<this.length;i++){
+        result.push(callback(this[i],i,this))
+    }
+    return result
+}
+
+// let a  = [1,2,3,4,5];
+// let b = a.myMap(data => {
+//     return data
+// })
+
+// console.log(b)
+
+
+
+to run our parcel we do >- npx parcel index.html instead we can create a script to this commond inside package.json
+"script":{
+    "start":"parcel index.html",
+    "buid" :"parcel build index.html"
+}
+
+npm run start || npm start === npx parcel index.html
+npm run build || npm build === npx parcel build index.html
+
+// npm is used when we want our things to install inside your project
+// npx is use for excute 
+
+just for understading assume npx === npm run;
+
+
+===============================
+npm i babel-plugin-transform-remove-console
+//we have package to remove console.logs from our project
+//when we install any package our package related info get in package.json and the package realated code get in Node_module
+
+to configure this package using .babelrc 
+babelrc is a configuration for babel
+
+
+react child element should alway give a key for unique identification
+
+react.createElemnt => is an object(props) => then react-dom converted into html and put inside dom
+
+
+
+instead on createElemnt we have better way to create html that is JSX
+JSX (javascript xml) 
+is html inside javascript? false
+
+using createElement
+const heading = React.createElement("h1",{id:"title"},"Hello World");
+
+using JSX 
+const heading = (
+<h1 id="title">
+ Hello World 
+ </h1>
+ )
+
+// this is not html inside js it is html like syntax
+// fb developer devolops by JSX
+// attributes in jsx should be camelCase eg className
+
+how does this jsx execute?
+babel understand our jsx and convert our code in such a way we can render how jsx in dom
+jsx is using React.createElement under the hood and then that object is converted into html and how does this? Babel
+
+jsx advantage = readablity, developers experience, maintability
+
+
+babel comes along with parcel
+
+we have packagelock.json inside Node_module as well why is that for it for transitive dependencies
+
+how will our project know when we put Node_module inside gitignore?
+when you push your code to githib -> then server pull your code form github and then server run the same commond 
+and builds and it creates it own Node_module on server.
+Node_module is always with your code
+
+
+======================component=====================================
+
+// this is a react element
+const heading = (
+    <h1 key="unique">
+    heading one
+    </h1>
+)
+
+const title = () =>(
+    <h1 key="unique">
+    heading one
+    </h1>
+)
+
+root.render(heading)
+
+//this is a component
+const Heading1 = () => (
+    {heading}
+    {title()}
+    <h1 key="unique">
+    heading one
+    </h1>
+)
+
+root.render(Heading1)
+
+
+sanitizing is done by jsx
+
+
+//component composition - using component inside component
+
+const Heading1 = () => (
+    <Component /> //component composition
+    <h1 key="unique">heading one</h1>
+)
+
+
+
+//
+>Scripts inside package.json
+>removed console using plugin - babel-plugin-transform-remove-console 
+>browserlist : "last 2 chrome version" // it dosent mean it will run only on chrome it means it will definately run on chrome
+    created .babelrc file for configuration 
+>key reconcilation
+>jsx - using React.createElement => it is an object => which is then converted to html through babel
+>React element
+>React component
+>React composition
+>JSX won't work if there no parcel or any other bundler which doesn't has babel or else you need to install babel if not any other bundler 
+>Babel needs to be there to run your jsx to be run
+>why do we need React Component when you can render our element?
+ root.render(element)
+ root.render(<component/>) || root.render(component())
+ becoz we can pass props inside component 
+>when we do create-react-app it automatically install webpack along with babel is the reason we don't need to install babel or bundler differently
+
+
+
+

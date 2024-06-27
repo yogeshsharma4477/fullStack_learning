@@ -1,0 +1,234 @@
+// we will be building youTube
+//Machine coding round - most company use vanilla JS 
+//but we will be using React
+
+fetch data from API, carosal , comment engine, chatbot, hooks, forms, infinity scroll, higher order component, debouncing
+
+>managing your time is the most crucial part in Machine coding round( most important is timing usually 1 to 2 hrs) - pratice as much as possible
+>planning will help you alot
+>proper execution of that planning
+
+
+Q)if the interviewer ask you to build a youTube you should first ask is 
+    - Requirement Clarification - discuss the feature ask what feature you need to build
+    - discuss the tech stack - ( UI and data layer )
+        ex - ask you need to use telwind or not
+           - redux or context API ( if small application use context else redux )
+           - API
+           - for form we can use formik
+           - react router dom
+           - which bundler we will be using
+           - what testing library jest
+    - whatever you will be using tell the justification for it that Im using context becuase...
+
+After discussing
+
+> Do Planning ( UI || low level design flow ) 
+    low level design means how you structuce your component
+    UI
+Also discuss the UI of your way show how you will desgn 
+> ex. what all things will be there in you page ex. search, side bar, body, header, if click on video open to new page, like, subscribe
+> the more planning you will do the more code you will write
+> tell him about component names ex. Body component, video component basically folder structuce
+
+
+SUMMARY TILL NOW
+> feature
+> tech stack
+> Structure & Planning (UI)  
+======================================================================================================================================
+// You don't have to start from scratch instead use create-react-app
+// but when we are building a large application we can setting up bundler, parcel, babel all those configuration according to our Requirement
+// let us write our create-react-app - what is do is becz it is doing the same thing we were doing - 
+    we created our own index.html, css file, we did npm install, we install npm also, we configured our npm, we installed parecel with this create-react-app react is setting up all these up
+
+
+AIzaSyCoWk7-9EuwhnlMpCaEjNSROWLxsZ6GGj8
+
+GET https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&regionCode=US&key=[YOUR_API_KEY] HTTP/1.1
+GET https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&regionCode=US&maxResults=50&key=[AIzaSyCoWk7-9EuwhnlMpCaEjNSROWLxsZ6GGj8] HTTP/1.1
+
+Authorization: Bearer [YOUR_ACCESS_TOKEN]
+Accept: application/json
+
+
+higher Order component - it takes a function/component and return a new function/component
+ex. in somewhere in list we can give ad
+HOC accepts component as a props
+Hoc takes in a existing component and modifies a little
+HOC were mostly used in class based component but after redux, toolkit, context we rarely use
+HOC were also used as a store
+
+======================================================================================================================================
+
+Q) Search is the most important in Machine coding round - 
+    Debouncing with 200ms
+    if diff between two key strokes is < 200ms Decline API call else call API
+
+    http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=Iphone
+
+    useEffect(()=>{
+        const timer = setTimeout(() => CallAPI(), 200)
+        return () => {
+            clearTimeout(timer)
+        }
+    },[searchtext])
+
+    ** every time reconciation/re-render happen component will unmount clearTimeout (clear thing up, if theres any timer there it will also destroys) and start setTimeout
+
+======================================================================================================================================
+
+Q) use catching and when we go backward in search we don't want to call api again
+
+cache:[]
+cache:{}
+New Map(): is even more optimized than obj
+
+we will store our searches in catch 
+cache = {
+    ip:[{response}]
+    iphone:[{response}]
+}
+
+if(cache.searchtext){
+    return cache.searchtext
+}else{
+    const response = await CallAPI()
+    cache[searchtext] = response
+}
+
+***** LRU(Least Recently Used) cache technique it works like if the cache is 100 or 200 whatever then start removing from top and add new cache value, to not bloat our cache
+
+======================================================================================================================================
+
+Q) n level Nested comments?
+
+const CommentsList = ({ comment }) => {
+    return comment && comment.map((comments, i) => {
+        return (
+            <div>
+                <Comments key={i} data={comments} />
+                <div className="pl-5 border border-l-black ml-5">
+                    <CommentsList key={i} comment={comments.replies} />
+                </div>
+            </div>
+        )
+    })
+}
+
+======================================================================================================================================
+
+Q) Live Streaming Chat? how it does load the chat on Live
+A) when there is application when there is live data involed are Streaming application, live chat,trading app, hotstar, gmail,crickbuzz, live commentary
+   
+    what are the challenges in Live chat?
+   1. Get Data Live
+   2. update the UI on page (we don't push div into our page to add chats it will make our app very slow becz the page size will become big)
+        - you have to update page very efficiently and give better user experience
+        - even if there are million of chats our page shouldn't freeze
+    
+    first if there are no live data we can call our api in useEffect
+   
+   2 way of live Streaming are there :- 
+    1. websocket - it is a two way data connection, 
+        it creates a hand shake between ui <-- between and --> server , it done through events and there it does not have regular interval it can come anytime
+        once you have connected that hande shake, you can quickly send data from either side, it is bidirectional live data, you can send data from ui to sever or server to ui
+        and it a connection which is started as soon as you start the application a websocket established now you can send data from both the side 
+        websocket connection is very heavy so ask yourself if you need conituous connection or not based on that use websocket 
+        ex. stock market,whatsapp
+    2. Long Polling/API Polling - UI request the server but data flow is from server to UI, UI <---- server it one directional and after the interval (in websocket there is not regular interval)
+        data unidirectional , i.e UI will keep polling data after every 10sec, means after every 10 sec it will check whether new has come or not
+        ex. Gmail,socker
+            crickbuzz(interval after every 25 sec becz 25 is the minimum time in cricket after the 25 sec there will be next ball)
+            Youtube Live Streaming live chat use API polling(when we use API polling the order is not in sequnce)
+
+    why does page doesn't freeze even after million of chats coming?
+    A)  once text reaches at some level at top suppose 100 200 it started deleting the message from the top 
+        but if we go at top and see it will not delete at that moment 
+        because we(user) has to see those thing but as soon as we go down it will again start deleting
+        youtube can also go more clever suppose if i'm using mac book, or internet explorer so it can change the number of item it keep in the chat so that my browser does not freeze
+        this is how we improve UX
+        instagram reels are infinite scroll
+        instagram will not take pain of storing the cache of million of user
+        let build LiveChat stream component
+
+   ********** API POLLING ****************
+
+    //API Polling - using setInterval
+    useEffect(() => {
+        let API_Interval = setInterval(() => {
+            console.log("API")
+        }, [1000])
+        return () => {
+            clearInterval(API_Interval)
+        }
+    }, [])
+
+//  e.preventDefault() in form submit to prevent reload 
+//  and in form submit can submit using enter also it is bydefault feature
+
+^^ important to note cors comes because of your browser restriction not because of API your chrome stoping 
+^^ useStrickmode bcz of it our component rerenders just to make sure our reconciation process is working fine and it is only happend in dev but it will work fine in production
+======================================================================================================================================
+
+Q) useMemo - caches the result of a calculation between re-render
+A) everytime our state changes our page re-render
+    if we have toggle btn and prime number calculation
+   
+    function findPrime(){return prime_number}
+    <button>toggle</button> // theme change
+    <h1>prifindPrimeme()</h1>
+
+    // so when we toggle our component will re-render and again our prime() will be calculated this is how react reconciation works
+    // but why do we need to calculated again same prime number calculation when our toggle change it leads performce issue
+    // when we are doing heavy operation we need to use useMemo
+
+    const prime = useMemo(() => findPrime(),[text]) // it will only calculate our findPrime() when our text changes 
+    instead <h1>prifindPrimeme()</h1>
+    use  <h1>prime()</h1>
+
+======================================================================================================================================
+
+Q) useCallback - caches a function definition between re-render
+A) just like useMemo which caches the result         const prime = useMemo(() => findPrime(),[text])
+   here we will caches the function                  const callBack = useCallback(()=> function,[dependience])
+
+======================================================================================================================================
+
+Q) useRef - lets you reference a value thats not needed for rendering
+A) const ref = useRef(initialValue) // examples are toast message we don't need rendering
+
+    suppose we variable x = 0 and  has a Y=useState(0)
+    <button>{x}</button> // onclick inc by 1 and in background it is increamenting by 1 by does not re-render
+    <button>{y}</button> // as soon as click this y useState() it also increament by now our x in the background has become 0 again
+    why?
+    bcz we are re-rendering and we are initialing our x=0 again because it is rendering
+
+    Now we will learn what is useRef()
+    A) we will use when we don't want to re-render but want to update the value without re-rendering is useRef
+        let number = useRef(0)
+        let [state,setState] = useState(0)
+        <h1>{number}</h1>
+        <h1>{state}</h1>
+        <button onclick={()=> setState(increamentby1) }> increament by state </button>
+        <button onclick={()=> number.current += 1 }> increament by ref </button>
+        
+        // here when we 1st click on ref button in the background it is getting increamented by 1 but not visible in ui
+        //  but as soon as we click on setState button our ref value will be visible because our component re-renders and 
+            it inilizes the ref value also with the last increamented value because ref persit the value not like a 
+            normal variable it case on normal variable our variable would be re-inialized with iniliale value 
+
+** interview question 
+    Q) diff between ref, let and state
+        1. state re-render everytime our state change
+        2. ref doesn't re-render after every ref update but it persit/or remember its last updated value even after any other state update
+        3. let variable does'nt re-render nor persist its value if update the let and then update the state our let will re-inialized it will not persit its value
+
+
+SUMMARY
+1) HOC
+2) Debouncing
+3) n level Nested comments
+4) YouTube Live Streaming app
+5) practice infinite scroll and socket
+6) useMemo

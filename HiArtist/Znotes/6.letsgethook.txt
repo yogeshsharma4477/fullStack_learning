@@ -1,0 +1,39 @@
+default import and Named import
+
+import * as obj from "./component/Header"
+// * means everything is imported
+obj.Header
+obj.Title
+
+* create config file || constant 
+// we will put all the hardcoded things into my config file why?
+
+
+* state, hook 
+state =  variable
+hook = react function =? normal js function
+
+<h1>
+<h2>
+<p>false</p>
+<span>
+<div>
+
+setState(true)
+
+very very important
+
+==>>> every time state changes our whole component will re-renders but updates only specific portion which has changed => Reconcilation is happeining
+diff algorithm is being use to updates specific portion instead of whole dom this is why react is so fast
+
+even if component re-renders it will only update changed part, it is like git diff
+
+what is actually a virtual DOM - it is actual a object
+
+why react is fast?
+bxoz of it fast dom manipluation => how it is done using diff algorithm it compares  both the tree
+
+
+updating direct dom is very expensive
+
+you can use normal variable if you don't want to change that variable else you need to use useState

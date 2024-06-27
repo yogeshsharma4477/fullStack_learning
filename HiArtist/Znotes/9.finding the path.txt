@@ -1,0 +1,110 @@
+//Never create a component inside of a component bcoz component renders inside component will be created after every render, it is very bad practice
+//Never create a useState inside if or loop becoz it leads to inconsistency
+
+why is cdn a great place to store an images? 
+>it cache your images
+>it return your image very fast
+>it optimizes thing
+>it has 100% up time
+>even swiggy uses cdn
+>when we put our images in cdn it alredy stored in an optimized way
+
+Formik -> for form building
+
+/==========ROUTE =========/ recat Router dom 
+
+const appRouter = createBrowserRouter({
+    //this is place where i will tell if there is /about in my browser load About us page
+    {
+        errorElement:<Error /> // whaterer component we give to this node it will render incase of error
+    }
+})
+
+react-router-dom has RouterProvider component
+
+//create our error page
+
+//react-router-dom also give us {useRouteError} hook
+
+const error = useRouteError() // this hook give information about our error
+
+
+/==========Nested ROUTE =========/ recat Router dom 
+
+- anchor tag referesh the page so react-route-dom come up with LINK
+
+2 types of routing
+1>client side routing // we sre doing csr
+2>server side routing
+
+import { LINK } from 'react-route-dom'
+
+<LINK to='/' /> // behind the scene it is using href only bcoz browser under href
+
+Q - what if i need to load my about page between header and footer?
+// react-router-dom give use outlet component <outlet />
+// i want always my header and footer in my application to we use oulet it will be filed with children configuration
+const Applayout = () => {
+    return(
+        <header>
+        <outlet/> //will be field with children configuration
+        <footer>
+    )
+}
+
+const appRouter = createBrowserRouter([
+    {
+        path:'/',
+        element:<Applayout/>
+        errorElement: <Error />
+        children : [
+            {
+                path:'/',
+                element: <Body />
+            },
+            {
+                path:'/about',  // '/' slash means from the root
+                element: <About />,
+                children:[{
+                    path:"Profile",         //for this to render create <outlet /> inside it parent component in this case About.js is the parent
+                    element: <Profile />
+                }]
+            },
+            {
+                path:'/contact',
+                element: <Contact />
+            }
+        ]
+    }
+])
+
+root.render(<RouterProvider router={appRouter} />)
+
+
+/==========Dynamic ROUTE =========/ recat Router dom 
+
+{
+    path:'/RestaurantMenu/:id',
+    element: <RestaurantMenu />
+}
+
+Q> how to ready Dynamic id from url in component?
+a) import { useParams } from "react-router-dom" //hook
+    const params = useParams()
+
+//create Dynamic RestaurantMenu using api, pass id from url 
+
+<LINK to=`/RestaurantMenu/${data.data.id}`>
+    <RestaurantCard />
+</LINK>
+
+//inside RestaurantMenu component
+ import { useParams } from "react-router-dom" //hook
+    const params = useParams()
+
+
+    why using Link tag dosen't reload the page instead of href?
+    > User click in Link tag --- > react router prevents the browser from navigating to the new page and fetching new index.html file but url still changes
+     'History' object sees updated url and send it to createBrowserRouter
+     createBrowserRouter communicate the url to route component
+     route component renders the linked components

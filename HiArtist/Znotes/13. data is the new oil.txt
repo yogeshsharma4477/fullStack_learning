@@ -1,0 +1,47 @@
+1.ui layer - everything you see in the browser
+2.data layer- ui & data layer combine create our frontend web application
+
+React developer tool chrome for debugging, it is only for development environment
+** Profiler - will watch what you are doing in your webpage and keep the track of it
+** it will let you know how much time did all individual component took to load, with these you can improve your app perfomance
+
+prop drilling
+
+react is one way data binding
+but we can send data from child to parent using a function ,
+pass function from parent to child or we can build custom hooks
+
+collabsion accordion 
+lifting the state up
+
+Context - like a central store,
+// updating the localstorage is an heavy operation, instead use context, redux
+
+to create context ---> react gives us a hook { createContext } from 'react'
+to use context ---> { useContext }
+
+//createContext(defaultValue) is a function which take some data that need to be access all across the application
+
+    const UserContext = createContext({
+        user : {
+        name:"dummy name",
+        email:"yogesh@gmail"
+        }
+    })
+
+    UserContext.displayName --> just for debugging
+
+    export default UserContext
+
+// how can i use UserContext 
+
+    import { useContext } from 'react'
+    import UserContext from './UserContext'
+
+    const { user } = useContext(UserContext)
+
+
+
+    <UserContext.Porvider value={{value:"data", state:state, setState:setState}} >
+    <component Which will use the value from Porvider>
+    </UserContext.Porvider>

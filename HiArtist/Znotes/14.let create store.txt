@@ -1,0 +1,112 @@
+Redux Library - to manage our data layer
+
+Toolkit - 
+
+Architecture of redux
+
+
+
+// redux store is like a big all object
+// we can have multiple context but we can have only one store
+// we can have multiple slice, cart slice, use slice
+// we connot directly update the store/slice , I will have dispatch an action
+// *** onclick of btn dispatch an action --> which calls a reducer --> reducer will update the slice ***
+// *** to read slice we will SELECTOR( means subscribing(sync with our store) to the store) hook ***
+
+npm i @reduxjs/toolkit - it is the core of redux
+npm i react-redux - it a brigde between react and redux, just like react and react-dom
+
+configureStore will come from@reduxjs/toolkit
+
+const store = configureStore({
+
+})
+
+export default store;
+
+
+Q how to provide store to all our application?
+ using Provider component which comes from react-redux will wrap to our main index file and pass our store in provider as a props
+
+ <Provider store={store}>
+    <components which will have access to store>
+ </Provider>
+ 
+Q create slice
+  createSlice come from @reduxjs/toolkit and how will i update my cart? using reducer function
+
+  const cartSlice = createSlice({
+      name:"cart",
+      initialState:{
+          items:[];
+      },
+      reducers:{
+          addItem : (state, action) => {
+              state.items.push(action.payload) //never return in a reducer function it will return automatically
+          },
+          clearItem: (state,action) => {
+              state = []
+          }
+      }
+  })
+
+// we will export our slice and reducers
+// export action
+export const { addItem, clearItem } = createSlice.action // ro export action we will do sliceName.action
+/*
+behind.scene they ceating
+    cartSlice = {
+        actions : {
+            addItem,
+            clearItem
+        },
+        reducer : reducers
+    }
+    */
+
+export default cartSlice.reducer // to export reducer we will do sliceName.reducer ,this is reducer not reducers
+
+
+// this slice will be put in our store
+
+    import cartSlice from './cartSlice'
+
+    const store = configureStore({
+        reducer:{
+            cart : cartSlice
+        }
+    })
+
+
+// Review
+// create a store - from configureStore which come from @reduxjs/toolkit
+// Provide my store to app using - <Provider store={store}> which comes form react-redux
+// created the slice - using createSlice({name,initialState,reducers:{action : () => reducer function}}) from RTK
+// export reducer & action 
+    export const { addItem, clearItem } = createSlice.action
+    export default cartSlice.reducer
+// put that slice in my store
+     const store = configureStore({
+        reducer:{
+            cart : cartSlice
+        }
+    })
+// subscribing to the store - using useSelector from react-redux
+    useSelector gives access to the store
+    so const cartItems = useSelector(store => store.cart.items)
+// modify our store - 
+    dispatch(action(payload))
+// where this action come from - import {addItem} from './cartSlice' , there we have exported our action
+// where this dispatch (dispatch = useDispatch()) come from - import { useDispatch } from 'react-redux'
+
+note - Provider, useSelector, useDispatch - (all these are used in component so all these come from react-redux which keep sync from redux to react)
+       And Store related function like createSlice, configureStore comes from redux-toolkit
+
+*********** very important ****************
+// everytime our store changes our component will re-render
+//1.(bad practice) const store = useSelector(store => store) // if cart component is using this code so whenever in our application any of the slice changes this cart component will render, this is bad practice
+//2.(Good practice) const store = useSelector(store => store.cartSlice.Items) // if cart component is using this code so this component will only re-render when our cartSlice is change, this is very good practice this improve performce of our app
+   *** you have to subscribe to the specific portion of the store whatever is used in this component, it will do major performce improvement ***
+    
+redux chrome extension - very important to use always    
+Thunk, middleware - read
