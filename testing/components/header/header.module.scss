@@ -1,0 +1,222 @@
+@use '../../styles/colors' as *;
+@import '../../styles/mixins';
+
+.header{
+    @include display(flex);
+    @include transition(all .2s linear);
+    align-items:center;
+    background-color:$color-ffffff;
+    border-bottom:1px solid rgba(0,0,0,.1);
+    height:60px;
+    padding:0 40px;
+    flex:none;
+    @include for-mobile{
+        padding-left:10px;
+        padding-right:10px;
+        height:50px;
+        box-shadow:none;
+    }
+    :global(.backicon){
+        @include display(none);
+        @include border-radius(50%);
+        background-size:20px;
+        width:30px;
+        height:30px;
+        @include for-mobile{
+            @include display(inline-block);
+        }
+    }
+    &__landing{
+        justify-content:space-between;
+        @include box-shadow(0, 2px, 6px, 0 rgba(0, 0, 0, 0.1));
+        height:80px;
+        border:0;
+        padding:0;
+        @include position(sticky, $top:0, $left:0);
+        width:100%;
+        z-index:2;
+        @include for-mobile{
+            height:50px;
+            z-index:3;
+        }
+        &__inner{
+            padding:0 20px;
+            width:100%;
+            margin:0 auto;
+            @include display(flex);
+            align-items:center;
+            justify-content:space-between;
+            @include for-ipad{
+                padding:0 20px;
+            }
+            @include for-mobile{
+                padding:0 20px;
+            }
+        }
+        ul{
+            display:flex;
+            align-items:center;
+            @include for-mobile{
+                display:none;
+            }
+            li{
+                padding:0 15px;
+                @include for-ipad{
+                    padding:0 5px;
+                }
+              a{
+                display:flex;
+                align-items:center;
+                position:relative;
+                font-size:16px;
+                height: 30px;
+                @include for-ipad{
+                    font-size:14px;
+                }
+                @include for-ipad-portrait{
+                    font-size:11px;
+                }
+              }
+            }
+        }
+    }
+    &__left, &__right{
+        display:flex;
+        align-items:center;
+        @include for-mobile{
+            width: 45px;
+        }
+    }
+    &__middle{
+        display:none;
+        @include for-mobile{
+            display:flex;
+        }
+    }
+    &__left{
+        ul li{
+            &:hover, &:active, &:focus{
+                background-color:$color-ebebeb;
+                @include border-radius(3px);
+            }
+        }
+        @include for-mobile{
+            .logo__landing{
+                display:none;
+            }
+        }
+    }
+    &__right{
+        :global(.dropdown){
+            max-height:100px;
+            flex-direction:column;
+            right:0;
+            left:unset;
+            align-items:flex-end;
+            width: 100px;
+            padding: 0 0;
+            li{
+                text-align: left;
+                width: 100%;
+                font-size: 16px;
+                padding: 5px 10px;
+                font-weight: 400;
+                &:hover{
+                    background-color: #f2f2f2;
+                }
+            }
+        }
+    }
+    &__fixed{
+        background-color:$color-eff8ff;
+        @include box-shadow(0, 2px, 6px, 0 rgba(0, 0, 0, 0.1));
+        height:125px;
+        @include for-ipad{
+            .logo__landing{
+                margin-right:20px;
+                flex:1 0 100px;
+            }
+        }
+        @include for-mobile{
+            background-color:$color-ffffff;
+            height:50px;
+        }
+        .header__right{
+            display:flex;
+            flex-direction:column;
+            align-items:flex-start;
+        }
+    }
+}
+.content{
+    display:flex;
+    flex-direction:column;
+    @include for-mobile{
+        display:none;
+    }
+    b{
+        font-size:24px;
+        line-height:normal;
+        font-weight:600;
+        @include for-ipad{
+            font-size:18px;
+        }
+    }
+    span{
+        font-size:20px;
+        line-height:normal;
+        @include for-ipad{
+            font-size:14px;
+        }
+    }
+}
+.logo{
+    width:106px;
+    @extend .mr-22;
+    @include for-mobile{
+        @include display(none);
+    }
+    &__landing{
+        margin-right:45px;
+        @include for-mobile{
+            margin-right:0;
+        }
+    }
+}
+.listbusiness{
+    border:1px solid $color-dadce0;
+    width:164px;
+    height:26px;
+    text-align:center;
+    @include border-radius(5px);
+    @include for-mobile{
+        @include display(none);
+    }
+}
+.login{text-decoration:underline}
+.language__dropdown{
+    width:15px;
+    height:9px;
+    background-image:url(//akam.cdn.jdmagicbox.com/images/icontent/listingbusiness/bluedown-icn.svg);
+}
+.notification{
+    height:26px;
+    width:26px;
+    background-image:url(//akam.cdn.jdmagicbox.com/images/icontent/listingbusiness/notification.svg);
+    display:none;
+    @include for-mobile{
+        display:inline-block;
+    }
+}
+.profile{
+    display:none;
+    cursor:pointer;
+    @include for-mobile{
+        display:inline-block;
+    }
+}
+@include for-mobile{
+    .header__right__inner{
+        display:none;
+    }
+}

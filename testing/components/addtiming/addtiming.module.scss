@@ -1,0 +1,214 @@
+@use '../../styles/colors' as *;
+@import '../../styles/mixins';
+
+.left__img{
+    background-image:url(https://akam.cdn.jdmagicbox.com/images/icontent/listingbusiness/add_business_time_2x.png);
+}
+.progressbar{
+    width:100%;
+    @include border-radius(3px);
+    height:6px;
+    @extend .mb-10;
+    /* background: */
+    background-color:$color-e8f0fd;
+    &::-webkit-progress-bar{background-color:$color-e8f0fd;width:100%;@include border-radius(3px);}
+    /* value: */
+    &::-webkit-progress-value{background-color:$color-0076d7 !important;@include border-radius(3px);}
+    &::-moz-progress-bar{background-color:$color-0076d7 !important;@include border-radius(3px);}
+    color:$color-0076d7;
+    @include for-ipad-portrait{
+        width:100%;
+    }
+    @include for-mobile{
+        width:100%;
+        margin-bottom:25px;
+        @include border-radius(0);
+        &::-webkit-progress-bar{@include border-radius(0)}
+        /* value: */
+        &::-webkit-progress-value{@include border-radius(0)}
+        &::-moz-progress-bar{@include border-radius(0)}
+    }
+}
+.title{
+    text-transform: capitalize;   
+    width:455px;
+    @extend .font20, .mb-5;
+    line-height:32px;
+    @include for-ipad-portrait{
+        width:100%;
+    }
+    @include for-mobile{
+        width:100%;
+        font-size:16px;
+        margin-bottom:10px;
+        line-height:24px;
+    }
+}
+.content{
+    // width:400px;
+    white-space:nowrap;
+    @extend .font15, .mb-0, .pb-30;
+    line-height:22px;
+    @include for-ipad-portrait{
+        width:100%;
+    }
+    @include for-mobile{
+        width:100%;
+        font-size:14px;
+        padding-bottom:20px;
+        white-space:inherit;
+    } 
+}
+.primarybutton{
+    margin-top:100px;
+    @include for-mobile{
+        margin-top:30px;
+    }
+}
+.week{
+    border-top:1px solid $color-f6f6f6;
+    @extend .mt-25, .pt-25;
+    &:first-child{
+        border-top:none; 
+        @extend .mt-0, .pt-0;
+    }
+    &__block{
+        position:relative;
+        &:global(.inputwrap__error){
+            .week__select__label > span{
+                border:1px solid $color-eb504b;
+            }
+        }
+    }
+    &__select{
+        @include display(flex);
+        align-items:center;
+        flex-flow:initial;
+        &__label{
+            cursor:pointer;
+            flex:0 0 38px;
+            height:38px;
+            background-color:$color-ffffff;
+            @include position(relative);
+            @extend .mr-12;
+            &:last-child{
+                @extend .mr-0;
+            }
+            @include for-mobile{
+                margin-right:5px;
+            }
+            @include for-mobile-320{
+                margin-bottom:10px;
+            }
+            &:focus-visible{
+                box-shadow:0 0 0 2px $color-0076d7;
+                position:relative;
+                z-index:1;
+            }
+            > span{
+                z-index:1;
+                width:100%;
+                height:100%;
+                border:1px solid $color-dadce0;
+                @include border-radius(50%);
+                @include position(absolute, $left:0, $top:0);
+                @include display(inline-flex);
+                align-items:center;
+                justify-content:center;
+                color:$color-717171;
+            }
+            input[type=checkbox]{
+                opacity:0;
+                @include position(absolute, $left:0, $top:0);
+                width:100%;
+                height:100%;
+                @extend .m-0;
+                ~ span::before{
+                    content:'';
+                    @include border-radius(50%);
+                    opacity:0;
+                    @include position(absolute, $top:0, $left:0, $bottom:0, $right:0);
+                    width:100%;
+                    height:100%;
+                    @include display(block);
+                    -webkit-transform:scale(.2);
+                    transform:scale(.2);
+                    @include transition(all .25s ease-in);
+                    z-index:-1;
+                }
+                &:checked ~ span{
+                    color:$color-ffffff;
+                    border:1px solid $color-0073d2;
+                    &::before{
+                        color:$color-ffffff;
+                        background-color:$color-0073d2;
+                        -webkit-transform:scale(1.01);
+                        transform:scale(1.01);
+                        opacity:1;
+                        @include transition(transform .25s ease-out,-webkit-transform .25s ease-out);
+                    }
+                }
+            }
+        }
+    }
+    &:global(.error__message){
+        &#openat{
+            &:before{
+                content:'';
+                background-image:url(//akam.cdn.jdmagicbox.com/images/icontent/listingbusiness/infored.svg);
+                width:12px;
+                height:12px;
+                @extend .mr-5;
+                @include display(inline-block);
+            }
+        }
+    }
+    :global(.dropdown){
+        max-height:170px;
+        top:48px;
+    }
+    :global(.flex__inputwrap){
+        flex:0 0 47%;
+    }
+    :global(.flex__none){
+        flex:0 0 47%;
+    }
+}
+.deleteicon{
+    @include border-radius(50%);
+    height:30px;
+    width:30px;
+    background-image:url(//akam.cdn.jdmagicbox.com/images/icontent/listingbusiness/delete__enabled.svg);
+    @include position(absolute, $top:4px, $right:0);
+    @include for-mobile{
+        right:-10px;
+    }
+    @include for-mobile-320{
+        @include position(relative, $top:unset, $right:unset);
+    }
+}
+.selectarrow{top:23px}
+.usines_heght{min-height:280px;}
+
+.selectalldays{
+    &:global(.radio){
+        @extend .mb-10, .pb-10;
+        border-bottom:0;
+        input{
+            &[type='checkbox']{
+                ~ .uncheck{
+                    width:18px;
+                    height:18px;
+                    @include border-radius(5px);
+                    border:1px solid $color-dadce0;
+                }
+                &:checked{
+                    ~ .uncheck{
+                        background-position:center;
+                        border-color:$color-0076d7;
+                    }
+                }
+            }
+        }
+    }
+}

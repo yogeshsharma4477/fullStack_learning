@@ -1,0 +1,126 @@
+@use '../../styles/colors' as *;
+@import '../../styles/mixins';
+
+.businessprofessional{
+    background-color:$color-fffcfa;
+    padding-bottom: 48px;
+    @include for-mobile{
+        padding-bottom:0px;
+    }
+    h2{
+        font-size:30px;
+        margin:35px 0;
+        @include for-mobile{
+            font-size:18px;
+            margin:0 0 20px 0;
+        }
+        @include for-ipad{
+            margin: 20px 0 20px;
+            font-size: 22px;
+        }
+    }
+    b{
+        font-size:23px;
+        margin-bottom:45px;
+        @include line_clamp_2;
+        @include for-mobile{
+            font-size:14px;
+            margin-bottom:20px;
+        }
+        @include for-ipad{
+            font-size: 16px;
+        }
+    } 
+    ul{
+        display:flex;
+        justify-content:space-between;
+        align-items:flex-start;
+        flex-wrap:wrap;
+        @include for-mobile{
+            flex-direction:column;
+        }
+        li{
+            border:1px solid $color-e4e4e4;
+            @include border-radius(8px);
+            display:flex;
+            flex-direction:column;
+            margin-right:30px;
+            overflow:hidden;
+            flex:1 0 30%;
+            cursor:pointer;
+            &:last-child{
+                margin-right:0;
+            }
+            img{
+                object-fit:cover;
+                @include for-ipad{
+                    height: 230px;
+                }
+            }
+            &:hover{
+                @include box-shadow(0, 0, 11px, 0 rgba(0, 0, 0, 0.16));
+            }
+            @include for-ipad-portrait{
+                flex:1 0 30%;
+                &:last-child{
+                    img{
+                        width:100%;
+                    }
+                }
+            }
+            @include for-mobile{
+                margin-right:0;
+                margin-bottom:20px;
+                &:last-child{
+                    margin-bottom:0;
+                }
+            }
+            > span{
+                padding:35px 30px 45px;
+                background-color:$color-ffffff;
+                display:flex;
+                flex-direction:column;
+                z-index:1;
+                @include for-mobile{
+                    padding:20px;
+                }
+                @include for-ipad{
+                    padding: 20px;
+                }
+                a{
+                    font-size:20px;
+                    @include for-mobile{
+                        font-size:12px;
+                    }
+                    @include for-ipad{
+                        font-size: 14px;
+                    }
+                }
+            }
+
+            &:nth-child(3n + 1){
+                background-color:$color-fff3f7;
+            }
+            &:nth-child(3n + 2){
+                background-color:$color-def7ff;
+            }
+            &:nth-child(3n + 3){
+                background-color:$color-eff1fb;
+            }
+        }
+    }
+}
+.rightbluearrow{
+    width:22px;
+    height:16px;
+    background-image:url(//akam.cdn.jdmagicbox.com/images/icontent/listingbusiness/rightbluearrow.svg);
+    margin-left:5px;
+    @include for-mobile{
+        width:13px;
+        height:9px;
+    }
+    @include for-ipad{
+        width: 18px;
+        height: 16px;
+    }
+}

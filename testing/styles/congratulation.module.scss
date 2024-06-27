@@ -1,0 +1,219 @@
+@use 'colors' as *;
+@import 'mixins';
+
+.congratulation {
+    justify-content: flex-start;
+    margin-top:3%;
+}
+
+.success{
+    width:59px;
+    height:59px;
+    position: relative;
+}
+.thankcall{
+    @extend .success;
+    background-image:url(//akam.cdn.jdmagicbox.com/images/icontent/listingbusiness/thankyou_call1.svg);
+    background-size: 100%;
+    @include for-mobile{
+        width: 45px;
+        height: 45px;
+    }
+}
+.congratulation{
+    @extend .font28;
+    color:$color-058a07;
+    @include for-mobile{
+        font-size:18px;
+    }
+}
+.register{
+    &__text{
+        @extend .font18;
+        text-align:center;
+        @include for-mobile{
+            font-size:15px;
+        }
+    }
+    &__text2{
+        padding: 0 30%;
+        margin-bottom: 120px;
+        @include for-mobile{
+            padding: 0 20px;
+            margin-bottom: 44px;
+        }
+    }
+    &__img{
+        width:221px;
+        height:136px;
+        position:relative;
+        margin-top:50px;
+        img{
+            width:221px;
+            height:136px;
+        }
+    }
+}
+.content{
+    @extend .font18;
+    margin-top:40px;
+    margin-bottom:40px;
+    width:418px;
+    text-align:center;
+    line-height:22px;
+    @include for-mobile{
+        font-size:15px;
+        width:100%;
+        margin-bottom:40px;
+    }
+}
+.continue__button{
+    width:400px;
+    @include for-mobile{
+        width:100%;
+    }
+}
+
+// please note page css
+.account__text{
+    width:100%;
+    max-width:30rem;
+}
+
+
+
+.thankwrap{
+    padding: 30px 20px;
+    text-align: center;
+    &_img{
+        width: 40px;
+    }
+    &_text1{
+        font-size: 30px;
+        color: #000;
+        font-weight: 600;
+        margin: 10px 0;
+        @include for-mobile{
+            font-size: 18px;
+            margin: 20px 0 10px;
+        }
+    }
+    &_text2{
+        font-size: 22px;
+        color: #000;
+        font-weight: 500;
+        margin: 0 0 35px;
+        @include for-mobile{
+            font-size: 15px;
+            margin: 0 0 20px;
+        }
+    }
+    &_text3{
+        font-size: 20px;
+        color: #000;
+        font-weight: 400;
+        margin: 5px 0;
+        @include for-mobile{
+            font-size: 14px;
+            padding: 0;
+            margin:0 0 15px;
+        }
+    }
+
+    &_box{
+        border-radius: 15px;
+        box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+        border: solid 1px #f8f8f8;
+        background-color: #fff;
+        padding: 15px 25px;
+        width: 500px;
+        margin: 50px auto;
+        text-align: left;
+        @include for-mobile{
+            width: 100%;
+            border-radius: 11px;
+        }
+        &_text{
+            font-size: 22px;
+            color: $color-1a1b1d;
+            font-weight: 500;
+            @include for-mobile{
+                font-size: 14px;
+            }
+        }
+        &_text2{
+            margin:25px 0 5px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 16px;
+            color: #f59718;
+            font-weight: 500;
+            @include for-mobile{
+                font-size: 15px;
+            }
+        }
+        &_progress{
+            border-radius: 6px;
+            border: solid 1px #eee;
+            background-color: #f5f5f5;
+            font-size: 0;
+            padding: 4px 5px;
+            margin-bottom: 25px;
+            &_outer{
+                border-radius: 2px;
+                background-color: #cfcfcf;
+                height: 4px;
+            }
+            &_inner{
+                background-color: #f59718;
+                border-radius: 2px;
+                width: 40%;
+                height: 4px;
+            }
+        }
+        &_flex{
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            @include for-mobile{
+                padding-bottom: 55px;
+                position: relative;
+            }
+            img{
+                width: 22px;
+                flex-basis: 22px;
+                flex-shrink: 0;
+                position: relative;
+                top:6px;
+            }
+            &_right{
+                flex: 1;
+                padding-left: 18px;
+                &_text{
+                    font-size: 16px;
+                    color: $color-111111;
+                    font-weight: 500;
+                    @include for-mobile{
+                        font-size: 14px;
+                    }
+                }
+                button{
+                    height: 48px;
+                    border-radius: 6px;
+                    background-color: #0076d7;
+                    font-size: 16px;
+                    color: #fff;
+                    font-weight: 500;
+                    width: 100%;
+                    margin-top: 15px;
+                    @include for-mobile{
+                        position: absolute;
+                        bottom:0;
+                        left:0;
+                        font-size: 15px;
+                    }
+                }
+            }
+        }
+    }
+}

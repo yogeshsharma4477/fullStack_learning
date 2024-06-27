@@ -1,0 +1,186 @@
+@use "../../styles/colors" as *;
+@import "../../styles/mixins";
+
+.left__img {
+  background-image: url(//akam.cdn.jdmagicbox.com/images/icontent/listingbusiness/businessmobile2x.png);
+}
+.progressbar {
+  width: 460px;
+  @include border-radius(3px);
+  height: 6px;
+  @extend .mb-30;
+  /* background: */
+  background-color: $color-e8f0fd;
+  &::-webkit-progress-bar {
+    background-color: $color-e8f0fd;
+    width: 100%;
+    @include border-radius(3px);
+  }
+  /* value: */
+  &::-webkit-progress-value {
+    background-color: $color-0076d7 !important;
+    @include border-radius(3px);
+  }
+  &::-moz-progress-bar {
+    background-color: $color-0076d7 !important;
+    @include border-radius(3px);
+  }
+  color: $color-0076d7;
+  @include for-ipad-portrait {
+    width: 100%;
+  }
+  @include for-mobile {
+    width: 100%;
+    margin-bottom: 25px;
+    @include border-radius(0);
+    &::-webkit-progress-bar {
+      @include border-radius(0);
+    }
+    /* value: */
+    &::-webkit-progress-value {
+      @include border-radius(0);
+    }
+    &::-moz-progress-bar {
+      @include border-radius(0);
+    }
+  }
+}
+.title {
+  width: 455px;
+  @extend .font24, .mb-5;
+  line-height: 32px;
+  @include for-ipad-portrait {
+    width: 100%;
+  }
+  @include for-mobile {
+    width: 100%;
+    font-size: 16px;
+    margin-bottom: 10px;
+    line-height: 24px;
+  }
+}
+.subtitle {
+  @extend .font20, .mb-15;
+  font-weight: 600;
+  @include for-mobile {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
+}
+.content {
+  width: 400px;
+  @extend .font16, .mb-0, .pb-30;
+  line-height: 22px;
+  @include for-ipad-portrait {
+    width: 100%;
+  }
+  @include for-mobile {
+    width: 100%;
+    font-size: 14px;
+    padding-bottom: 20px;
+  }
+}
+.dropdown {
+  @include position(absolute, $left: 0, $top: 48px, $right: 0);
+  background-color: $color-ffffff;
+  border: 1px solid $color-0076d7;
+  z-index: 1;
+  padding-left: 40px;
+  @include border-radius(4px);
+  li {
+    @extend .font14, .p-10;
+    cursor: pointer;
+  }
+}
+.primarybutton {
+  margin-top: 100px;
+  @include for-mobile {
+    margin-top: 30px;
+  }
+}
+.searchicon {
+  height: 20px;
+  width: 20px;
+  background-image: url(//akam.cdn.jdmagicbox.com/images/icontent/listingbusiness/search.svg);
+  @include position(absolute, $left: 15px, $top: 15px);
+}
+.textsearch {
+  text-indent: 40px;
+}
+.category {
+  @include display(flex);
+  flex-wrap: wrap;
+  gap: 15px;
+  width: 530px;
+  @include for-ipad-portrait {
+    width: 100%;
+  }
+  @include for-mobile {
+    gap: 10px;
+    width: 100%;
+  }
+}
+.selectedcategory {
+  border: 1px solid $color-0076d7;
+  background-color: $color-f0f8ff;
+  @include border-radius(8px);
+  min-height: 48px;
+  @include display(inline-flex);
+  align-items: center;
+  @extend .p-10;
+  @include for-mobile {
+    min-height: 40px;
+    white-space: nowrap;
+    justify-content: space-between;
+  }
+}
+
+.suggestedcategories {
+  width: 400px;
+  @include display(flex);
+  align-items: center;
+  justify-content: flex-start;
+  background-color: $color-f0f8ff;
+  border: 1px solid $color-0076d7;
+  @include border-radius(8px);
+  @extend .mb-20, .pl-10, .pr-10;
+  min-height: 48px;
+  @include for-ipad-portrait {
+    width: 275px;
+  }
+  @include for-mobile {
+    width: 275px;
+    min-height: 40px;
+    margin-bottom: 10px;
+  }
+  &__unchecked {
+    border-color: $color-dadce0;
+    background-color: $color-ffffff;
+    .bluecheck {
+      background-image: none;
+      background-color: $color-ffffff;
+      @include border-radius(50%);
+      border: 1px solid $color-dadce0;
+    }
+  }
+}
+
+.closeblue {
+  background-image: url(//akam.cdn.jdmagicbox.com/images/icontent/listingbusiness/closeblue.svg);
+  @extend .ml-10;
+}
+.selected__form {
+  width: 430px;
+  @include for-ipad-portrait {
+    width: 100%;
+  }
+  @include for-mobile {
+    width: 100%;
+  }
+}
+
+.bluecheck {
+  flex: 0 0 20px;
+  background-image: url(//akam.cdn.jdmagicbox.com/images/icontent/listingbusiness/tick_filled.svg);
+}

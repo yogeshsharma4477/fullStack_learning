@@ -1,0 +1,30 @@
+@use '../../styles/colors' as *;
+@import '../../styles/mixins';
+
+.termsandcondition{
+    font-size:11px;
+    color:$color-757575;
+    margin-top:25px;
+    &.header{
+        margin-top:5px;
+    }
+    @include for-mobile{
+        font-size:10px;
+        margin-top:20px;
+    }
+    br{
+        display: none;
+        @include for-mobile{
+            display: inline-block;
+        }
+    }
+    a{
+        color:$color-757575;
+        border-bottom:1px solid $color-dedede;
+        @include transition(all .2s linear);
+        &:hover{
+            color:$color-0076d7;
+            border-color:$color-0076d7;
+        }
+    }
+}

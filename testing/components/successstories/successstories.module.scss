@@ -1,0 +1,244 @@
+@use '../../styles/colors' as *;
+@import '../../styles/mixins';
+
+.success_wrap{
+    background-color:$color-fffcf4;
+}
+.successstories{
+    display:flex;
+    align-items:flex-start;
+    padding:45px 40px 40px;
+    position:relative;
+    @include for-mobile{
+        flex-direction:column;
+        padding:20px 0 100px;
+    }
+    &__left{
+        flex:0 0 30%;
+        display:flex;
+        flex-direction:column;
+        @include for-mobile{
+            flex-basis:100%;
+            width:100%;
+            padding: 0 20px;
+        }
+    }
+    &__right{
+        flex:0 0 70%;
+        @include for-mobile{
+            flex-basis:100%;
+            width: 100%;
+            position: relative;
+            padding: 0;
+        }
+        :global(.carousel__wrap){
+            @include for-mobile{
+                padding-left: 20px;
+            }
+        }
+    }
+    :global(.primarybutton){
+        max-width:204px;
+        margin-top:30px;
+        font-size: 20px;
+        height: 52px;
+        @include for-mobile{
+            @include position(absolute, $left:50%, $bottom:20px);
+            transform:translate(-50%, 0);
+            font-size: 16px;
+            height: 40px;
+            max-width:88%;
+        }
+        @include for-ipad{
+            font-size: 16px;
+            width: 150px;
+        }
+    }
+}
+.openquote{
+    width:140px;
+    height:123px;
+    background-image:url(//akam.cdn.jdmagicbox.com/images/icontent/listingbusiness/quoteleft.svg);
+    @include for-mobile{
+        display:none;
+    }
+    @include for-ipad{
+        width: 90px;
+        height: 90px;
+    }
+}
+.subtitle{
+    font-size:30px;
+    margin-top:40px;
+    @include for-mobile{
+        font-size:18px;
+        margin-top:0;
+    }
+    @include for-ipad{
+        font-size: 22px;
+        margin-top: 30px;
+    }
+}
+.subtext{
+    font-size:25px;
+    @include for-mobile{
+        font-size:16px;
+        margin-bottom:20px;
+    }
+    @include for-ipad{
+        font-size: 16px;
+    }
+}
+
+.swiper {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background:$color-ffffff;
+  
+    /* Center slide text vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .video_bg1{
+    background-color: #fff3f7;
+  }
+  .video_bg2{
+    background-color: #def7ff;
+  }
+  .video_bg3{
+    background-color: #eff1fb;
+  }
+
+  .allstories{
+        padding: 45px 40px 0;
+        @include for-mobile{
+            padding: 0 20px 0;
+        }
+        .successstories__right{
+            flex-basis: 100%;
+            @include for-mobile{
+                padding: 0;
+            }
+            :global(.carousel__wrap){
+                flex-wrap: wrap;
+                justify-content: flex-start;
+                @include for-mobile{
+                    justify-content: space-between;
+                    padding-left: 0;
+                    overflow: visible;
+                }
+                :global(.carousel){
+                    margin:0 1% 30px;
+                    border-radius: 10px;
+                    border: solid 1px #e9e9e9;
+                    background-color: #fff;
+                    flex-basis: 23%;
+                    @include for-mobile{
+                        flex-basis: 100%;
+                        margin:0 0 20px;
+                    }
+                    img{
+                        border-top-right-radius: 10px;
+                        border-top-left-radius: 10px;
+                        @include for-ipad{
+                            height: 150px;
+                        }
+                    }
+                    :global(.play){
+                        @include for-ipad{
+                            width: 55px;
+                            height: 55px;
+                            top:110px;
+                            left:5px;
+                        }
+                    }
+                    :global(.carousel__title){
+                        font-size: 16px;
+                    }
+                    :global(.carousel__subtitle){
+                        font-size: 14px;
+                    }
+                    :global(.carousel__inner){
+                        @include for-ipad{
+                            min-height: calc(100% - 150px);
+                        }
+                    }
+
+                }
+                :global(.section){
+                    padding: 0 1%;
+                    @include for-mobile{
+                        padding: 0;
+                    }
+                    @include for-ipad{
+                        padding: 0;
+                    }
+                    .createfreeaccount{
+                        margin-top: 0;
+                    }
+                }
+                :global(.commonAccount){
+                    margin-top: 0;
+                    margin-bottom:30px;
+                    @include for-mobile{
+                        margin-top: 10px;
+                    }
+                }
+            }
+        }
+  }
+  .allstory_wrp{
+    .sucessHeading{
+        font-size: 30px;
+        color: $color-1a1b1d;
+        font-weight: 600;
+        padding: 30px 1% 0;
+        @include for-mobile{
+            font-size: 18px;
+            padding: 30px 0 0;
+        }
+        @include for-ipad{
+            padding: 30px 0 20px;
+            position: relative;
+            left: -20px;
+            font-size: 24px;
+        }
+    }
+    .allstories{
+        padding-top: 20px;
+        @include for-ipad{
+            padding: 0 10px;
+        }
+    }
+    .createfreeaccount{
+        margin-top: 0;
+    }
+  }
+.position{
+    font-size:15px;
+    color:$color-717171;
+}
+.visitbusiness{
+    font-size:15px;
+    @include display(flex);
+    align-items:center;
+    color:$color-9f9f9f;
+    &:hover{
+        color:$color-0076d7;
+    }
+}
+  

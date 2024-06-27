@@ -1,0 +1,24 @@
+@use '../../../styles/colors' as *;
+@import '../../../styles/mixins';
+
+.modal{
+    left:unset;
+    bottom:unset;
+    border-radius:20px;
+    width:90%;
+    max-height:calc(100vh - 50px);
+    overflow-y:scroll;
+    overflow-x:hidden;
+    display:block;
+    &__footer{
+        gap:10px;
+        > *{
+            flex:1 1 49.6%;
+            min-width:auto !important;
+        }
+    }
+}
+.business{
+    @include border-radius(9px);
+    border:1px dashed $color-dbdce0;
+}

@@ -1,0 +1,252 @@
+@use '../../styles/colors' as *;
+@import '../../styles/mixins';
+
+.competition{
+    padding:30px 0 15px;
+    @include for-mobile{
+        background-color:$color-ffffff;
+        padding:0 0 0 0;
+        margin:0;
+    }
+    h2{
+        margin-bottom:30px;
+        font-size:26px;
+        @include for-mobile{
+            font-size:18px;
+            margin-bottom:0;
+        }
+        @include for-ipad{
+            font-size:22px;
+            margin-bottom:20px;
+        }
+    }
+    &__box{
+        align-items:flex-start;
+        width:100%;
+    }
+    &__top{
+        @include for-ipad-portrait{
+            width:100%;
+        }
+        @include for-mobile{
+            flex-direction:column;
+        }
+    }
+    &__div{
+        @include box-shadow(0, 3px, 10px, 0 rgba(0, 0, 0, 0.08));
+        border:1px solid $color-e7e7e7;
+        @include border-radius(15px);
+        padding:20px 40px;
+        flex-basis:48%;
+        justify-content:space-between;
+        @include for-ipad-portrait{
+            &:not(:last-child){
+                margin-bottom:20px;
+            }
+        }
+        > div{
+            display:flex;
+            flex-direction:column;
+            justify-content:space-around;
+        }
+        @include for-mobile{
+            padding:10px 15px;
+            margin-bottom:20px;
+            @include box-shadow(2px, 2px, 11px, 0 rgba(0, 0, 0, 0.16));
+            &::last-child{
+                margin-bottom:0;
+            }
+        }
+        b{
+            font-size:25px;
+            @include for-mobile{
+                font-size:18px;
+            }
+        }
+        .subtext{
+            font-size:20px;
+            @include for-mobile{
+                font-size:14px;
+            }
+        }
+    }
+    &__bottom{
+        width:100%;
+        // justify-content:space-between;
+        gap:0 43px;
+        justify-content:center;
+        @include for-ipad-portrait{
+            flex-direction:column;
+        }
+        @include for-mobile{
+            flex-direction:column;
+            // margin-top:20px;
+        }
+    }
+}
+.inputwrap{
+    input{
+        height:60px;
+        @include border-radius(9px);
+        width:100%;
+        min-width:238px;
+        padding-right:40px;
+        @include for-mobile{
+            height:48px;
+        }
+    }
+    &:first-child{  
+        margin-right:27px;
+        margin-bottom:20px;
+        @include for-mobile{
+            margin-right:0;
+        }
+    }
+}
+.input__label{
+    top:19px;
+    @include for-mobile{
+        top:11px;
+    }
+}
+.searchicon{
+    background-image:url(//akam.cdn.jdmagicbox.com/images/icontent/listingbusiness/search.svg);
+    @include position(absolute, $top:20px, $right:14px);
+    @include for-mobile{
+        top:14px;
+    }
+}
+.closeicon{
+    @include position(absolute, $top:20px, $right:14px);
+    @include for-mobile{
+        top:14px;
+    }
+}
+.dropdown{
+    width:400px;
+    top:60px;
+    @include border-radius(9px);
+    z-index: 0;
+    border:0;
+    z-index:1;
+    max-height:300px;
+    @include for-mobile{
+        width:100%;
+    }
+    @include box-shadow(
+        2px, 2px, 11px, 0 rgba(0, 0, 0, 0.16));
+    li{
+        font-size:14px;
+        @extend .pt-15, .pb-15,;
+        &:not(:last-child){
+            border-bottom:1px solid $color-f3f3f3;
+        }
+        &:hover{
+            background-color:transparent;
+        }
+        &.active{
+            background-color:$color-ebebeb;
+        }
+    }
+}
+.count{
+    color:$color-ff6c02;
+    font-size:20px;
+}
+.tab{
+    button{
+        border:1px solid $color-eeeeee;
+        @include border-radius(14.5px);
+        color:$color-111111;
+        font-size:12px;
+        justify-content:center;
+        &:not(:last-child){
+            @extend .mr-5;
+        }
+        &.active{
+            color:$color-0076d7;
+            border-color:$color-0076d7;
+        }
+    }
+}
+.graphpath{
+    align-items:baseline;
+}
+.graphpathtext{
+    font-size:16px;
+    @include for-mobile{
+        font-size:13px;
+    }
+}
+.graphicon{
+    width:22px;
+    height:14px;
+    background-image:url(http://akam.cdn.jdmagicbox.com/images/icontent/listingbusiness/graphpath.svg);
+}
+.date{
+    font-size:14px;
+}
+.leaderboard{
+    &__head{
+        background-color:$color-f8f8f8;
+        @include border-radius(6px);
+        height:37px;
+        @extend .pl-10, .pr-10;
+        b{
+            font-size:14px;
+        }
+    }
+    &__list{
+        @include box-shadow(2px, 2px, 11px, 0 rgba(0, 0, 0, 0.16));
+        @include border-radius(6px);
+        @extend .p-10, .mt-20, .mb-20;
+        font-size:13px;
+        @include for-mobile{
+            margin:12px 0;
+        }
+    }
+}
+.rank, .lead{
+    width:20%;
+}
+.lead{
+    text-align:right;
+}
+.business{
+    width:60%;
+}
+.rank{
+    &__icon{
+        width:20%;
+        height:24px;
+        background-position:center left 8px;
+        background-size:18px;
+    }
+    &__1{
+        background-image:url(http://akam.cdn.jdmagicbox.com/images/icontent/listingbusiness/rank1.svg);
+    }
+    &__2{
+        background-image:url(http://akam.cdn.jdmagicbox.com/images/icontent/listingbusiness/rank2.svg);
+    }
+    &__3{
+        background-image:url(http://akam.cdn.jdmagicbox.com/images/icontent/listingbusiness/rank3.svg);
+    }
+}
+.figure{
+    text-align:center;
+    margin:20px auto;
+    @include for-desktop{
+        margin:30px auto 70px;
+    }
+    img{
+        width:101px;
+        height:77px;
+        @include for-desktop{
+            width:234px;
+            height:180px;
+        }
+    }
+    figcaption{
+        color:$color-798798;
+    }
+}

@@ -1,0 +1,311 @@
+@use '../../styles/colors' as *;
+@import '../../styles/mixins';
+
+.businesslistfree{
+    display:flex;
+    align-items: center;
+    @include for-ipad{
+        align-items: flex-end;
+    }
+    @include for-mobile{
+        flex-direction:column;
+        margin-top:20px;
+    }
+    &__left{
+        display:flex;
+        flex:0 0 60%;
+        flex-direction:column;
+        @include for-ipad-landscape{
+            flex-basis:50%;
+        }
+        @include for-mobile{
+            flex-basis:100%;
+        }
+        h1{
+            font-size:45px;
+            @include for-ipad-portrait{
+                font-size:30px;
+            }
+            @include for-mobile{
+                font-size:24px;
+            }
+        }
+        .businesssubtxt1{
+            font-size: 22px;
+            color: $color-111111;
+            font-weight: 500;
+            @include for-mobile{
+                font-size: 14px;
+            }
+        }
+    }
+    &__right{
+        flex:0 0 40%;
+        position:relative;
+        @include for-ipad-landscape{
+            flex-basis:50%;
+        }
+        @include for-mobile{
+            flex-basis:100%;
+        }
+        img{
+            width:100%;
+            height:100%;
+            position: relative;
+            animation:imageBlurAnimation 300ms ease-in-out forwards;
+        }
+        @keyframes imageBlurAnimation{
+            0%{
+                filter:blur(10px);
+            }
+            100%{
+                filter:blur(0);
+            }
+        }
+    }
+    form{
+        @include border-radius(10px);
+        display:flex;
+        align-items:center;
+        max-width:572px;
+        margin:40px 0 0;
+        height:72px;        
+        @include for-ipad{
+            width:100%;
+        }
+        @include for-mobile{
+            width:100%;
+            margin:20px 0 0;
+            @include border-radius(6px);
+            height:48px;
+        }
+        input{
+            @include for-mobile{
+                font-size:14px;
+                padding-left:10px;
+            }
+            @include for-ipad{
+                font-size: 16px;
+                padding-left: 15px;
+            }
+        }
+        :global(.primarybutton){
+            @include border-radius(7px);
+            flex:0 0 169px;
+            height:60px;
+            font-size:20px;
+            overflow: hidden;
+            @extend .mr-4;
+            @include for-ipad{
+                flex-basis:150px;
+                font-size:16px;
+            }
+            @include for-mobile{
+                flex-basis:126px;
+                @include border-radius(4px);
+                height:40px;
+                margin-right:2px;
+                font-size:14px;
+                white-space:nowrap;
+            }
+            @include for-mobile-320{
+                flex-basis:100px;
+                font-size:13px;
+            }
+        }
+    }
+    ul{
+        margin-top:50px;
+        @include for-mobile{
+            margin-top:25px;
+        }
+        li{
+            color:$color-3b3b3b;
+            margin-bottom:20px;
+            display:flex;
+            align-items:center;
+            position: relative;
+            font-size:19px;
+            font-weight:500;
+            @include for-desktop{
+                left: 100px;
+                opacity: 0;
+            }
+            @include for-mobile{
+                align-items:flex-start;
+                margin-bottom:15px;
+                font-size: 14px;
+            }
+            @include for-ipad{
+                font-size: 16px;
+            }
+            &::before{
+                content:'';
+                width:26px;
+                height:19px;
+                background-image:url(//akam.cdn.jdmagicbox.com/images/icontent/listingbusiness/greencheck.svg);
+                background-repeat:no-repeat;
+                padding-right:17px;
+                position: relative;
+                left: -5px;
+                background-size:100% 100%;
+                @include for-mobile{
+                    width:16px;
+                    height:12px;
+                    margin-top:4px;
+                }
+                @include for-ipad{
+                    width:20px;
+                    height:15px;
+                }
+            }
+        }
+        li{
+            @include for-desktop{
+                animation: moveLeft 0.3s;
+                animation-fill-mode: forwards;
+                &:nth-child(1){
+                    animation-delay: 0.4s;
+                }
+                &:nth-child(2){
+                    animation-delay: 0.8s;
+                }
+                &:nth-child(3){
+                    animation-delay: 1.2s;
+                }
+            }
+        }
+        @keyframes moveLeft {
+            0%{
+                left: 100px;
+                opacity: 0;
+            }
+            100%{
+                left: 0;
+                opacity: 1;
+            }
+        }
+    }
+}
+.subtext{
+    font-size:25px;
+    @include for-mobile{
+        font-size:16px;
+    }
+}
+.whitearrow{
+    width:28px;
+    height:28px;
+    background-image:url(//akam.cdn.jdmagicbox.com/images/icontent/listingbusiness/whitearrow.svg);
+    margin:4px 0 0 12px;
+    left: 0;
+    position: relative;
+    @include for-mobile{
+        width:18px;
+        height:18px;
+        margin:2px 0 0 6px;
+    }
+}
+.countrycode{
+    font-size:20px;
+    padding-left:20px;
+    @include for-mobile{
+        font-size:14px;
+        padding-left:10px;
+    }
+    @include for-ipad{
+        font-size: 17px;
+    }
+}
+
+/*advertise css*/
+.businesssubtxt{
+    font-size: 22px;
+    color: $color-111111;
+    font-weight: 500;
+    margin-top: 50px;
+    @include for-mobile{
+        font-size: 14px;
+        margin-top: 30px;
+    }
+}
+.businesssubtxt + .error__input{
+    margin-top: 10px;
+}
+.growimg{
+    height: 51px;
+    vertical-align: top;
+    @include for-mobile{
+        height: 27px;
+    }
+}
+.value{
+    font-size:18px;
+    font-weight:600;
+    line-height:26px;
+    @include border-radius(33px);
+    border:1px solid;
+    width:165px;
+    height:149px;
+    padding:18px;
+    background-size:100% 100%;
+    background-repeat:no-repeat;
+    background-position:bottom right;
+    @include position(absolute);
+    @include for-ipad{
+        font-size:18px;
+        width:145px;
+        height:129px;
+    }
+    @include for-ipad-portrait{
+        width:115px;
+        height:99px;
+        font-size:14px;
+    }
+    @include for-mobile{
+        font-size:12px;
+        @include border-radius(20px);
+        width:105px;
+        height:95px;
+        line-height:16px;
+    }
+}
+.buyers{
+    color:$color-001141;
+    background-color:$color-bee2ff;
+    border-color:$color-82c1f4;
+    background-image:url(//akam.cdn.jdmagicbox.com/images/icontent/listingbusiness/grocery-store.svg);
+    top:40px;
+    left:0;
+    background-size:75px 73px;
+    background-position:70px 84px;
+    @include for-ipad-landscape{
+        left:20px;
+    }
+    @include for-mobile{
+        background-size: 41px 39px;
+        background-position: 55px 55px;
+    }
+}
+.business{
+    color:$color-403228;
+    background-color:$color-ffc195;
+    border-color:$color-fdaa70;
+    background-image:url(//akam.cdn.jdmagicbox.com/images/icontent/listingbusiness/tap2.svg);
+    bottom:10px;
+    left:20px;
+    background-position:110px 76px;
+    background-size:44px 72px;
+    @include for-mobile{
+        background-position:69px 43px;
+        background-size:29px 54px;
+    }
+}
+.happycustomer{
+    color:$color-392a01;
+    background-color:$color-fce7b2;
+    border-color:$color-fadd94;
+    background-image:url(//akam.cdn.jdmagicbox.com/images/icontent/listingbusiness/smartphone1.svg);
+    right:5px;
+    bottom:95px;
+}

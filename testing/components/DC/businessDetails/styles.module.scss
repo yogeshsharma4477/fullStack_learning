@@ -1,0 +1,22 @@
+@use '../../../styles/colors' as *;
+@import '../../../styles/mixins';
+
+.samefield{
+    display:flex;
+    align-items:center;
+    line-height:13px;
+    input{
+        display:none;
+        &[type=checkbox]:checked ~ .uncheck{
+            background-image:url(//akam.cdn.jdmagicbox.com/images/icontent/listingbusiness/blue_check__square_icon.svg);
+            border:none;
+        }
+    }
+}
+.uncheck{
+    height:18px;
+    width:18px;
+    @include border-radius(5px);
+    border:1px solid $color-dadce0;
+    @extend .mr-10;
+}

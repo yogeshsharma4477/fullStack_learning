@@ -1,0 +1,351 @@
+@use '../../styles/colors' as *;
+@import '../../styles/mixins';
+
+.pricing_wrap{
+    background-color: #f9fcff;
+    :global(.section){
+        padding: 40px 20px;
+        display: flex;
+        justify-content: flex-start;
+        @include for-mobile{
+            padding: 20px 0 20px 20px;
+        }
+        .pricing_left{
+            flex-basis: 450px;
+            @include for-mobile{
+                flex-basis: 165px;
+            }
+            @include for-ipad{
+                flex-basis: 165px;
+            }
+            .heading{
+                font-size: 30px;
+                color: $color-111111;
+                font-weight: 600;
+                @include for-mobile{
+                    font-size: 18px;
+                }
+                @include for-ipad{
+                    font-size: 24px;
+                }
+            }
+            .showingplan{
+                font-size: 24px;
+                color: $color-111111;
+                font-weight: 600;
+                margin: 40px 0 30px;
+                @include for-mobile{
+                    font-size: 12px;
+                    margin:15px 0 10px;
+                }
+                @include for-ipad{
+                    font-size: 16px;
+                    margin:15px 0 10px;
+                }
+            }
+            .location_drop{
+                border: 1px solid #0076d7;
+                border-radius: 5px;
+                height: 50px;
+                display: inline-flex;
+                align-items: center;
+                margin-left: 15px;
+                width: 200px;
+                padding: 0 40px;
+                font-size: 18px;
+                font-weight: 400;
+                color: $color-0076d7;
+                vertical-align: middle;
+                position: relative;
+                @include for-mobile{
+                    font-size: 12px;
+                    margin-left: 0;
+                    width: 60%;
+                    height: 32px;
+                    margin-top: 10px;
+                    padding: 0 25px;
+                }
+                @include for-ipad{
+                    font-size: 13px;
+                    margin:10px 0 0;
+                    width: 180px;
+                }
+                &::before{
+                    content:'';
+                    position: absolute;
+                    top:50%;
+                    left:15px;
+                    width: 15px;
+                    height: 20px;
+                    background: url(http://akam.cdn.jdmagicbox.com/images/icontent/listingbusiness/blue_location_pin.svg) no-repeat;
+                    background-size: 100%;
+                    transform: translateY(-50%);
+                    @include for-mobile{
+                        width: 12px;
+                        height: 16px;
+                        left: 8px;
+                    }
+                }
+                &::after{
+                    content:'';
+                    position: absolute;
+                    top:50%;
+                    right:15px;
+                    width: 17px;
+                    height: 10px;
+                    background: url(http://akam.cdn.jdmagicbox.com/images/icontent/listingbusiness/blue_down_icn.svg) no-repeat;
+                    background-size: 100%;
+                    transform: translateY(-50%);
+                    @include for-mobile{
+                        width: 12px;
+                        height: 7px;
+                        right: 8px;
+                    }
+                }
+            }
+            .price_li{
+                display: inline-flex;
+                align-items: center;
+                justify-content: flex-start;
+                border-bottom: 1px solid #e5f2ff;
+                width: 100%;
+                padding: 0 15px;
+                height: 60px;
+                @include for-mobile{
+                    padding: 0;
+                    height: 45px;
+                }
+                @include for-ipad{
+                    padding:0;
+                    height: 45px;
+                }
+                &:last-child{
+                    border-bottom: 0;
+                }
+                .price_img{
+                    flex-basis: 50px;
+                    @include for-mobile{
+                        flex-basis: 25px;
+                    }
+                    @include for-ipad{
+                        flex-basis: 32px;
+                    }
+                    img{
+                        @include for-mobile{
+                           width: 25px;
+                        }
+                    }
+                }
+                .price_text{
+                    padding-left: 35px;
+                    font-size: 18px;
+                    color: $color-111111;
+                    flex: 1;
+                    @include for-mobile{
+                        font-size: 12px;
+                        padding-left: 10px;
+                    }
+                    @include for-ipad{
+                        font-size: 12px;
+                        padding-left: 10px;
+                    }
+                }
+            }
+        }
+        .pricing_right{
+            flex: 1;
+            display: inline-flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+            @include for-mobile{
+                overflow-x: auto;
+            }
+            .price_tab{
+                text-align: center;
+                width: 25%;
+                padding: 0 20px;
+                @include for-mobile{
+                    width:120px;
+                    flex-shrink: 0;
+                    padding: 0 5px;
+                }
+                @include for-ipad{
+                    width:150px;
+                    flex-shrink: 0;
+                    padding: 0 10px;
+                }
+                &.active{
+                    .pricetab_tabmid{
+                        background-color: #fff;
+                        border-radius: 11px;
+                    }
+                }
+                .pricetab_top{
+                    height: 126px;
+                    padding: 0;
+                    @include for-mobile{
+                        height: 82px;
+                    }
+                    button{
+                        border-radius: 8px;
+                        height: 44px;
+                        font-size: 18px;
+                        font-weight: 600;
+                        width: 100%;
+                        margin-bottom: 10px;
+                        @include for-mobile{
+                            font-size: 12px;
+                            height: 30px;
+                            margin-bottom: 5px;
+                        }
+                    }
+                    .pricetab_top_txt1{
+                        font-size: 13px;
+                        color: #767676;
+                        font-weight: 500;
+                        @include for-mobile{
+                            font-size: 10px;
+                        }
+                    }
+                    .pricetab_top_amt{
+                        font-size: 36px;
+                        font-weight: 700;
+                        color: $color-1a1b1d;
+                        @include for-mobile{
+                            font-size: 24px;
+                        }
+                        @include for-ipad{
+                            font-size: 30px;
+                        }
+                        sup{
+                            font-size: 24px;
+                            font-weight: 500;
+                            position: relative;
+                            top:1px;
+                            @include for-mobile{
+                                font-size: 13px;
+                            }
+                            @include for-ipad{
+                                top:5px
+                            }
+                            &.rupee{
+                                font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                            }
+                        }
+                        .pricetab_top_txt2{
+                            font-size: 14px;
+                            font-weight: 600;
+                            @include for-mobile{
+                                font-size: 10px;
+                            }
+                        }
+                    }
+                }
+                .pricetab_middle{
+                    font-size: 26px;
+                    font-weight: 700;
+                    @include for-mobile{
+                        font-size: 16px;
+                        margin-top: 5px;
+                    }
+                    @include for-ipad{
+                        font-size: 18px;
+                        margin-top: 2px;
+                    }
+                    &.pricetxt_free{
+                        color: #555;
+                    }
+                    &.pricetxt_standard{
+                        color: #15a677;
+                    }
+                    &.pricetxt_premium{
+                        color: #e52b8d;
+                    }
+                    &.pricetxt_pro{
+                        color: #4e49e9;
+                    }
+                }
+                .pricetab_bottom{
+                    position: relative;
+                    left: -20px;
+                    width: calc(100% + 40px);
+                    .pricetab_bottom_li{
+                        height: 60px;
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 100%;
+                        border-bottom: 1px solid #e5f2ff;
+                        font-size: 18px;
+                        color: $color-1a1b1d;
+                        @include for-mobile{
+                            font-size: 13px;
+                            height: 45px;
+                        }
+                        @include for-ipad{
+                            font-size: 13px;
+                            height: 45px;
+                        }
+                        &:last-child{
+                            border-bottom: 0;
+                        }
+                    }
+                    .pricedash{
+                        display: inline-block;
+                        width: 12px;
+                        height: 2px;
+                        background-color: #1a1b1d;
+                    }
+                    .price_green{
+                        display: inline-block;
+                        width: 17px;
+                        height: 17px;
+                        background: url(https://akam.cdn.jdmagicbox.com/images/icontent/listingbusiness/green_tick.svg) no-repeat;
+                    }
+                    .price_red{
+                        display: inline-block;
+                        width: 17px;
+                        height: 17px;
+                        background: url(https://akam.cdn.jdmagicbox.com/images/icontent/listingbusiness/red_cross.svg) no-repeat;
+                    }
+                }
+            }
+            .price_tab_standard{
+                button{
+                    border: 1px solid #15a677;
+                    color: #15a677;
+                }
+                &.active{
+                    .pricetab_tabmid{
+                        border: 1px dashed #15a677;
+                        border-top: 0;
+                    }
+                }
+            }
+            .price_tab_premium{
+                button{
+                    border: 1px solid #e52b8d;
+                    color: #e52b8d;
+                }
+                &.active{
+                    .pricetab_tabmid{
+                        border: 1px dashed #e52b8d;
+                        border-top: 0;
+                    }
+                }
+            }
+            .price_tab_pro{
+                button{
+                    border: 1px solid #4e49e9;
+                    color: #4e49e9;
+                }
+                &.active{
+                    .pricetab_tabmid{
+                        border: 1px dashed #4e49e9;
+                        border-top: 0;
+                    }
+                }
+            }
+        }
+    }
+}

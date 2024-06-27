@@ -1,0 +1,16 @@
+@use '../../styles/colors' as *;
+@import '../../styles/mixins';
+
+.footer{
+    @include display(flex);
+    align-items:center;
+    background-color:$color-f8f8f8;
+    height:85px;
+    justify-content:center;
+    flex:none;
+    z-index:1;
+    width:100%;                              
+    @include for-mobile{
+        @include display(none);
+    }
+}

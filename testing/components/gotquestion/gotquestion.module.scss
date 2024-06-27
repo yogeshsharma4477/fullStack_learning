@@ -1,0 +1,135 @@
+@use '../../styles/colors' as *;
+@import '../../styles/mixins';
+
+.gotquestion{
+   /* background-color:$color-fffcfa;*/
+    padding-top:35px;
+    padding-bottom:35px;
+    @include for-mobile{
+        background-color:$color-ffffff;
+    }
+    h2{
+        margin-bottom:40px;
+        font-size:30px;
+        @include for-mobile{
+            font-size:18px;
+            margin-bottom:20px;
+        }
+        @include for-ipad{
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+    }
+    .details{
+        background-color:$color-ffffff;
+        border:1px solid $color-0076d7;
+        @include border-radius(16px);
+        margin-bottom:25px;
+        padding:15px;
+        @include for-ipad{
+            padding: 5px 10px;
+        }
+        p, ul{
+            display:none;
+            margin:10px 0 0 0;
+            width:95%;
+            font-size:20px;
+            @include for-mobile{
+                font-size: 14px;
+            }
+            @include for-ipad{
+                font-size: 16px;
+            }
+            a{
+                color:$color-0076d7;
+            }
+        }
+        ul{
+            padding-left:20px;
+        }
+        li{
+            list-style-type:disc;
+            margin-bottom:5px;
+            font-size:20px;
+            @include for-mobile{
+                font-size: 14px;
+            }
+            @include for-ipad{
+                font-size: 14px;
+            }
+        }
+        &:global(.active){
+            summary:after{
+                transform:rotate(180deg);
+            }
+            p, ul{
+                display:block;
+            }
+        }
+        @include for-mobile{
+            @include border-radius(0);
+            border:0;
+            border-bottom:1px solid $color-f2f2f2;
+            margin-bottom:0;
+            padding: 15px 0;
+        }
+        summary::-webkit-details-marker{
+            display:none;
+        }
+    }
+    summary{
+        font-size:20px;
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        cursor:pointer;
+        @include for-mobile{
+            font-size:14px;
+            align-items:flex-start;
+        }
+        @include for-ipad{
+            font-size: 16px;
+        }
+        &:after{
+            @include transition(all .2s linear);
+            content:'';
+            width:48px;
+            height:48px;
+            background-image:url(//akam.cdn.jdmagicbox.com/images/icontent/listingbusiness/dropdown.svg);
+            background-position:center;
+            background-repeat:no-repeat;
+            background-size:100% 100%;
+            flex:0 0 48px;
+            @include for-ipad{
+                width:38px;
+                height:38px;
+                flex-basis:38px;
+            }
+            @include for-mobile{
+                width:24px;
+                height:24px;
+                flex-basis:30px;
+            }
+        }
+    }
+
+    .questionbtn{
+        text-align: center;
+        @include for-mobile{
+            margin-top:20px;
+        }
+        button{
+            width:auto;
+            min-width:279px;
+            height:54px;
+            font-size:20px;
+            @include border-radius(10px);
+            @include for-mobile{
+                width:100%;
+                height:40px;
+                font-size:16px;
+                @include border-radius(6px);
+            }
+        }
+    }
+}

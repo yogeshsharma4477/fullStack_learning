@@ -1,0 +1,240 @@
+@use 'colors' as *;
+@import 'mixins';
+
+.congratulation{
+    @extend .mt-0;
+    height:auto;
+    @include for-mobile{
+        padding:0;
+    }
+    &__box{
+        width: 100%;
+        text-align: center;
+        background-color:$color-34c85a;
+        position: relative;
+        @extend .pb-5;
+        margin-bottom: 35px;
+        @include for-mobile{
+            margin-bottom: 20px;
+        }
+        &::after{
+            content: '';
+            @include position(absolute, $bottom: -24px, $left: 0);
+            width: 100%;
+            height: 24px;
+            background: url(https://akam.cdn.jdmagicbox.com/images/icontent/listingbusiness/green_mask_icon.png) repeat;
+            background-size: 48px;
+            @include for-mobile{
+                background-size: 30px;
+                height: 15px;
+                bottom:-15px;
+                background-position: center;
+            }
+        }
+        @include for-mobile{
+            padding:0 0 30px;
+        }
+    }
+    &__hd{
+        color: $color-ffffff;
+        font-weight: 600;
+        @extend .font22, .ml-10;
+        @include for-mobile{
+            margin-bottom: 10px;
+        }
+    }
+    &__sub{
+        color: $color-ffffff;
+        @extend .font16, .pl-5, .pr-5;
+    }
+    &__icon{
+        width: 45px;
+        height: 45px;
+    }
+    &__skip{
+        @extend .font16;
+        color: $color-ffffff;
+        @include position(absolute, $top: 20px, $right: 20px);
+        font-weight: 500;
+        cursor: pointer;
+        @include for-mobile{
+           @include display(none);
+        }
+    }
+    &__prembox{
+        text-align: center;
+        @include for-mobile{
+            padding:0 10px;
+        }
+    }
+    &__premiumicon{
+        width: 26px;
+        height: 26px;
+        @extend .mt-15, .mb-5;
+    }
+    &__premiumtxt{
+        padding: 0 170px;
+        @extend .font18, .mb-5;
+        color: $color-1a1b1d;
+        font-weight: 700;
+        @include for-mobile{
+            padding:0;
+        }
+    }
+    &__premiumsubtxt{
+        padding: 0 70px;
+        @extend .font14, .mb-30;
+        color: $color-1a1b1d;
+        @include for-mobile{
+            padding:0;
+        }
+    }
+    &__wrap{
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        margin: 10px 0;
+    }
+}
+.premiumlist{
+    @include display(flex);
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 0 50px 20px;
+    @include for-mobile{
+        padding:0 30px;
+        margin: 0 0 20px;
+    }
+    & li{
+        @include display(inline-flex);
+        align-items: center;
+        width: 40%;
+        @extend .mb-20;
+        @include for-mobile{
+            width: 100%;
+        }
+        & img{
+            flex-basis: 44px;
+            height: 44px;
+            @extend .mr-15;
+        }
+    }
+    &__txt{
+        flex: 1;
+        @extend .font14, .pr-30;
+        color: $color-111111;
+        position: relative;
+        &::after{
+            content: '';
+            @include display(inline-block);
+            width: 20px;
+            height: 20px;
+            @include position(absolute, $top: 0, $right: 0);
+            background: url(https://akam.cdn.jdmagicbox.com/images/icontent/listingbusiness/blue_check_icon.svg);
+            background-position: center;
+            background-size: 100%;
+        }
+    }
+}
+
+.buttons{
+    @include display(inline-flex);
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    @extend .pl-20, .pr-20;
+    @include for-mobile{
+        flex-direction: column-reverse;
+        flex-wrap: wrap;
+    }
+    & button{
+        width: 47%;
+        height: 48px;
+        @include border-radius(6px);
+        @extend .font16, .pl-22, .pr-22;
+        @include display(inline-flex);
+        align-items: center;
+        position: relative;
+        @include for-mobile{
+            width: 100%;
+            padding-top: 2px;
+            padding-left: 48px;
+            flex-direction: column;
+            align-items: flex-start;
+            font-size: 15px;
+            font-weight: 500;
+        }
+        &::before{
+            content:'';
+            @include display(inline-block);
+            width: 27px;
+            height: 27px;
+            background-repeat: no-repeat;
+            background-position: center;
+            @extend .mr-10;
+            @include for-mobile{
+                width: 24px;
+                height: 24px;
+                @include position(absolute, $top: 50%, $left: 15px);
+                transform: translateY(-50%);
+            }
+        }
+    }
+    &__default{
+        background-color:$color-e5f3ff;
+        color: $color-1a1b1d;
+        @include transition(all .5s);
+        &::before{
+            background-image: url(//akam.cdn.jdmagicbox.com/images/icontent/listingbusiness/request_call_back.svg);
+        }
+        &:hover{
+            background-color:$color-f0f8ff;
+        }
+    }
+    &__primary{
+        &::before{
+            background-image: url(//akam.cdn.jdmagicbox.com/images/icontent/listingbusiness/get_premium_plan.svg);
+        }
+        @include for-mobile{
+            margin-bottom: 20px
+        }
+    }
+    & span{
+        @extend .font11, .ml-22;
+        margin-left: 22px;
+        @include for-mobile{
+            font-size: 12px;
+            font-weight: 400;
+            margin-left: 0;
+        }
+    }
+}
+
+.mobileskip{
+    @include display(none);
+    color: $color-0076d7;
+    @extend .font13, .mt-20, .mb-20;
+    @include for-mobile{
+        display: block;
+        padding: 0 15px;
+    }
+}
+
+.header{
+    @include display(none);
+    align-items:center;
+    padding-left:10px;
+    padding-right:10px;
+    height:50px;
+    box-shadow:none;
+    @include for-mobile{
+        @include display(flex);
+    }
+    :global(.backicon){
+        @include border-radius(50%);
+        background-size:20px;
+        width:30px;
+        height:30px;
+        background-image:url(//akam.cdn.jdmagicbox.com/images/icontent/listingbusiness/backwhite.svg);
+    }
+}

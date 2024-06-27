@@ -1,0 +1,166 @@
+@use '../../styles/colors' as *;
+@import "../../styles/mixins";
+.form{
+    border:2px solid $color-0076d7;
+    position:relative;
+    background-color:$color-ffffff;
+    &.inactive{
+        border-color: $color-797979;
+    }
+    .input{
+        border:0;
+        width:100%;
+        font-size:20px;
+        @extend .pl-12;
+        &:disabled{
+            background-color:$color-ffffff;
+            color:$color-111111;
+            -webkit-text-fill-color: $color-111111;
+            opacity: 1;
+        }
+        &:focus, &:valid, &:disabled{
+            border:0;
+            ~ .input__label{
+                left:5px;
+                z-index:1;
+                @include border-radius(5px);
+                @include for-mobile{
+                    top:-11px;
+                }
+                &:before, &:after{
+                    background-color:$color-ffffff;
+                    content:'';
+                    width:100%;
+                    height:4px;
+                    z-index:-1;
+                    @include position(absolute, $left:0, $top:8px);
+                }
+                &:after{
+                    background-color:$color-ffffff;
+                    height:7px;
+                    top:11px;
+                }
+            }
+        }
+        @include for-mobile{
+            font-size:14px;
+            height:40px;
+        }
+    }
+    .input__label{
+        background-color:transparent;
+        left:105px;
+        top:19px;
+        font-size:20px;
+        @extend .font20;
+        width:auto;
+        @include for-ipad-portrait{
+            font-size:18px;
+            top:20.5px;
+        }
+        @include for-mobile{
+            font-size:14px;
+            left:72px;
+            top:12px;
+        }
+    }
+    &.error__input{
+        border-color:$color-eb504b;
+        .error__text{
+            display:block;
+            @include position(absolute, $left:0, $bottom:-25px);
+           
+        }
+        .input{
+            &:focus, &:valid{
+                ~ .input__label{
+                    color:$color-eb504b;
+                }
+            }
+        }
+    }
+    &__header{
+        display:flex;
+        @include border-radius(10px);
+        align-items:center;
+        max-width:492px;
+        height:64px;
+        :global(.primarybutton){
+            height:52px;
+            @extend .mr-4;
+            @include border-radius(7px);
+            flex:0 0 169px;
+            font-size:20px;
+            overflow:hidden;
+            &:before{
+                content: "";
+                width: 15%;
+                height: 300px;
+                background-color: #fff;
+                transform: rotate(30deg);
+                position: absolute;
+                top: -150px;
+                left: -150px;
+                opacity: .3;
+                filter: blur(10px);
+                animation: buttonTrans 3s linear infinite;
+            }
+            @keyframes buttonTrans {
+                0%{left: -40px;opacity: .3;}
+                24%{left: 150%;opacity: .3;}
+                25%{left: 150%;opacity: 0;}
+                30%,100%{left: -150px;opacity: 0;}
+            }
+            @include for-ipad{
+                font-size:14px;
+                flex-basis:125px;
+            }
+        }
+        .input__label{
+            top:16px;
+        }
+    }
+}
+.error__text{
+    color:$color-eb504b;
+    font-size:14px;
+    @include for-mobile{
+        font-size:13px;
+    }
+    @include for-mobile-300-360{
+        font-size:12px;
+    }
+}
+.whitearrow{
+    width:28px;
+    height:28px;
+    background-image:url(//akam.cdn.jdmagicbox.com/images/icontent/listingbusiness/whitearrow.svg);
+    margin:4px 0 0 12px;
+    left: 0;
+    position: relative;
+    @include for-mobile{
+        width:18px;
+        height:18px;
+        margin:2px 0 0 6px;
+    }
+}
+.countrycode{
+    font-size:18px;
+    padding-left:20px;
+    display:flex;
+    align-items:center;
+    @include for-mobile{
+        font-size:14px;
+        padding-left:10px;
+    }
+}
+.flag{
+    width:36px;
+    height:25px;
+    background-image:url(//akam.cdn.jdmagicbox.com/images/icontent/listingbusiness/india_flag.svg);
+    margin-right:10px;
+    @include for-mobile{
+        width:22px;
+        height:15px;
+    }
+}

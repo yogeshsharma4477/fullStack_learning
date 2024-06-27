@@ -1,0 +1,141 @@
+@use '../../styles/colors' as *;
+@import '../../styles/mixins';
+.title {
+    text-transform: capitalize;
+  width: 455px;
+  @extend .font20, .mb-5;
+  line-height: 32px;
+  @include for-ipad-portrait {
+    width: 100%;
+  }
+  @include for-mobile {
+    width: 100%;
+    font-size: 16px;
+    margin-bottom: 10px;
+    line-height: 24px;
+  }
+}
+.content{
+    margin-bottom:30px;
+}
+
+.business{
+    @include display(inline-flex);
+    flex-direction:column;
+    &__left{
+      @include display(inline-flex);
+      flex: 1 0;
+    }
+    &__list{
+      :global(.righticon){
+        width:27px;
+        flex:unset;
+        flex-basis:27px;
+      }
+      $colors: $color-e596d3, $color-b796e5, $color-69b480, $color-77b5b5, $color-aa8356, $color-d06d49, $color-4997d0, $color-edc337, $color-ea9634, $color-d15459;
+        @for $color from 1 through length($colors){
+          li:nth-child(#{length($colors)}n+#{$color}){
+            .data__letter{
+              background: nth($colors, $color);
+            }
+          }
+        }
+      li{
+        @include display(flex);
+        align-items:center;
+        width:400px;
+        flex-wrap:wrap;
+        border-bottom:1px solid $color-eeeeee;
+        @extend .pt-15, .pb-15;
+        cursor:pointer;
+        @include transition(all .2s linear);
+        &:hover{
+          background-color: #EDF1F7;
+        }
+        &:last-child{
+          @extend .mb-0;
+        }
+        @include for-mobile{
+          width:100%;
+        }
+        &:nth-child(even){
+          .business__img{
+            background-color:aliceblue;
+          }
+        }
+        &:nth-child(odd){
+          .business__img{
+            background-color:antiquewhite;
+          }
+        }
+        // loop animation  
+        $business-list : 50;
+        @for $i from 1 through $business-list{
+            &:nth-child(#{$i}){
+              @include for-desktop{
+                opacity:0;
+                transform:translateY(20px);
+                @include listAnimation;
+                animation-delay:$i * .2s;
+              }
+            }
+        }
+        &:focus-visible {
+          box-shadow:0 0 0 2px $color-0076d7;
+          position:relative;
+          z-index:1;
+        }
+      }
+    }
+    &__img{
+      width:50px;
+      height:50px;
+      border:1px solid $color-dadce0;
+      @include border-radius(5px);
+      flex:0 0 50px;
+      overflow:hidden;
+    }
+    &__title{
+      @extend .font18;
+      @include line_clamp_2;
+      text-transform:capitalize;
+      word-break: break-word;
+    }
+    &__address{
+      @extend .font14;
+      @include line_clamp_1;
+      text-transform:capitalize;
+      word-break: break-word;
+    }
+}
+.data__letter{
+  @include display(flex);
+  align-items:center;
+  justify-content:center;
+  height:100%;
+  color:$color-ffffff;
+  @include border-radius(5px);
+}
+
+.verified{
+    width:16px;
+    height:16px;
+    background-image:url(http://akam.cdn.jdmagicbox.com/images/icontent/listingbusiness/verified.svg);
+}
+
+.or{
+  @include display(flex);
+  align-items:center;
+  justify-content:center;
+  width:400px;
+  @include for-mobile{
+    width:100%;
+  }
+}
+
+.submit_btn{
+  width: 400px;
+  @include for-mobile{
+    width: 100%;
+  }
+}

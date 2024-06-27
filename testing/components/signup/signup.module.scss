@@ -1,0 +1,86 @@
+@use '../../styles/colors' as *;
+@import '../../styles/mixins';
+
+.signup{
+    animation:fadeInUp .5s;
+    &__title{
+        @extend .pl-30, .pr-30, .mb-30, .font16;
+        @include for-mobile{
+            font-size:18px;
+            padding:0;
+        }
+    }
+    &__inputwrap{
+        @include display(flex);
+        align-items:stretch;
+        justify-content:space-between;
+        flex-wrap:wrap;
+        width:100%;
+        :global(.inputwrap){
+            flex:1;
+        }
+        :global(.error__message){
+            @include position(absolute);
+        }
+    }
+    :global(.primarybutton){
+        margin-bottom:60px;
+        @include for-mobile{
+            margin-top:0;
+        }
+    }
+    @include for-mobile{
+        height:100svh;
+    }
+    :global(.input__label){
+        top:12px;
+    }
+}
+.countryflag{
+    width:23px;
+    height:16px;
+    @include display(inline-flex);
+    img{width:100%}
+}
+.countrycode{
+    border:1px solid $color-dadce0;
+    @include border-radius(5px);
+    @include display(inline-flex);
+    align-items:center;
+    justify-content:center;
+    @extend .mr-5;
+    flex-basis:81px;
+}
+.agree{
+   @extend .pl-30, .pr-30, .font11;
+   @include position(absolute, $bottom:40px);
+   @include for-mobile{
+    @include position(relative, $bottom:unset);
+    margin:0 0 20px;
+    padding:0;
+   }
+   a{text-decoration:underline}
+}
+.closeicon__popup{
+    @include position(fixed, $top:10px, $right:10px);
+    @include display(inline-block);
+    height:40px;
+    width:40px;
+    background-size:25px;
+    @include for-mobile{
+        @include display(none);
+    }
+}
+@keyframes fadeInUp {
+ 0% {
+  opacity: 0;
+  -webkit-transform: translate3d(0, 5%, 0);
+  transform: translate3d(0, 5%, 0);
+ }
+
+ 100% {
+  opacity: 1;
+  -webkit-transform: none;
+  transform: none;
+ }
+}

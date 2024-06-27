@@ -1,0 +1,45 @@
+@use '../../styles/colors' as *;
+@import '../../styles/mixins';
+
+.left__img{
+    background-image:url(//akam.cdn.jdmagicbox.com/images/icontent/listingbusiness/addressmobile2x.png);
+}
+.title{
+    width:455px;
+    @extend .font24, .mb-5;
+    line-height:32px;
+    @include for-ipad-portrait{
+        width:100%;
+    }
+    @include for-mobile{
+        width:100%;
+        font-size:16px;
+        margin-bottom:10px;
+        line-height:24px;
+    }
+}
+.content{
+    width:400px;
+    @extend .font16;
+    margin-bottom:50px;
+    line-height:22px;
+    @include for-ipad-portrait{
+        width:100%;
+    }
+    @include for-mobile{
+        width:100%;
+        font-size:14px;
+        margin-bottom:20px;
+    } 
+}
+.dropdown{
+    @include position(absolute, $left:0, $top:48px, $right:0);
+    background-color:$color-ffffff;
+    border:1px solid $color-0076d7;
+    z-index:1;
+    @include border-radius(4px);
+    li{
+        @extend .font14, .p-10;
+        cursor:pointer;
+    }
+}

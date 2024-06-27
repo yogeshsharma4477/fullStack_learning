@@ -1,0 +1,32 @@
+@use '../../styles/colors' as *;
+@import '../../styles/mixins';
+.searchbusiness{
+  width:90px;
+  height:90px;
+  background-image:url(//akam.cdn.jdmagicbox.com/images/icontent/listingbusiness/searchbusiness.svg);
+  position:relative;
+  top:-10px;
+}
+.addbussinesspopup{
+  .modal{
+    &__header{
+      margin:0;
+    }
+    &__body{
+      text-align:center;
+    }
+    &__footer{
+      button{
+        max-width:230px;
+        width:100%;
+        min-width:auto;
+        margin:0 10px;
+        flex:1 1 auto;
+        @include for-mobile{
+          margin:0 5px;
+          max-width:-webkit-fill-available;
+        }
+      }
+    }
+  }
+}

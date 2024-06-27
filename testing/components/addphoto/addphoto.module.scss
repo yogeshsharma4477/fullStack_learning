@@ -1,0 +1,146 @@
+@use '../../styles/colors' as *;
+@import '../../styles/mixins';
+
+.left__img{
+    background-image:url(https://akam.cdn.jdmagicbox.com/images/icontent/listingbusiness/add_photo_2x.png);
+}
+.progressbar{
+    width:100%;
+    @include border-radius(3px);
+    height:6px;
+    @extend .mb-10;
+    /* background: */
+    background-color:$color-e8f0fd;
+    &::-webkit-progress-bar{background-color:$color-e8f0fd;width:100%;@include border-radius(3px);}
+    /* value: */
+    &::-webkit-progress-value{background-color:$color-0076d7 !important;@include border-radius(3px);}
+    &::-moz-progress-bar{background-color:$color-0076d7 !important;@include border-radius(3px);}
+    color:$color-0076d7;
+    @include for-ipad-portrait{
+        width:100%;
+    }
+    @include for-mobile{
+        width:100%;
+        margin-bottom:25px;
+        @include border-radius(0);
+        &::-webkit-progress-bar{@include border-radius(0)}
+        /* value: */
+        &::-webkit-progress-value{@include border-radius(0)}
+        &::-moz-progress-bar{@include border-radius(0)}
+    }
+}
+.title{
+    text-transform: capitalize;   
+    width:455px;
+    @extend .font20, .mb-5;
+    line-height:32px;
+    @include for-ipad-portrait{
+        width:100%;
+    }
+    @include for-mobile{
+        width:100%;
+        font-size:16px;
+        margin-bottom:10px;
+        line-height:24px;
+    }
+}
+.content{
+    width:100%;
+    @extend .font15, .mb-20;
+    line-height:22px;
+    white-space: nowrap;
+    @include for-ipad-portrait{
+        width:100%;
+    }
+    @include for-mobile{
+        width:100%;
+        font-size:14px;
+        padding-bottom:20px;
+        white-space: inherit;
+    } 
+}
+.primarybutton{
+    margin-top:40px;
+    @include for-mobile{
+        margin-top:30px;
+    }
+}
+.gallery{
+    @include display(flex);
+    flex-wrap:wrap;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    li{
+        flex:0 0 47%;
+        @include position(relative);
+        height:127px;
+        @include for-mobile-320{
+            flex:0 0 46%;
+        }
+        &.photoupload{
+            @include border-radius(10px);
+            border:1px dashed $color-0076d7;
+            @include display(inline-flex);
+            align-items:center;
+            justify-content:center;
+            flex-direction:column;
+            &:before{
+                content:'';
+                background-image:url(//akam.cdn.jdmagicbox.com/images/icontent/listingbusiness/addphoto.svg);
+                background-position:center;
+                background-size:100% 100%;
+                height:26px;
+                width:30px;
+            }
+            input{
+                width:100%;
+                height:100%;
+                opacity:0;
+                @include position(absolute, $top:0, $right:0, $bottom:0, $left:0);
+                cursor:pointer;
+            }
+        }
+        img{
+            height:100%;
+            width:100%;
+            @include border-radius(10px);
+            border:1px solid $color-e4e4e4;
+            object-fit:cover;
+        }
+    }
+} 
+.delete{
+    height:30px;
+    width:30px;
+    background-color:rgba(0,0,0,.9);
+    @include border-radius(0 0 10px 0);
+    @include position(absolute, $right:1px, $bottom:1px);
+    background-image:url(//akam.cdn.jdmagicbox.com/images/icontent/listingbusiness/deletewhite.svg);
+    background-size:12px 14px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    path{
+        fill:$color-ffffff;
+    }
+    &:hover{
+        background-color: $color-eb504b;
+    }
+}
+.toastmessage{
+    @include display(flex);
+    align-items:center;
+    justify-content:space-between;
+    background-color:rgba(17,17,17,.8);
+    @include border-radius(29px);
+    @extend .p-20;
+    margin-top:60px;
+    &__text{
+        width:240px;
+    }
+}
+.closeiconwhite{
+    flex:0 0 20px;
+    background-image:url(//akam.cdn.jdmagicbox.com/images/icontent/listingbusiness/closewhite.svg);
+}

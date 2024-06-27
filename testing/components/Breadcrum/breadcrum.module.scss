@@ -1,0 +1,36 @@
+@use '../../styles/colors' as *;
+@import '../../styles/mixins';
+
+.breadcrum{
+    align-items:center;
+    @extend .mt-10;
+    display:flex;
+    li{
+        @extend .breadcrum;
+        margin-top:0;
+        line-height:16px;
+        font-size:11px;
+        @include for-mobile{
+            font-size:10px;
+        }
+        &:not(:first-child):before{
+            content:'';
+            width:16px;
+            height:16px;
+            background-image:url(//akam.cdn.jdmagicbox.com/images/icontent/listingbusiness/rightarrow.svg);
+            background-repeat:no-repeat;
+            background-position:center;
+            background-size:100% 100%;
+            display:inline-block;
+        }
+        a{
+            color:$color-111111;
+            &:hover{
+                color:$color-0076d7;
+            }
+        }
+        span{
+            color:$color-757575;
+        }
+    }
+}

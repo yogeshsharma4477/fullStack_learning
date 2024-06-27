@@ -1,0 +1,204 @@
+@use '../../styles/colors' as *;
+@import '../../styles/mixins';
+
+.signup{
+    &__title{
+        @extend .pl-30, .pr-30, .mb-30, .font16;
+        font-weight:700;
+        @include position(relative);
+        @include for-mobile{
+            font-size:18px;
+            padding:0;
+            font-weight:500;
+            border-bottom:1px solid $color-eeeeee;
+            width:100%;
+            padding:15px 20px;
+            margin-bottom:0;
+            .loadborder{
+                @include position(absolute, $left:0, $bottom:-1px);
+                width:100%;
+                height:4px;
+                animation-duration: 1s;
+                animation-fill-mode:forwards;
+                animation-iteration-count:infinite;
+                animation-name:placeHolderShimmer;
+                animation-timing-function:linear;
+                background:linear-gradient(to right,$color-dadce0 20%,$color-0076d7 40%,$color-0076d7 60%,$color-dadce0 100%, $color-dadce0 120%);
+                background:-webkit-linear-gradient(to right,$color-dadce0 20%,$color-0076d7 40%,$color-0076d7 60%,$color-dadce0 100%, $color-dadce0 120%);
+                background-size:800px 104px;
+                &__wrap{
+                    background-color:$color-0076d7;
+                }
+            }
+        }
+    }
+    &__inputwrap{
+        @include display(flex);
+        align-items:stretch;
+        justify-content:space-between;
+        flex-wrap:wrap;
+        width:100%;
+        margin-bottom:20px;
+        :global(.inputwrap){
+            @include display(inline-flex);
+            flex:1;
+            justify-content:center;
+            @include for-mobile{
+                justify-content:flex-start;
+            }
+        }
+        :global(.input){
+            @include display(inline-flex);
+            flex:0 0 45px;
+            width:45px;
+            text-align:center;
+            @extend .mr-10, .font24;
+            font-weight:500;
+            @include border-radius(8px);
+            &:nth-child(6){
+                @extend .mr-0;
+            }
+            &:valid{
+                border:1px solid $color-111111;
+            }
+            &:focus{
+                border:1px solid $color-0076d7;
+            }
+            @include for-mobile-320{
+                flex-basis:38px;
+                width:38px;
+                height:40px;
+            }
+        }
+        :global(.error__message){
+            @include position(absolute, $left:0, $bottom:-25px);
+        }
+    }
+}
+.popupbody{width:100%;}
+
+
+.opt{
+    animation:fadeInUp .5s;
+    :global(.closeicon){
+        @include display(none);
+        @include border-radius(50%);
+        @include for-mobile{
+            @include display(inline-block);
+            @include position(absolute, $top:50%, $left:20px);
+            width:40px;
+            height:40px;
+            background-size:20px;
+            margin-top:-20px;
+        }
+    }
+    @include for-mobile{
+        :global(.box__left){
+            filter:blur(20px);
+            -webkit-filter:blur(20px);
+            height:100%;
+            transform:scale(1.1);
+        }
+        :global(.box__right){
+            @include position(fixed, $left:0, $bottom:0);
+            padding:0;
+            // height: 270px;
+        }
+        .popupbody{
+            padding:20px;
+        }
+    }
+    .closeicon__popup{
+        @include position(fixed, $top:10px, $right:10px);
+        @include display(inline-block);
+        height:40px;
+        width:40px;
+        background-size:25px;
+        @include for-mobile{
+            @include display(none);
+        }
+    }
+    :global(.inputwrap__error){
+        :global(.input){
+            &:focus, &:valid{
+                border:1px solid $color-eb504b;
+            }
+        }
+    }
+}
+.box__right{
+    justify-content: unset;
+    padding-top: 100px;
+}
+.codesent{
+    margin-bottom:30px;
+    @include for-mobile{
+        margin-bottom:5px;
+        text-align:left;
+    }
+}
+.otpnotrecieve{
+    @extend .font14;
+    @include for-mobile{
+        text-align:left;
+    }
+}
+.resendotp{
+    color:$color-0076d7;
+    @extend .font14;
+    @include for-mobile{
+        margin-top:0;
+        text-align:right;
+    }
+}
+.overlay{
+    @include position(fixed, $top:0, $left:0);
+    width:100%;
+    height:100%;
+    background-color:rgba(0,0,0,0.5);
+    @include display(none);
+    @include for-mobile{
+        @include display(block);
+    }
+}
+.optlabel{
+    @include display(inline-flex);
+    width:100%;
+    justify-content:center;
+    align-items:center;
+    @include for-mobile{
+        flex-direction:row;
+    }
+}
+@keyframes placeHolderShimmer{
+    0%{background-position:-468px 0;}
+    100%{background-position:468px 0;}
+}
+@keyframes fadeInUp {
+ 0% {
+  opacity: 0;
+  -webkit-transform: translate3d(0, 5%, 0);
+  transform: translate3d(0, 5%, 0);
+ }
+
+ 100% {
+  opacity: 1;
+  -webkit-transform: none;
+  transform: none;
+ }
+}
+.success__errormsg{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    span{
+        line-height:21px;
+    }
+    @include for-mobile{
+        justify-content: flex-start;
+    }
+}
+.success__icon{
+    width:21px;
+    height:21px;
+}

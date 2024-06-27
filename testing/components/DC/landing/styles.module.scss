@@ -1,0 +1,26 @@
+@use '../../../styles/colors' as *;
+@import '../../../styles/mixins';
+
+.countrycode{
+    border:1px solid $color-dadce0;
+    @include border-radius(5px);
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    flex-basis:81px;
+    width:81px;
+    height:38px;
+}
+.countryflag{
+    width:23px;
+    height:16px;
+    display:inline-flex;
+    img{
+        width:100%;
+    }
+}
+.toastmessage{
+    @include border-radius(0);
+    bottom:0;
+    width:100%;
+}

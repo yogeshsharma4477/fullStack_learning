@@ -1,0 +1,283 @@
+@use '../../styles/colors' as *;
+@import '../../styles/mixins';
+
+.growbusiness{
+    margin-top:70px;
+    padding-bottom:45px;
+    @include for-mobile{
+        margin-top:0;
+        padding-bottom:0px;
+    }
+    h2{
+        font-size:30px;
+        @include for-mobile{
+            font-size:18px;
+        }
+        @include for-ipad{
+            font-size:26px;
+        }
+    }
+    &_note{
+        font-size: 11px;
+        color: $color-757575;
+        margin: 25px 0 20px;
+        @include for-mobile{
+            font-size: 10px;
+            margin:20px 0 20px;
+            position: relative;
+            top:60px;
+        }
+        a{
+            color: $color-757575;
+            border-bottom: 1px solid $color-dedede;
+            @include transition(all .2s linear);
+            display:inline-block;
+            &:hover{
+                color:$color-0076d7;
+                border-color:$color-0076d7;
+            }
+        }
+    }
+}
+.listpage{
+    margin-top:30px;
+    background-color:$color-fffcfa;
+    @include border-radius(37px);
+    padding:45px 60px 20px;
+    display:flex;
+    @include for-ipad-portrait{
+        padding:20px;
+    }
+    @include for-mobile{
+        @include border-radius(7px);
+        padding:20px 15px;
+        margin-top:15px;
+        flex-direction:column;
+        &.pb80{
+            padding-bottom:55px;
+        }
+    }
+    &__left{
+        flex-basis:520px;
+        @include for-ipad{
+            flex-basis:260px;    
+        }
+        @include for-mobile{
+            flex-basis: 270px;
+            text-align: center;
+        }
+        img{
+            object-fit:contain;
+            @include for-mobile{
+                width:274px;
+                height:274px;
+            }
+            @include for-ipad{
+                width:244px;
+                height:300px;
+            }
+        }
+    }
+    &__right{
+        flex:1;
+        margin-left:75px;
+        @include for-ipad-portrait{
+            margin-left:50px;
+        }
+        @include for-mobile{
+            margin:20px 0 0 0;
+        }
+        @include for-ipad{
+            margin:20px 0 0 0;
+        }
+    }
+    b{
+        color:$color-333333;
+        font-size:22px;
+        font-weight:600;
+        @include for-mobile{
+            font-size:16px;
+        }
+        @include for-ipad{
+            font-size: 16px;
+        }
+    }
+    p{
+        font-size:20px;
+        margin:30px 0;
+        @include for-mobile{
+            font-size:14px;
+            margin:10px 0 20px;
+        }
+        @include for-ipad{
+            font-size: 16px;
+            margin-top: 20px;
+        }
+    }
+    ul{
+        li{
+            font-size:20px;
+            color:$color-111111;
+            display:flex;
+            line-height:25px;
+            margin-bottom:15px;
+            @include for-mobile{
+                font-size:14px;
+            }
+            @include for-ipad{
+                font-size: 14px;
+            }
+            &:last-child{
+                margin-bottom:25px;
+            }
+            &:before{
+                content:'';
+                width:16px;
+                height:12px;
+                background-image:url(//akam.cdn.jdmagicbox.com/images/icontent/listingbusiness/blackcheck.svg);
+                background-position:center;
+                background-repeat:no-repeat;
+                background-size:100% 100%;
+                margin:5px 10px 0 0;
+                flex:0 0 16px;
+                @include for-mobile{
+                    position: relative;
+                    top:2px
+                }
+                @include for-ipad{
+                    top:2px;
+                    position: relative;
+                }
+            }
+        }
+    }
+    form{
+        background-color:$color-ffffff;
+        border:2px solid $color-0076d7;
+        @include border-radius(10px);
+        display:flex;
+        align-items:center;
+        max-width:495px;
+        height:72px;
+        position:relative;
+        margin-top:20px;
+        @include for-ipad{
+            width:100%;
+        }
+        @include for-mobile{
+            overflow:inherit;
+            width:100%;
+            margin:10px 0 0;
+            height:48px;
+            @include border-radius(6px);
+            position: relative;
+        }
+        input{
+            border:0;
+            width:100%;
+            font-size:18px;
+            padding-left:10px;
+            @include for-mobile{
+                font-size:16px;
+            }
+            @include for-ipad{
+                font-size:13px;
+            }
+        }
+        :global(.primarybutton){
+            @include border-radius(0 7px 7px 0);
+            flex:0 0 164px;
+            height:100%;
+            font-size:18px;
+            @include for-ipad-portrait{
+                flex-basis:130px;
+            }
+            @include for-mobile{
+                flex-basis: 100%;
+                font-size: 16px;
+                @include position(absolute, $left:0, $top:75px);
+                @include border-radius(6px);
+                height: 40px;
+            }
+            @include for-ipad{
+                flex: 0 0 130px;
+                font-size: 13px;
+            }
+        }
+        &.error__input{
+            border-color:$color-eb504b;
+            .error__text{
+                color:$color-eb504b;
+                font-size:14px;
+                display:block;
+                @include position(absolute, $left:0, $bottom:-25px);
+                @include for-mobile{
+                    font-size:13px;
+                }
+                @include for-mobile-300-360{
+                    font-size:12px;
+                }
+            }
+        }
+    }
+}
+.whitearrow{
+    width:28px;
+    height:28px;
+    background-image:url(//akam.cdn.jdmagicbox.com/images/icontent/listingbusiness/whitearrow.svg);
+    margin:4px 0 0 12px;
+    left: 0;
+    position: relative;
+    @include for-mobile{
+        width:18px;
+        height:18px;
+        margin:2px 0 0 5px;
+    }
+    @include for-ipad{
+        margin-left: 5px;
+        margin-top: 0px;
+        width: 22px;
+        height: 22px;
+    }
+}
+.countrycode{
+    font-size:20px;
+    padding-left:20px;
+    display:flex;
+    align-items:center;
+    @include for-mobile{
+        font-size:14px;
+        padding-left:10px;
+    }
+    @include for-ipad{
+        font-size: 14px;
+    }
+}
+.flag{
+    width:36px;
+    height:25px;
+    background-image:url(//akam.cdn.jdmagicbox.com/images/icontent/listingbusiness/india_flag.svg);
+    margin-right:10px;
+    @include for-mobile{
+        width:22px;
+        height:15px;
+    }
+}
+.primarybutton{
+    max-width:260px;
+    font-size:20px;
+    font-weight:500;
+    height:52px;
+    @include for-mobile{
+        width: 100%;
+        max-width: none;
+        font-size: 16px;
+        height:40px;
+    }
+    @include for-ipad{
+        font-size: 16px;
+    }
+}
+.error__text{
+    display:none;
+}

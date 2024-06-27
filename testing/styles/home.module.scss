@@ -1,0 +1,68 @@
+@use 'colors' as *;
+@import 'mixins';
+.content{
+  margin-bottom:60px;
+}
+.business{
+  @include display(inline-flex);
+  flex-direction:column;
+  &__left{
+    @include display(inline-flex);
+    flex: 1 0;
+  }
+  &__list{
+    :global(.righticon){
+      width:27px;
+      flex:unset;
+      flex-basis:27px;
+    }
+    li{
+      @include display(flex);
+      align-items:center;
+      width:400px;
+      flex-wrap:wrap;
+      border-bottom:1px solid $color-eeeeee;
+      @extend .mb-30, .pb-30;
+      &:last-child{
+        @extend .mb-0;
+      }
+      @include for-mobile{
+        width:100%;
+      }
+    }
+  }
+  &__img{
+    width:50px;
+    height:50px;
+    border:1px solid $color-dadce0;
+    @include border-radius(5px);
+    flex:0 0 50px;
+  }
+  &__title, &__address{
+    @extend .font18;
+    @include line_clamp_1;
+  }
+  &__address{
+    @extend .font14;
+  }
+}
+.verified{
+  width:16px;
+  height:16px;
+  background-image:url(http://akam.cdn.jdmagicbox.com/images/icontent/listingbusiness/verified.svg);
+}
+.or{
+  @include display(flex);
+  align-items:center;
+  justify-content:center;
+  width:400px;
+  @include for-mobile{
+    width:100%;
+  }
+}
+.secondarybutton{
+  width:400px;
+  @include for-mobile{
+    width:100%;
+  }
+}

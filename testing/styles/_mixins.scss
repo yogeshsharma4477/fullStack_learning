@@ -1,0 +1,188 @@
+@mixin for-desktop{
+    @media (min-width:960px){
+        @content;
+    }
+}
+@mixin for-ipad{
+    @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1){
+        @content;
+    }
+}
+@mixin for-ipad-landscape{
+    @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 1){
+        @content;
+    }
+}
+@mixin for-ipad-portrait{
+    @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 1){
+        @content;
+    }
+}
+@mixin for-mobile{
+    @media (max-width:767px){
+        @content;
+    }
+}
+@mixin for-mobile-300-360{
+    @media (min-width:300px) and (max-width:360px){
+        @content;
+    }
+}
+@mixin for-mobile-320{
+    @media (max-width:320px){
+        @content;
+    }
+}
+@mixin position($position, $top: null, $right: null, $bottom: null, $left: null) {
+    position: $position;
+    top: $top;
+    right: $right;
+    bottom: $bottom;
+    left: $left;
+}
+@mixin transition($transition...) {
+    -moz-transition:$transition;
+    -o-transition:$transition;
+    -webkit-transition:$transition;
+    transition:$transition;
+}
+@mixin border-radius($top-left:null, $top-right:null, $bottom-right:null, $bottom-left:null){
+    -webkit-border-radius: $top-left $top-right $bottom-right $bottom-left;
+       -moz-border-radius: $top-left $top-right $bottom-right $bottom-left;
+        -ms-border-radius: $top-left $top-right $bottom-right $bottom-left;
+            border-radius: $top-left $top-right $bottom-right $bottom-left;  
+  }
+@mixin box-shadow($x-axis: 0, $y-axis: 1px, $blur: 2px, $color: $default) {
+    box-shadow: $x-axis $y-axis $blur $color;
+}
+@mixin display($value){
+    display:$value;
+}
+@mixin line_clamp_1{display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+@mixin line_clamp_2{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+@mixin line_clamp_3{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+@mixin fadeIn{
+    animation-name:fade_In;
+    -webkit-animation-duration:1s;
+    animation-duration:1s;
+    -webkit-animation-fill-mode:both;
+    animation-fill-mode:both;
+}
+@mixin listAnimation{
+    -webkit-animation:fadeInUpList 0.5s ease forwards;
+    -moz-animation:fadeInUpList 0.5s ease forwards;
+    -ms-animation:fadeInUpList 0.5s ease forwards;
+    -o-animation:fadeInUpList 0.5s ease forwards;
+    animation:fadeInUpList 0.5s ease forwards;
+}
+@keyframes fadeInUpList{
+    to{
+          opacity:1;
+          transform:translateY(0);
+    }
+}
+@for $i from 0 through 30 {
+    //font-size classes
+    $fontSizes: (font#{$i}:($i + px));
+
+    @each $key, $value in $fontSizes {
+        .#{$key} {
+        font-size: $value;
+        }
+    }
+
+    //margin classes
+    $margin: (m-#{$i}:($i + px));
+
+    @each $key, $value in $margin {
+        .#{$key} {
+        margin: $value;
+        }
+    }
+
+    $marginTop: (mt-#{$i}:($i + px));
+
+    @each $key, $value in $marginTop {
+        .#{$key} {
+        margin-top: $value;
+        }
+    }
+
+    $marginBottom: (mb-#{$i}:($i + px));
+
+    @each $key, $value in $marginBottom {
+        .#{$key} {
+        margin-bottom: $value;
+        }
+    }
+
+    $marginLeft: (ml-#{$i}:($i + px));
+
+    @each $key, $value in $marginLeft {
+        .#{$key} {
+        margin-left: $value;
+        }
+    }
+
+    $marginRight: (mr-#{$i}:($i + px));
+
+    @each $key, $value in $marginRight {
+        .#{$key} {
+        margin-right: $value;
+        }
+    }
+
+    //padding classes
+    $padding: (p-#{$i}:($i + px));
+
+    @each $key, $value in $padding {
+        .#{$key} {
+        padding: $value;
+        }
+    }
+
+    $paddingTop: (pt-#{$i}:($i + px));
+
+    @each $key, $value in $paddingTop {
+        .#{$key} {
+        padding-top: $value;
+        }
+    }
+
+    $paddingBottom: (pb-#{$i}:($i + px));
+
+    @each $key, $value in $paddingBottom {
+        .#{$key} {
+        padding-bottom: $value;
+        }
+    }
+
+    $paddingLeft: (pl-#{$i}:($i + px));
+
+    @each $key, $value in $paddingLeft {
+        .#{$key} {
+        padding-left: $value;
+        }
+    }
+
+    $paddingRight: (pr-#{$i}:($i + px));
+
+    @each $key, $value in $paddingRight {
+        .#{$key} {
+        padding-right: $value;
+        }
+    }
+}
+@mixin buttonShimmer{
+    -webkit-animation:buttonTrans 3s linear infinite;
+    -moz-animation:buttonTrans 3s linear infinite;
+    -ms-animation:buttonTrans 3s linear infinite;
+    -o-animation:buttonTrans 3s linear infinite;
+    animation:buttonTrans 3s linear infinite;
+}
+@keyframes buttonTrans{
+    0%{left: -40px;opacity: .3;}
+    24%{left: 150%;opacity: .3;}
+    25%{left: 150%;opacity: 0;}
+    30%,100%{left: -150px;opacity: 0;}
+}

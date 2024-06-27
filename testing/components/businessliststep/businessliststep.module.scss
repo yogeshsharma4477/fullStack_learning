@@ -1,0 +1,151 @@
+@use '../../styles/colors' as *;
+@import '../../styles/mixins';
+
+.businessliststep{
+    background-color:$color-ffffff;
+    margin-top:45px;
+    &.businesslistgoals{
+        padding-bottom: 60px;
+        @include for-mobile{
+            padding-bottom: 30px;
+        }
+        li{
+            &::after{
+                display: none;
+            }
+        }
+    }
+    h2{
+        font-size:30px;
+        margin-bottom:40px;
+        @include for-mobile{
+            font-size:18px;
+            margin-bottom:30px;
+        }
+        @include for-ipad{
+            font-size: 26px;
+        }
+    }
+    ul{
+        display:flex;
+        align-items:flex-start;
+        justify-content:space-between;
+        @include for-ipad-landscape{
+            align-items:flex-end;
+        }
+        @include for-ipad-portrait{
+            flex-wrap:wrap;
+        }
+        @include for-mobile{
+            flex-direction:column;
+            align-items: flex-start;
+        }
+    }
+    li{
+        position:relative;
+        @include for-ipad-portrait{
+            flex:1 0 40%;
+        }
+        @include for-ipad{
+            flex-basis: 30%;
+            text-align: center;
+        }
+        @include for-mobile{
+            display:flex;
+            margin-bottom:40px;
+            justify-content: flex-start;
+            width: 100%;
+            font-weight: 500;
+            &:last-child{
+                margin-bottom:30px;
+            }
+        }
+        b{
+            font-size:22px;
+            margin-top:8px;
+            @include for-mobile{
+                font-size:14px;
+                margin-top:6px;
+            }
+            @include for-ipad{
+                font-size: 16px;
+            }
+        }
+        p{
+            font-size:20px;
+            margin:15px 0 0;
+            max-width:270px;
+            @include for-mobile{
+                font-size:14px;
+                margin-top:4px;
+                text-align: left;
+            }
+            @include for-ipad{
+                font-size: 14px;
+                padding: 0 15px;
+            }
+        }
+        &:after{
+            content:'';
+            width:36px;
+            height:21px;
+            background-image:url(//akam.cdn.jdmagicbox.com/images/icontent/listingbusiness/arrowblue@2x.png);
+            background-repeat:no-repeat;
+            background-size:100% 100%;
+            background-position:center;
+            @include position(absolute, $right:-100px, $top:20%);
+            @include for-ipad-landscape{
+                right:-40px;
+            }
+            @include for-ipad-portrait{
+                display:none;
+            }
+            @include for-mobile{
+                display:none;
+            }
+        }
+        &:last-child{
+            &::after{
+                display:none;
+            }
+        }
+        img{
+            object-fit:contain;
+            vertical-align: top;
+            height:204px;
+            @include for-mobile{
+                flex:0 0 40%;
+                max-width:115px;
+                height:90px;
+                margin-right:20px;
+            }
+            @include for-ipad{
+                width: 80%;
+                height: 100px;
+            }
+        }
+    }
+}
+.step{
+    font-size:18px;
+    color:$color-717171;
+    margin-top:50px;
+    @include for-mobile{
+        font-size:12px;
+        margin-top:0;
+    }
+    @include for-ipad{
+        margin-top: 25px;
+    }
+    &__list{
+        display:flex;
+        flex-direction:column;
+        @include for-mobile{
+            flex:0 0 60%;
+        }
+        &_txt{
+            text-align: center;
+            padding-top: 30px;
+        }
+    }
+}

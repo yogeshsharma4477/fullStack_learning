@@ -1,0 +1,44 @@
+
+@use '../../styles/colors' as *;
+@import '../../styles/mixins';
+
+.title{
+    width:455px;
+    @extend .font20, .mb-5;
+    line-height:32px;
+    @include for-ipad-portrait{
+        width:100%;
+    }
+    @include for-mobile{
+        width:100%;
+        font-size:16px;
+        margin-bottom:10px;
+        line-height:24px;
+    }
+}
+.content{
+    width:400px;
+    @extend .font15, .mb-20;
+    line-height:22px;
+    white-space: nowrap;
+    @include for-ipad-portrait{
+        width:100%;
+    }
+    @include for-mobile{
+        width:100%;
+        font-size:14px;
+        margin-bottom:20px;
+    } 
+}
+.buttontopspace{
+    margin-top:200px;
+    @include for-mobile{
+        margin-top:0;
+    }
+}
+.addnewbusiness{
+    :global(.uncheck){
+        width:18px !important;
+        height:18px !important;
+    }
+}

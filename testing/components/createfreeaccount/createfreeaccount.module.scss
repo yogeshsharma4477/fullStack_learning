@@ -1,0 +1,126 @@
+@use '../../styles/colors' as *;
+@import '../../styles/mixins';
+
+.createfreeaccount{
+    background-image:linear-gradient(79deg, #eaf7ff 5%, #f6fbff 122%);
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    padding:40px 50px 0;
+    margin-top:40px;
+    border:1px solid $color-cad8e1;
+    @include border-radius(10px);
+    @include for-mobile{
+        flex-direction:column-reverse;
+        align-items:center;
+        padding:35px 15px 20px;
+        background-image:linear-gradient(39deg, #eaf7ff 13%, #fff 139%);
+        @include border-radius(10px);
+        margin:30px 0;
+        width:100%;
+    }
+    h2{
+        font-size:24px;
+        @extend .mb-10;
+        font-weight: 600;
+        @include for-mobile{
+            font-size:16px;
+            margin-bottom:0;
+        }
+    }
+    &__left{
+        display:flex;
+        flex-direction:column;
+        padding-bottom:40px;
+        flex-basis: 590px;
+        @include for-mobile{
+            align-items:center;
+            padding-bottom:50px;
+            flex-basis:auto;
+        }
+        @include for-ipad{
+            flex-basis:100%;
+        }
+        > span{
+            font-size:20px;
+            @include for-mobile{
+                font-size:12px;
+            }
+        }
+    }
+    &__right{
+        img{
+            @include for-mobile{
+                height:104px;
+                width:195px;
+                margin-bottom:30px;
+            }
+        }
+        @include for-ipad-portrait{
+            display:none;
+        }
+    }
+    form{
+        background-color:$color-ffffff;
+        @include border-radius(10px);
+        display:flex;
+        align-items:center;
+        width:700px;
+        height:72px;
+        margin-top:35px;
+        @include for-ipad{
+            width:100%;
+        }
+        @include for-mobile{
+            width:100%;
+            margin:25px 0 0;
+            overflow:initial;
+            height:48px;
+            @include border-radius(4px);
+        }
+        input{
+            @include for-mobile{
+                font-size:14px;
+            }
+        }
+        :global(.primarybutton){
+            @include border-radius(0 7px 7px 0);
+            flex:0 0 252px;
+            font-size:18px;
+            height:100%;
+            @include for-ipad{
+                flex-basis:280px;
+                font-size:16px;
+            }
+            @include for-mobile{
+                flex-basis:100%;
+                font-size:16px;
+                @include position(absolute, $left:0, $top:110px);
+                @include border-radius(6px);
+                height: 40px;
+            }
+        }
+    }
+    &_subtxt{
+        color: $color-111111;
+        margin:22px 0 10px;
+        font-size: 18px;
+        @include for-mobile{
+            font-size:12px;
+        }
+        & + form{
+            margin:0;
+        }
+    }
+}
+.whitearrow{
+    width:28px;
+    height:28px;
+    background-image:url(//akam.cdn.jdmagicbox.com/images/icontent/listingbusiness/whitearrow.svg);
+    margin:4px 0 0 12px;
+    left: 0;
+    position: relative;
+    @include for-mobile{
+        display:none;
+    }
+}

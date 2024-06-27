@@ -1,0 +1,84 @@
+@use '../../styles/colors' as *;
+@import '../../styles/mixins';
+
+.feature_wrap{
+    padding: 40px 0;
+    @include for-mobile{
+        padding:20px 0;
+    }
+    .heading{
+        font-size: 30px;
+        color: $color-1a1b1d;
+        font-weight: 600;
+        @include for-mobile{
+            font-size: 18px;
+        }
+        @include for-ipad{
+            font-size: 24px;
+        }
+    }
+    .feature_ul{
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin-top: 25px;
+        @include for-mobile{
+            justify-content: flex-start;
+            margin-top: 15px;
+        }
+        .feature_li{
+            width: 46%;
+            display: inline-flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+            margin-bottom: 30px;
+            @include for-mobile{
+                width: 100%;
+                margin-bottom: 15px;
+            }
+            .feature_img{
+                flex-basis: 50px;
+                @include for-mobile{
+                    flex-basis: 40px;
+                }
+                @include for-ipad{
+                    flex-basis: 50px;
+                }
+                img{
+                    object-fit: contain;
+                }
+            }
+            .feature_data{
+                flex: 1;
+                padding-left: 25px;
+                @include for-mobile{
+                    padding-left: 15px;
+                }
+                .feature_txt1{
+                    font-size: 22px;
+                    color: $color-1a1b1d;
+                    font-weight: 500;
+                    @include for-mobile{
+                        font-size: 14px;
+                    }
+                    @include for-ipad{
+                        font-size: 18px;
+                    }
+                }
+                .feature_txt2{
+                    margin-top: 10px;
+                    font-size: 18px;
+                    color: $color-1a1b1d;
+                    font-weight: 400;
+                    @include for-mobile{
+                        font-size: 11px;
+                        margin-top: 2px;
+                    }
+                    @include for-ipad{
+                        font-size: 14px;
+                    }
+                }
+            }
+        }
+    }
+}

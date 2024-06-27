@@ -1,0 +1,108 @@
+@use '../../styles/colors' as *;
+@import "../../styles/mixins";
+
+.left__img {
+ background-image: url(https://akam.cdn.jdmagicbox.com/images/icontent/listingbusiness/business_details_2x.png);
+}
+.title {
+ text-transform: capitalize;   
+ width: 455px;
+ margin-bottom: 20px;
+ line-height: 22px;
+ @extend .font20, .mb-5;
+ line-height: 32px;
+ @include for-ipad-portrait {
+  width: 100%;
+ }
+ @include for-mobile {
+  width: 100%;
+  font-size: 16px;
+  margin-bottom: 10px;
+  line-height: 24px;
+  margin-bottom: 20px;
+ }
+}
+.content {
+//  width: 400px;
+ @extend .font15;
+ margin-bottom: 20px;
+ line-height: 22px;
+ white-space: nowrap;
+ @include for-ipad-portrait {
+  width: 100%;
+ }
+ @include for-mobile {
+  width: 100%;
+  font-size: 14px;
+  margin-bottom: 20px;
+ }
+}
+.captilize{
+    text-transform: capitalize;
+}
+.accountloader{
+    min-height:100svh;
+    :global(.loader){
+        width:108px;
+        height:108px;
+        border:none;
+    }
+    :global(.dropdown){
+        @include for-mobile{
+            max-height:200px;
+        }
+    }
+}
+.spin{
+    background:transparent;
+    position:relative;
+    @include border-radius(50%);
+    overflow:hidden;
+    z-index:0;
+    -webkit-animation:spin2 1s linear infinite;
+    animation:spin 1s linear infinite;
+    > div:not(.spin__blocker){
+        width:50%;
+        height:50%;
+        z-index:-1;
+    }
+    &__blocker{
+        @include position(absolute, $top:10%, $left:10%);
+        background:$color-ffffff;
+        width:80%;
+        height:80%;
+        @include border-radius(50%);
+    }
+    &__bottom{
+        &--left{
+            @include position(absolute, $top:50%, $left:0);
+            background:-webkit-linear-gradient(top left, rgba(0, 118, 215, 0.75) 0%, rgba(0, 118, 215, 0.5) 100%);
+            background:linear-gradient(to bottom right, rgba(0, 118, 215, 0.75) 0%, rgba(0, 118, 215, 0.5) 100%);
+        }
+        &--right{
+            @include position(absolute, $top:50%, $left:50%);
+            background:-webkit-linear-gradient(bottom left, rgba(0, 118, 215, 0.5) 0%, rgba(0, 118, 215, 0.25) 100%);
+            background:linear-gradient(to top right, rgba(0, 118, 215, 0.5) 0%, rgba(0, 118, 215, 0.25) 100%);
+        }
+    }
+    &__top{
+        &--left{
+            @include position(absolute, $top:0, $left:50%);
+            background:-webkit-linear-gradient(top left, rgba(0, 118, 215, 0) 0%, rgba(0, 118, 215, 0.25) 100%);
+            background:linear-gradient(to bottom right, rgba(0, 118, 215, 0) 0%, rgba(0, 118, 215, 0.25) 100%);
+        }
+    }
+  }
+  
+  @-webkit-keyframes spin {
+    100% {
+      -webkit-transform: rotate(360deg);
+              transform: rotate(360deg);
+    }
+  }
+  @keyframes spin {
+    100% {
+      -webkit-transform: rotate(360deg);
+              transform: rotate(360deg);
+    }
+  }

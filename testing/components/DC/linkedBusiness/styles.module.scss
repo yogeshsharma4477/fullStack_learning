@@ -1,0 +1,89 @@
+@use '../../../styles/colors' as *;
+@import '../../../styles/mixins';
+
+.linked{
+    width:100%;
+    margin-bottom:60px;
+    li{
+        display:flex;
+        &:not(:last-child){
+            border-bottom:1px solid $color-f6f6f6;
+        }
+    }
+    &__left{
+        flex:0 0 45px;
+        width:45px;
+        height:45px;
+        @include border-radius(5px);
+        border:1px solid $color-e9ecef;
+        @extend .mr-10;
+        background-color:$color-ffbd64;
+        overflow:hidden;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+    }
+    &__right{
+        display:flex;
+        flex-direction:column;
+        flex:1;
+    }
+    &__top{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+    }
+    &__bottom{
+        display:flex;
+        :global(.button){
+            @extend .font11, .pt-5, .pb-5, .pl-10, .pr-10;
+            @include border-radius(13px);
+            height:auto;
+            width:auto;
+            &::after, &::before{
+                display:none;
+            }
+            &:not(:last-child){
+                @extend .mr-5;
+            }
+            &.active{
+                background-color:$color-0076d7;
+                color:$color-ffffff;
+            }
+        }
+        &.error{
+            flex-wrap:wrap;
+            :global(.button){
+                border-color:$color-eb504b;
+                color:$color-eb504b;
+                background-color:$color-ffffff;
+            }
+            .error__div{
+                display:block;
+            }
+        }
+    }
+    &__business{
+        display:flex;
+        flex-direction:column;
+    }
+}
+.error__div{
+    color:$color-eb504b; 
+    display:none;
+}
+.addnewbusiness{
+    display:flex;
+    @include border-radius(5px);
+    background-color:$color-eff4ff;
+    align-items:center;
+    @extend .font14, .pt-8, .pb-8, .pl-14, .pr-14;
+    &__icon{
+        width:23px;
+        height:23px;
+        background-image:url(//akam.cdn.jdmagicbox.com/images/icontent/listingbusiness/bag.svg);
+    }
+}
+.rightcircle{
+    background-image:url(//akam.cdn.jdmagicbox.com/images/icontent/listingbusiness/rightcircle.svg);
+}

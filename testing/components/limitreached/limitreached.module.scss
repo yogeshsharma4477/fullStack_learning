@@ -1,0 +1,26 @@
+@use '../../styles/colors' as *;
+@import '../../styles/mixins';
+.limitwrap{
+  @include display(flex);
+  align-items:center;
+  text-align:center;
+  flex-direction:column;
+  padding:0 50px;
+  @include for-mobile{
+    padding:0;
+  }
+}
+.limiticon{
+  width:61px;
+  height:61px;
+  background-image:url('//akam.cdn.jdmagicbox.com/images/icontent/listingbusiness/limiticon.svg')
+}
+.limitpopup{
+  padding:20px 40px;
+  @include for-mobile{
+    padding:20px;
+  }
+  :global(.primarybutton){
+    width:100%;
+  }
+}

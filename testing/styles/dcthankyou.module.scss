@@ -1,0 +1,17 @@
+@use 'colors' as color;
+@import "mixins";
+
+.thankyou{
+   header{
+      display:flex;
+      justify-content:flex-end;
+   }
+   section{
+      display:flex;
+      align-items:center;
+      flex-direction:column;
+      @extend .mt-20;
+      text-align:center;
+   }
+}
+.title{color:color.$color-19c75e}

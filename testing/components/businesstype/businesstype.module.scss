@@ -1,0 +1,22 @@
+@use '../../styles/colors' as *;
+@import '../../styles/mixins';
+
+.percentage{
+  @include border-radius(6px);
+  background-color:$color-fff4e5;
+  @include display(flex);
+  p{
+    color:$color-414e59;
+    line-height:24px;
+  }
+}
+.infopercentage{
+  width:16px;
+  height:16px;
+  background-image:url(//akam.cdn.jdmagicbox.com/images/icontent/listingbusiness/infoyellow.svg);
+  flex:none;
+}
+.labeltext{
+  @include display(flex);
+  flex-direction:column;
+}

@@ -1,0 +1,31 @@
+@use '../../styles/colors' as *;
+@import '../../styles/mixins';
+
+.seo{
+    display:none;
+    margin-top:80px;
+    @media screen and (min-width:768px) {
+        display:block;
+    }
+    p{
+        line-height:28px;
+    }
+    ul li{
+        display:flex;
+        align-items:center;
+        &:before{
+            content:'';
+            width:4px;
+            height:4px;
+            @include border-radius(50%);
+            background-color:$color-555555;
+            @extend .mr-10;
+        }
+        &:not(:last-child){
+            @extend .mb-16;
+        }
+    }
+    a:hover{
+        text-decoration:underline;
+    }
+}

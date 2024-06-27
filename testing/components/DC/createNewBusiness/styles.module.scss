@@ -1,0 +1,78 @@
+@use '../../../styles/colors' as *;
+@import '../../../styles/mixins';
+
+.header{
+    display:flex;
+    align-items:center;
+    border-bottom:1px solid $color-f6f6f6;
+    background-color:$color-ffffff;
+    @extend .pr-10, .pl-10, .pt-13, .pb-13;
+    &__left{
+        flex:0 0 30px;
+    }
+    &__right{
+        width:100%;
+        input{
+            border:0;
+            width:100%;
+            @extend .p-0;
+        }
+    }
+}
+.nobusiness{
+    display:flex;
+    justify-content:center;
+    align-items:baseline;
+    &__icon{
+        width:47px;
+        height:59px;
+        background-image:url(//akam.cdn.jdmagicbox.com/images/icontent/listingbusiness/toparrow.svg);
+    }
+    &__text{
+        color:$color-424e59;
+        background-image:url(//akam.cdn.jdmagicbox.com/images/icontent/listingbusiness/enterbusinessname.svg);
+        background-repeat:no-repeat;
+        background-position:center;
+        background-size:100% 100%;
+        width:167px;
+        height:37px;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+    }
+}
+.business{
+    @extend .pl-20, .pr-20;
+    &__wrap{
+        border-bottom:1px solid $color-f6f6f6;
+        display:flex;
+        align-items:baseline;
+        justify-content:space-between;
+        @extend .pl-20, .pr-20, .pt-10, .pb-10;
+    }
+    &__name{
+        color:$color-424e59;
+        flex:1 1 auto;
+        word-wrap:break-word;
+        text-overflow:ellipsis;
+        overflow:hidden;
+        @extend .ml-10;
+        @include for-mobile-320{
+            font-size:14px;
+        }
+    }
+    &__new{
+        flex:0 0 auto;
+        @extend .p-0;
+        &::before{
+            @extend .pr-17;
+        }
+    }
+    &__list{
+        display:flex;
+        flex-direction:column;
+        border-bottom:1px solid $color-f6f6f6;
+        color:$color-424e59;
+        @extend .pt-15, .pb-15;
+    }
+}
