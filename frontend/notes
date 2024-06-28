@@ -19,3 +19,432 @@ how do you celebrate your success
 
 
 
+DAY1
+> stack vs heap
+	- both stack and heap are used to store data, object and function are store in heap memory and the engine doesn't allocate fixed memory instead it allocate more space as require
+	- primative data are stored in stack and non-primative data are stored in heap memory
+	- call stack maintain the sequnce of execution of execution context
+	- everything inside execution context, insertion, deletion all those are manage by call stack
+> ReactDom - ReactDOM is the glue between React and the DOM. Often, you will only use it for one single thing: mounting with ReactDOM.render().
+	ReactDOM.render(<app/>, document.getElementById("root")) - 1st params is jsx what you need to display and 2nd params("root") this is where we want to render our jsx.	
+> useState vs useRef - The common between them is, both useState and useRef can remember their data after re-renders. So if your variable is something that decides a view layer render, go with useState. Else use useRef
+> NPM =  is use to manage all our packages
+> Node_module - is kind a database of your npm
+> bundler combine/bundle all our file into one single file
+	minify means in a single file it compress all our code 
+> PARCEL(bundler), webpack
+> forEach( it is just a normal for loop return undefined does return new array ) vs Map ( transform returns the new array )
+
+DAY2
+> JSX
+	using createElement
+	const heading = React.createElement("h1",{id:"title"},"Hello World");
+
+	using JSX 
+	const heading = (
+	<h1 id="title">
+	 Hello World 
+	 </h1>
+	 )
+
+	// this is not html inside js it is html like syntax
+	// fb developer devolops by JSX
+	// attributes in jsx should be camelCase eg className
+	
+	how does this jsx execute?
+	babel understand our jsx and convert our code in such a way we can render how jsx in dom
+	jsx is using React.createElement under the hood and then that object is converted into html and how does this? Babel
+	
+	jsx advantage = readablity, developers experience, maintability
+	babel comes along with parcel or any other bundler
+		
+	>removed console using plugin - babel-plugin-transform-remove-console 
+	>key reconcilation - we should pass key to make diffing algorithm works fast
+	>jsx - using React.createElement => it is an object => which is then converted to html through babel
+	>React element
+		A React element is an object representation of a DOM node. A component encapsulates a DOM tree. 
+		Elements are immutable i,e once created cannot be changed. The state in a component is mutable
+	>React component - same as normal function but return HTML. 2 types of component class based component and functional based component
+	>React composition - function Header({children}){} - passing components as props to other components
+	>JSX won't work if there no parcel or any other bundler which doesn't has babel or else you need to install babel if not any other bundler 
+	>Babel needs to be there to run your jsx to be run
+	>why do we need React Component when you can render our element?
+	 root.render(element)
+	 root.render(<component/>) || root.render(component())
+	 ** becoz we can pass props inside component 
+	>when we do create-react-app it automatically install webpack along with babel is the reason we don't need to install babel or bundler differently
+
+	SUMMARAY
+	- JSX
+	- how does this jsx execute?
+	- react.createElement
+	- react element
+	- react component
+	- key reconcilation
+	- React composition
+	- why do we need React Component when you can render our element?
+	
+	
+DAY3
+
+> React.Fragment is a componet which is exported by React libary
+	it is like an empy tag
+> config driven UI - when you build a real world Application so you want your website should work on mumbai, pune, bangalore
+	backend should control the website that how should how website look like in pune, mumbai
+	what offers should run in bangalore should control by backend
+> optional chaining
+> props
+> virtaul dom - it is not just about react, it a software engineering thing
+	Representation of a real dom
+> why do we need? = for Reconcilation
+> Reconcilation - Reconcilation is an algorithm(diff algorithm) which react uses to diff one tree(actual dom) from another(virtual dom), 
+	and its determinds whats need to change and what not in UI.
+	and this process is known as Reconcilation
+
+> diff algorithm finds out the differnce between one tree and other 
+	now if we have found out the differnce it will only update that portion 
+	//it is kind of git diff
+> test driven number - you write testcases even before you start development
+
+DAY4
+> eslint - give error during runtime if is there any syntaxitical error it won't allow to build, it is used at development only
+> create config file || constant 
+> state =  variable
+> hook = react function =? normal js function
+> every time state changes our whole component will re-renders but updates only specific portion which has changed => Reconcilation is happeining
+	diff algorithm is being use to updates specific portion instead of whole dom this is why react is so fast
+	even if component re-renders it will only update changed part, it is like git diff
+> what is actually a virtual DOM - it is actual a object
+>why react is fast?
+	bxoz of it fast dom manipluation => how it is done using diff algorithm it compares  both the tree
+> default import and Named import
+
+
+DAY5
+> Monilith vs microservices
+> useEffect
+> condition rendering
+> Early return
+> difference between javascript expression & statement
+> react or reactDom?
+> why react is so fast?
+> Reconcilating
+
+
+DAY6
+> react router dom
+> why is cdn a great place to store an images? 
+> web server -> nginx and apache tom cat, nginx main path for linux - /etc/nginx
+						web server, reverse proxy, load balancer, mail proxy, and HTTP cache
+						Nginx is used by many high-traffic websites and applications, including Netflix, Airbnb, and Dropbox
+						nginx can also block ip
+						vps HOSTING - SINGLE TIER ARCHICTER
+						1. pm2 setup - same as wrting npm run dev but pm2 never stop until server stopped
+						2. git intsall to take pull, clone from our git
+						3. web server setup ex. nginx 
+> cookie vs session vs localStorage
+		- always use https only cookie
+		- cookies is use to store for login authenication, secret key, token, api token
+		- session is use when you want to store data for specific time but traditionally we used to do
+		- LocalStorage is best used for storing small amounts of data that is not sensitive, such as the user's language or theme preference, can also be used to cache data that is frequently accessed.
+		
+
+Day7 
+
+> Semantic HTML tags are tags that define the meaning of the content they contain. For example, tags like <header>, <article>, and <footer> are semantic HTML tags.
+> selector
+> sudo element
+> position
+> div(Block-level element) vs span(Inline-level element)
+> html5 advantage
+> semantic tag - Semantic HTML tags are tags that define the meaning of the content they contain,  <header>, <article>, <footer>, <nav>, <aside>
+> box model - padding border margin
+> z index - to re-render element layer
+> grid vs flex
+> responsive
+		media query - break point 
+		view port
+		grid view
+		
+		
+DAY8
+
+> access token vs refresh token
+		- access token are used to validate user, just like a normal token which node sends to user and store in cookie
+		- refresh token are token which get change every specific time interval and how refresh token works is node check refresh token after evry api hit 
+		  and if the token is didn't match it won't reponse anything and if the token is expires it regenrate the token and send to client.
+> life cycle method
+	it has 2 phase 
+    1. render phase
+        this phase include constructor and render
+    2. commit phase
+        this is phase where react is modifying your dom
+        & your componentDidMount is done after you updated your dom right
+
+> Optimization - chunking/code spliting/dynamic bundling/lazzy loading/on demand loading/dynamic import
+	 suppose if your bundler took the code of those hundreds of component (makemytrip) and put it up into one single index.js. what will happen?
+   it will just blast, it will make our app very slow, because the size of that index.js will become very huge and it does not make any sense to put all our component into one file
+   if you are creating a huge project it cannot be crested by just one bundle
+   so, we should do chunking/code spliting/dynamic bundling/lazzy loading/on demand loading/dynamic import
+   bundling is good but at some limit, you have to make logical bundling in your app
+
+ >   how to create a prooduction ready app in just few line of code?
+    //suppose in makemytrip how many people come and go to bus ticket or how many people go to charter flight?
+    //and if i am come to book flight will i go to bus ticket i might go but most of time will not go
+    //and suppose if created the whole bundle what will happen is it will load 100 component for train, 100 component for flight,bus,cab,hotels and load to the browser
+     is it a good idea? No 
+     so generally in your large scale application you create a difference bundle for different use case it is depend on the developer
+     they do a system desgn,
+    // when interviewer ask you to design a makemytrip, you have to tell the interviewer that when i make makemytrip i will use code spliting for all my code
+    when i be doing bundling(webpack or parcel) will make sure my bunlde does not include some random code 
+    and makemytrip is a image heavy site so i will keep all my image in cdn, i will compress those imagesQ> how do we do chunking/lazzy loading?
+a) so where ever you have a import, so there you have to do a lazy loading/dynamic loading
+   there is something known as lazy() , & this lazy comes from my react library 
+   & this lazy takes a function lazy(()=>{}) & now do a dynamic import
+   comst InstaMart = lazy(()=> import('/pathOfTheFile')) // this is Promise & can be handle async by <Suspense /> component
+
+   so this InstaMart is not our main index.js bunlde
+   when we call InstaMart component we can see in a network call we can see one InstaMart.js file is loaded, this is on demand loading/dynamic loading/code splitting/chunking
+
+   when react call a lazzy laod component, react takes time to get the bundle file/code/ it dynaimcally load from server, 
+   this lazy load component is not in our main index.js bundle, it is calling alltogether a different chunk for specific component, 
+   but once the data is loaded it won't take time or give any suspend/error but at the initial load it will take time , but we can handle the error for initial load how?
+   
+   when you are loading your component on demand, react trys to suspend it because the code is not loaded yet it take some time to load suppose it take 50ms but here react was trying to render it even before 50ms 
+   // upon on demand loading --> upon render --> react will suspend loading (because the code is not there) 
+   Q) but how can we handle it?
+   a) react has SUSPENSE( means it a suspense which is going to come )
+      just wrap your component inside SUSPENSE component & react will take care of suspense automatically
+      <Suspense>
+            <InstaMart />
+      </Suspense>
+
+    // suspense you on demand component takes 3sec we need to show something in between, something like loader/shimmer
+
+    <Suspense fallback={<shimmer/>}> take a props fallback in this fallback we need to pass what you need to show until you dynamic component is not loaded
+
+    // if you we are build a large scale application we can keep how different component into chunks
+	
+> customHooks - custom hook are js function but the difference is we connot use useState, or any other hook in normal js function
+	export const useOnline = () => {
+        const [isOnline,setIsOnline] = useState(true)
+        useEffect(()=>{
+            const handleOnline = () => {
+                setIsOnline(true)
+            }
+            const handleOfline = () => {
+                setIsOnline(false)
+            }
+            window.addEventListener("online",handleOnline)
+            window.addEventListener("offline",handleOnline)
+
+            return () => {
+                window.removeEventListener("online",handleOnline)
+                window.removeEventListener("offline",handleOfline)
+            }
+
+        },[])
+        return isOnline
+    }
+	
+	    // do early return
+
+    if(!isOnline){
+        return <h1>No data connection</h1>
+    }
+	
+	
+DAY9
+
+> ui layer - everything you see in the browser
+> data layer- ui & data layer combine create our frontend web application
+> prop drilling
+> updating the localstorage is an heavy operation, instead use context, redux
+> useContext
+>
+
+
+
+DAY10
+> public IP && dynaimcic IP = same( different wiifi difference ip )
+   Private IP && Fixed IP && static IP = same ( mostly used for server)
+   system IP && Mac Address = same ( system unique ID )   
+
+
+
+DAY 11
+> add host name in local
+	in ubuntu to add host name go to -> sudo su       			 #(super user)
+													  > vi /etc/hosts 		 # this is default path for editing local host, it just like creating a domain name for your local, we cannot add port in it you can only add ip in this
+
+
+DAY 12
+> Pollyfill or map, filter, reduce, forEach
+		Array.prototype.myMap = function (callback){
+			let result = [];
+			for(let i = 0; i < this.length ; i++){
+				result.push(callback(this[i],i,this))
+			}
+			return result
+		}
+
+		Array.prototype.myfilter = function (callback){
+			let result = [];
+			for(let i = 0; i < this.length ; i++){
+				if(callback(this[i],i,this)){
+					result.push(this[i])
+				}
+			}
+			return result
+		}
+
+		Array.prototype.Myreduce = function (callback,initialValue){
+			let result = initialValue;
+			for(let i = 0; i < this.length ; i++){
+				 result = callback(result,this[i])
+			}
+			return result
+		}
+
+
+
+		Array.prototype.myforEach = function (callback){
+			for(let i = 0; i <  this.length ;i++){
+				callback(this[i],i,this)
+			}
+		}
+
+
+		let arr = [1,2,3,4,5,6,5]
+
+		arr.myforEach((data,i,arr)=>{
+			console.log(data)
+		})
+
+> call, apply, bind methods are used to manipulate the context (this value) of a function
+
+	function getDetail(city){
+    console.log(`Whelcome ${this.name} to ${city}`)
+	}
+
+	let userDetails = {
+		name : "yogesh"
+	}
+	getDetail.call(userDetails,"Mumbai")
+	getDetail.apply(userDetails,["Mumbai"])
+	let bind = getDetail.bind(userDetails,"Mumbai")
+	console.log(bind())
+
+
+// to track all the data,
+// which robot was initially assign,
+
+// customer
+  // customer phone, name
+ // table id, 
+ // ordered_food_id = menu id
+ // payment - true/false
+ 
+ //task
+    // cust_id
+    // assigned_robot:
+    // delvered_robot:
+    
+    
+// menu 
+//   item id,
+//   title, category, description, price
+
+// robots
+    // robot id,
+    // task - take order, assign table
+    
+// kitchen
+    // time 
+    // food status - pending, started preparing, delivered
+    
+//order
+    // customer id
+    // order_status = pending, fullfill
+    // timing
+    // took_order : roobit
+    // delivered_Order: robit id
+
+
+
+
+infinte scrolling
+Longest Palindromic Substring
+Implement memoization , strict mode , closures
+Polyfill of promise.all
+What is concurrent hash map A DSA problem was given to me
+Design a book my show like ticketing system
+1st Interview Round JS interview questions like Hoisting, Higher Order Functions, Promise (Output based question), etc. 2 Sum DSA question -2nd Interview Round DSA Questions (Linked List, Merge Sort) System Design of Library
+Print number count which is repeating from array
+Event loop, two sum, palindrome array, message queue, load balancers
+debouncing, promise.all, react coding, other JS and react concept questions
+What are promises? Can you write a promise? What are closures? How does they work?
+Round 1 :- Vanilla JavaScript and CSS machine coding question which included DOM manipulation, basic DSA question :- Sort array of 0 and 1 Round 2 :- Basic Development questions regarding work experience. Any challenging problem that you have faced in your experience. Basic Networking and backend related questions. DSA question:- Find maximum recurring letter in string Round 3:- First half felt same as round 2 which could be redundant. Second half asked a slightly difficult recursive problem which I struggled a lot. Had to recursively construct a nested object into a certain format
+explain 'this' behavior in closures. explain JS excecution process/architecture
+What are ES6's features? How to improve the performance of the React App?
+One coding question to find valid string contains “(“ and “)”.
+First round mainly focused on javascript, CSS, and algorithms. 
+Few questions were- 1. Convert integer to roman. 2. Event loop. 3. Flex-layout The second round was based on advance javascript, one basic machine coding exercise, and some questions on web fundamentals. After these 2 rounds, 2 tech rounds were taken by Fynd internal team. In the third round, They basically included javascript, and react questions then the interviewer asked a lot of questions from Angular as I had more experience in that framework. The last tech round consisted of web fundamentals and a few output-based questions. Questions were about improving web performance, some questions were on web security. and a few on build and deployment process. After clearing all 4 tech rounds, there was a managerial round in which a senior person from the engineering team explained about Fynd. We discussed about the role they are hiring for, and the tech stack they are using. This was mainly a healthy discussion where they were checking if I am a good fit for the position based on my past experiences. The last round was co-founder round where he asked some basic questions like the reason for job switch, what keeps me motivated etc.
+
+
+
+
+
+
+
+Nov@2022#1
+
+sudo -i
+filepath 
+openvpn file_name
+userid - emp id
+password - password+otp
+openvpn 10127596__ssl_vpn_config.ovpn
+Sophos Id:-10127596
+Password:-.1  + otp
+
+09004198628
+
+mayuresh
+uday
+
+I don't know but i know 
+server componet
+react 18 16
+virtual dom shodow dom
+tcp https --> HTTP is underline 
+performance optimise
+code split
+lcb( largest contentful paint )  - largest  content load on your website
+fcp ( first contentfull paint) - first content which load in your application, 1.8 second or less is good and more than 3 is poor
+	eliminate render-blocking resources 
+	minify css
+	remove unused css 
+	light speed plugin
+	
+rootl using
+ci cd process
+dom
+server componet
+root componet
+vite, turbo pack, webpack
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
