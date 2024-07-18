@@ -16,7 +16,7 @@ const triggersmsoncontractcreation = async (req, res) => {
         "category": "ALERTS",
         "fields": {}
     }
-    let url_sms = `http://192.168.131.12/communication/api/v1/send_communication`
+    let url_sms = ``
     await axios.post(url_sms, payload).then(()=>{
         return res.status(200).json({
             status: 'true'

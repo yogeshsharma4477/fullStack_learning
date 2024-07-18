@@ -45,7 +45,7 @@ export async function getServerSideProps(ctx) {
         //     ctx.res.end()
         // }
 
-        let CompanyDetail = `http://192.168.8.12:9001/web_services/CompanyDetails.php?docid=${docid}`
+        let CompanyDetail = ''
         let shorturl = await axios
             .get(CompanyDetail)
             .then((res) => {

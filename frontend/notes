@@ -25,7 +25,7 @@ DAY1
 	- primative data are stored in stack and non-primative data are stored in heap memory
 	- call stack maintain the sequnce of execution of execution context
 	- everything inside execution context, insertion, deletion all those are manage by call stack
-> ReactDom - ReactDOM is the glue between React and the DOM. Often, you will only use it for one single thing: mounting with ReactDOM.render().
+> ReactDom - ReactDOM 	is the glue between React and the DOM. Often, you will only use it for one single thing: mounting with ReactDOM.render().
 	ReactDOM.render(<app/>, document.getElementById("root")) - 1st params is jsx what you need to display and 2nd params("root") this is where we want to render our jsx.	
 > useState vs useRef - The common between them is, both useState and useRef can remember their data after re-renders. So if your variable is something that decides a view layer render, go with useState. Else use useRef
 > NPM =  is use to manage all our packages

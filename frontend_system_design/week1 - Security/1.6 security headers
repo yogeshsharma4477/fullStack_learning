@@ -1,0 +1,74 @@
+5 security Headers you need to know.
+
+1. X-Powered-by 
+>  X-Powered-by tells which http server is used in the backend 
+   if you inspect and opens a API and check X-Powered-by you'll get to know which server is being used for this API.
+   this is security issue because if attacker knows which server you are using he can try to take down that server but if he didn't know then it will be difficult to find out which serevr you are using and then attack
+
+   How to solve this?
+   > you can remove that headers from response using a middleware
+     app.use((req, res, next) =>{
+        res.removeHeader('X-Powered-By')
+        next();
+     })
+
+
+2. Referrer-Policy
+>  Referrer-Policy basically tells from which Sources you are coming from.
+   now suppose you are going to facebook you clicked on a link and redirected to linkedin.com and on the facebook you are on some private path and when you reach linkedin
+   do you want to send the full url to track like from which url you have came to linkedin? No, you just want to know from which domain you are coming from
+
+   when you go to mdn, you see multiple Policies 
+    Referrer-Policy: no-referrer                        // do not share referrer
+    Referrer-Policy: no-referrer-when-downgrade         // do not share if redirecting to http
+    Referrer-Policy: origin                             // I want to share just the origin 
+    Referrer-Policy: origin-when-cross-origin           // I want to share just origin if domain is different but in case of same origin send full url
+    Referrer-Policy: same-origin
+    Referrer-Policy: strict-origin
+    Referrer-Policy: strict-origin-when-cross-origin
+    Referrer-Policy: unsafe-url
+
+    if you don't set the right Policy you'll end up sharing critical information of user to someone
+
+    How to solve this?
+    // Middleware to set the Referrer-Policy header
+    app.use((req, res, next) => {
+    res.setHeader('Referrer-Policy', 'origin-when-cross-origin');
+    next();
+    });
+
+
+3. X-Content-Type-Options
+>  so earlier when client try to get .png or .html file from the server and in the middleware any attacker try to sniff or to manupliate the type of file then there were no restriction
+    and browser used to assume that you must have changed the type.
+    so if we setHeader to nosniff it won't assume anything and won't change any type in between
+
+    How to solve this?
+    app.use((req, res, next) => {
+    res.setHeader('X-Content-Type-Options', 'nosniff');
+    next();
+    });
+   
+
+4. X-XSS-Protection
+>  browsers says that If you set this in header I'm not going to allow anything which is no xss attach. anyone try to inject any script I won't allow or won't allow and block it.
+   you can do all these configuration
+
+    X-XSS-Protection: 0                             // I don't want
+    X-XSS-Protection: 1                             // I want to have but santize 
+    X-XSS-Protection: 1; mode=block                 // I want to have but santize and block
+    X-XSS-Protection: 1; report=<reporting-uri>     // I want to have and report it
+
+
+5. HSTS ( strict Transferport security)
+>  suppose I have website with https but I also want people to use my website using http 
+    and if someone hit my app using http and in the backend I will write a logic which will check if the app is hit http and its the first time then please redirect to https
+    and then https will hit the server and then the server will set header "strict-Transport-Security" 
+    what does this mean next time when you come with http I won't let go from the browser itself  
+    browser checks if header is set to "strict-Transport-Security"  it won't allow to make http request and it will give "307 Internal Redirect to secure url"
+    and browser itself handle the redirect and make a request for https request because in header itself it is set to "strict-Transferport-security"
+
+    app.use((req, res, next) => {
+    res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
+    next();
+    });

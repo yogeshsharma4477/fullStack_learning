@@ -4,7 +4,7 @@ import axios from "axios";
 
 async function footer(req, res) {
     try {
-        let url = `http://192.168.20.101/20march2020/vertical-cmn-footer.php?vertical=free-listing&city=mumbai`
+        let url = ``
         const response = await axios.get(url)
 
         let data = await response?.data

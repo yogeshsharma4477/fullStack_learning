@@ -1,0 +1,11 @@
+Q. what does Secure commincation (https) benefits?
+> 1. Data Encryption (TLS) - meaning the data which is shared between client and server is unreadable
+  2. Authentication(SSL, TLS) - when you get https, there's a certificate which is provided to the client then that certfication is used to all the Encryption and decryption happen
+                      who provides that certficate - certfication Authority (ssl)
+  3. Data Integrity (MAC) - to data which shared between the client and server is checksum if data is tempered it will break the connection
+  4. Data Privacy
+  5. better Search ranking
+  6. Protection Against browser warning - sometime you would have seen that browsers give warning that this is not a secure website you still want to go?
+                                          so basically it won't show if you have https 
+  7. Fast website loading (HTTP2)
+ 

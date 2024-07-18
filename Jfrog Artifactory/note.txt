@@ -1,0 +1,31 @@
+Q. Artifacts -> The file that contain both the compliled code and the resource that are used to complie them are known as artifacts.
+they are readily deployable files.
+In NPM the artifact would be a .tar.gz file
+In Java the artifact would be a .jar, .war, .ear file
+In .net the artifact would be a .dll file
+
+soruce code -> build tool -> compilation -> binary code + dependencies/ resources --> artifact
+
+
+Q. Artifact repository
+> An artifact is a repository which can store multiple different version of artifacts.
+Each time the tar.gz file is created it is stored in a server dedicated for the artifacts
+
+Q. why it is usefull?
+> normally how do we work is, we write the source code and then the code is tested and reviewd and when the code is successfull it moves to production 
+  the in a day multiple time build being is made and push to the servers
+  and there might be a case after the deployment there will be case we need to roll back our code 
+  for this rollback to happen we go back to our git and reomve the first commit and go back to previos commit 
+
+  instead of doing all that we could have done is we stored our artifacts in a repository and 
+  we could have deployed the latest version in that artifacts and 
+  if theres any rollback just goin back to repository and deploying the artifact which was previosly being used 
+
+
+Q. What is JFrog Artifactory?
+> it works as google drive for artifacts.
+  it also help in downloading and managing dependencies
+  Theory -> JFrog Artifactory is a tool used in DevOps methodology for multiple purposes.
+  One of its main purpose is to store artifacts( readily deployable code ) that have been created in the code pipeline.
+  Another on of its purpose is to act as a sort of a buffer for downloading dependencies for the build tools and language
+

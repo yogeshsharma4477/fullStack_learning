@@ -3,7 +3,7 @@ import axios from "axios";
 
 async function genrateSessionID(req, res) {
     try {
-        const sessionIdUrl = `http://192.168.131.98/api/leads/create-hot-lead-session-id`;
+        const sessionIdUrl = ``;
         axios.post(sessionIdUrl)
             .then((responce) => {
                 const sessionId = responce?.data?.data?.lead_session_id || null;

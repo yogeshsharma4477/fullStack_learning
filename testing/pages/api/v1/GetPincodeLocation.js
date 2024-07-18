@@ -1,7 +1,6 @@
 import { encodeQueryData } from "@/utils/commonFunc";
 import authenticateJWT from "@/utils/middleware";
 import axios from "axios";
-// http://192.168.8.122:811/services/location_api.php?rquest=get_area&pincode=400064&type=1
 
 
 async function GetPincodeLocation(req, res) {
@@ -19,7 +18,7 @@ async function GetPincodeLocation(req, res) {
     
     let config = {
       method: "get",
-      url: `http://192.168.8.122:811/services/location_api.php?${encodeQueryData(data)}`
+      url: ``
     };
 
     const response = await axios(config);

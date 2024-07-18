@@ -422,7 +422,6 @@ languages = languages.join()
     data.append('priority_flag', '1')
     data.append('language', `${languages}`)
 
-// const videoUrl = `http://192.168.20.228/cms_api/cms/cms/successStories?hname=Success%20Videos&limit=all&debug=0`
 const videoUrl = `http://snehamalvankar.jdsoftware.jd/cms_api/cms/cms/successStories`
         
 
@@ -506,7 +505,7 @@ const videoUrl = `http://snehamalvankar.jdsoftware.jd/cms_api/cms/cms/successSto
 
   const docid_list = randomVideo.slice(0, 3).map(obj => obj?.docid);
   
-  let cd = await axios.get(`http://192.168.8.12:9001/web_services/CompanyDetails.php?docid=${docid_list.toString()}`)
+  let cd = await axios.get(``)
 
 
 

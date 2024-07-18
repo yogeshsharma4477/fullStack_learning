@@ -179,7 +179,6 @@ export const generateHotLead = async (payload, iswarm) => {
 
 export const generateSMS = async (mobileNumber) =>{
     // let msg = 'Hello! thanks for adding your business details on our platform. Our business representative will get in touch with you shortly.';
-    // let url_sms = `http://192.168.20.116/insert_get.php?mobile=${mobileNumber}&sms_text=${msg}&source=joinfree`
     let url = '/api/v2/triggersmsoncontractcreation'
     let payload = {
         mobileNumber: mobileNumber
@@ -221,7 +220,7 @@ export async function verifyUserSID (SID, phoneNumber) {
     if(!SID) return false;
     let flag = false;
     try{
-        let url = `http://192.168.20.102:9001/web_services/jd_user.php`
+        let url = ``
         let queryParamsObj = {
             'case': 'checkprofile',
             'ownerinfo': 1,
@@ -441,7 +440,7 @@ export async function hasAnyBusiness (mobileNumber=null) {
     try{
         if(!mobileNumber) return false;
         var isHasBusiness = true;
-        const businessListApiURL = `http://192.168.8.12:9001/web_services/PhoneSearch.php`
+        const businessListApiURL = ``
         const queryObj = {
             phone_nos: mobileNumber,
             lme: 1,

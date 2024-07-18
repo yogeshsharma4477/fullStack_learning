@@ -34,7 +34,7 @@ async function ClickTracker(req, res) {
         }
 
         const responce = await axios.get(
-            `http://192.168.131.113/ARWXRX.html?${encodeQueryData(params)}`
+            ``
         )
         return res
             .status(200)

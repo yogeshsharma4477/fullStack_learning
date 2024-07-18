@@ -61,10 +61,7 @@ async function addPhoto(req, res){
         fd.append("module_type", req.body.module_type);
         fd.append("mod", req.body.mod);
         fd.append("upload_by", req.body.upload_by);
-        // const api = "http://192.168.29.37:100/common_upload/upload.php";
-        // const api = "http://192.168.12.131:100/common_upload/upload.php";
-        //const api = "http://192.168.20.83/common_upload/upload.php";
-        const api = "http://192.168.20.160/common_upload/upload.php"
+        const api = ""
         const formHeaders = fd.getHeaders();
         const response = await axios.post(api, fd, {
           headers: {

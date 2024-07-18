@@ -166,7 +166,6 @@ export async function getServerSideProps(ctx) {
             data.append('priority_flag', '1')
             data.append('language', `${languages}`)
         
-        // const videoUrl = `http://192.168.20.228/cms_api/cms/cms/successStories?hname=Success%20Videos&limit=all&debug=0`
         const videoUrl = `http://snehamalvankar.jdsoftware.jd/cms_api/cms/cms/successStories` 
         
         let config = {
@@ -203,7 +202,7 @@ export async function getServerSideProps(ctx) {
         const promiseArr = splitDocIDArr.map((docidArr)=> {
             return (async () => {
                 const docidStr = docidArr.join(",");
-                const resp = await axios.get(`http://192.168.8.12:9001/web_services/CompanyDetails.php?docid=${docidStr}`);
+                const resp = await axios.get(``);
                 return resp.data;
             })()
         })

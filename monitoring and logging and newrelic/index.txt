@@ -1,0 +1,28 @@
+supppose your company have different teams: Video Team, backend, frontend and real time backend
+and whenever the final product go down lets say google.com. 
+and some system must have go down it might be backend system has go down or frontend system has go down
+We want ki whoever is "on call" on the specific team should be woken up 
+and if the first person on "on call" does not acknownledges then its manager will get a call and if the manager does not acknownledges then CTO get a call
+
+Q. how do we manage this system?
+>  Logging, monitoring, alerts and status pages
+   1. Logging -> if theres an error is throw and because of it website is down we need to check on the terminal 
+        but we want a way that if any error occurs we will push that error in a very fancy looking UI and from there we will pick it up and check whats the error.
+        and another Logging is access log it basically records who accessed what and when 
+   2. Monitoring - this means it continously keep monitoring that if your server is up or the server space is reached to 90% and if does do the alerting
+        so basically instead of user reaching out to you that the website is not working and then you finding out the reason manually and eventually finds out that server space is reached to 100%.
+    # Datadogs is a company which lets you do your monitoring and logging and showing it in a very systematic way in a graph and tabular dashboard
+      every big company uses Datadogs and also this not very cheap
+   3. Alerting -  when there are logging/monitoring system in place, you can put up alert to be called/messaged/slacked/paged when a system goes down, CPU usages goes above certain point or error count goes up.
+    # for alerting, there is big company pagerDuty, it has really nice calender you create for all your employees ki this person is on call in this week, this person went on a holiday so this person become oncall etc
+    these are super usefull and highly underratted in terms of how much your response time goes down in case of your system goes down.
+
+  Services:
+  There are few ways to monitor system
+     paid
+     1. AWS cloudwatch : Monitoring and observibility service for aws resources
+     2. Datadogs - logging and monitoring
+     3. newrelic - logging and monitoring
+
+     
+

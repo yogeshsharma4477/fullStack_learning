@@ -1,0 +1,24 @@
+Trpc - rpc means remote procedure calls
+       In our backend system generally even in leetcode you writing function is also called as procedure
+       and if I call a function remotely is called remote procedure calls 
+
+       your client in a react application instead of calling API for createUser he can directly call a remote function which does internally calls a https server where 
+       user or the client does not need to worry about which method to pass or body or header.
+       You just call the createUser function which does underline the http call which you as a application developer don't have to worry about that is what the remote procedure calls are for
+       there are various libray which lets you create rpc one which are using is Trpc
+       another libray is grpc which is writen by google which almost do the same thing like on your server you create a function and on your client you simply use that function
+
+Trpc - Typescript remote procedure calls 
+
+Q. Why Trpc
+> 1. Automatic types on FE and BE. you write your type in the backend code once you get very nice type at your frontend 
+  2. Genric code that can be converted to express backend and Nextjs
+     How does it do or convert express to nextjs backend?
+     > Adapters:
+        suppose your a company like express, you can write an adapter and any Trpc application can be converted to your backend
+        So you as a application developer simply wrote Trpc code and you define nicely that this is my function and this is input and this is the output 
+        and when you are serving it, you need to defined it that you want to serve your Trpc as a express or nextjs so Trpc is the code which never runs on your server
+        and this auto conversion is done by the Trpc compiler/Adapters. your end user interact with express server or nextjs server
+
+Note : last stop 17:00
+         

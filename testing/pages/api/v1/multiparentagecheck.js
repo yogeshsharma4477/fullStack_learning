@@ -5,7 +5,7 @@ async function multiparentagecheck(req, res) {
   try {
     const parentageForm = req.query;
     const response = await axios.get(
-      `http://192.168.8.122:811/services/multiparentage_check.php`,
+      ``,
       {
         params: {
           rquest: "check_multiparentage",

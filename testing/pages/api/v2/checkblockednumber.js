@@ -5,7 +5,7 @@ import authenticateJWT from "../../../utils/middleware"
 async function checkBlockedNumber(req, res) {
     const { mobile } = req.body;
     try {
-        let url = `http://192.168.20.11/free_listing/include/autosuggest_search.php?param=blocknumber&q=${mobile}`
+        let url = ``
 
         await axios.get(url)
         .then((response) => {

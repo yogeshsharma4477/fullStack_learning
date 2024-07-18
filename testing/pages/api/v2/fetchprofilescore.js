@@ -4,7 +4,7 @@ import axios from 'axios'
 const fetchprofilescore = async (req, res) => {
     try{
         const { docid } = req?.body || {};
-        const url = 'http://192.168.20.59:4000/api/comp/getScore';
+        const url = '';
     
         
         const responce = await axios.get(url, {

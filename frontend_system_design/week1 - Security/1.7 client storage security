@@ -1,0 +1,32 @@
+Q. How do we store the sensitive data on client?
+> ex. credential, api keys/token
+    1. the best way is to store data on the server.
+    2. In case you can't do that, encrypt data for ex. bysciptjs
+    3. token expiry in localstorage
+        ex. const token = generateToken();
+            localstorage.setItem('token',token)
+            setTimeout(() => {
+                localstorage.remove('token')
+            }, tokenExpirationTime)
+        limitition - it won't work if browser close before expiration 
+        but in worst case you can do this there's no option
+
+Q. how to have right set of Authenication?
+>  1. use JWT/OAuth 
+   2. session token expiry
+   3. multi factor Authenication
+
+Q. Data Integrity
+> suppose you are storing the data in localstorage with data encryption and fetching the data by dcrypting it 
+  now suppose someone find out the encryption technique which you are using it it can be security issue.
+  how to solve this?
+  1. create a checksum 
+
+Q. Storage Limit 
+> we basically have 5 to 10 mb size of Storage for localstorage
+  we have localstorage(5-10mb), sessionStorage(5-10mb), IndexedDB(50mb -100mb), cookie(4kb-20kb), cache(upto 100mb)
+  if you don't handle data storage properly it can lead to data loss.
+
+
+Q. Session Management
+> Token should have httoOnly: Secure

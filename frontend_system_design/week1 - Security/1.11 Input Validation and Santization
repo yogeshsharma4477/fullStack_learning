@@ -1,0 +1,14 @@
+Q. Input Validation and Sanitization
+> use Framework library - like react these automatically handles output validation like if any malicious js script is there it won't run
+                          but still you should take because you some time use dangerouslyHTML
+  Whitelist validation 
+  Regular expresion - to insure user only enters data which comes under regular expresion
+  Escape user input - restrict some keyword
+  Parameterized URLs - like validate the datatype
+  Lenght and size check - so that attacker script should not execute because it won't match with our
+  Image & File type check - like if you are expecting png then add png check
+  Add client side validation - because it might happen that server script be XXS attack
+  Error Handling - handle global exception
+  Security Header 
+  Security Audits and Testing
+  Avoid using third-party library - because it might happen the library which you are using it can stop maintain by the owner

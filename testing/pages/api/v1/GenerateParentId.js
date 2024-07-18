@@ -25,7 +25,7 @@ async function GenerateParentId(req, res) {
 
         var config = {
             method: "get",
-            url: `http://192.168.8.99:81/api_services/api_parentid_gen.php?${encodeQueryData(data)}`
+            url: ``
         };
 
         const response = await axios(config);

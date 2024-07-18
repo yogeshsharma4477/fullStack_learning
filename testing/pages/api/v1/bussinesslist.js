@@ -5,7 +5,7 @@ async function bussinesslist(req, res) {
     try{
         let  { number } = req.query;
         
-        let url = `http://192.168.8.12:9001/web_services/PhoneSearch.php?phone_nos=${number}&lme=1&limit=200`
+        let url = ``
         axios.get(url)
         .then((responce)=>{
             let returnResponce;

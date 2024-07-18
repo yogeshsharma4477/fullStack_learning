@@ -1,0 +1,54 @@
+SF communities - its nothing but the social platform which designed for employees, partner or even the customer can login into the SF and do some kind of a communication
+example : uberEats - there two kind of employee 
+                     1. permanant employee (cutomer servive) / Developer
+                        lets consider customer service are using SF and they can directly login into the salesforce and can do the stuffs they want 
+                        means they can access the data of customer like what customer has order the data, at what time, what price and history at one place
+                        and Developer has access to salesforce as kind of admin                     
+                     2. Delivery Partner/contractor 
+                        we cannot give direct access to Delivery/hotel partner to SF because they are not employee they work on their own condition
+                        instead we build a seperate UI
+communities is kind of UI, it is nothing but the extention or a part of salesforce in which a customer can do stuffs in the salesforce using UI.
+
+Q. what is point where you use a communities?
+>  ex. if i was build a system where all the people who are managing the gas station, I need to provide a portal to people who are running the gas station
+       so I will have one salesforce Org where customer service is going to login
+       and the person who is running the gas station will have seperate UI.
+
+
+Q. How to enable a communities?
+> if you have already create a communities
+  you can search All sites else 
+  search for digital experience -> setting -> check on enable digital communities 
+
+
+# communities are also known as digital communities
+
+
+Q. how to create customer community user in digital experience?
+> based on provided link to user be able to login on its credentials
+  step to create:
+   Accounts -> add Account -> create an Account
+   then add contact btn click -> and to create a user click on -> enable customer user btn -> then you can add the user 
+   OR go to object manager from home page -> 
+   # to give access to external user ->  go to digital experience -> settings -> check, "allow using standard external profile.."
+   
+   to make user able to login into community user need to reset the password -> go to users -> find the user ->
+   # one salesforce orgs can have multiple communities, and if you are creating a user he should be a member of one active community and 
+   so to make sure he is able to login I need to map the user to one community
+
+   so go to workspace by search All sites -> go into the community -> go to the administration
+   here you can set the members who can login into the communities --> then go to the members -->  search your user from avaialable profile -->
+   then add your user --> save
+
+   Now user can reset the password and then be able to login into community
+
+
+Q. How to add new page in communities?
+> all sites --> workspace btn -> builder tab // this is where you can add the page
+
+Q. how to enable chat inside community?
+>  1. open the service setup --> recommed setup click on view all --> add "chat with customer"
+      --> then create a queue ( queue are people who are ready to serve particular case/object ) --> create queue name --> add the users who will be executive -->
+      --> add capacity --> add website url, in which website you want to add/host this chat --> add type --> 
+      Lastly you'll get the source code which need to add in your website, copy that source code
+      

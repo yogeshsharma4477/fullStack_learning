@@ -1,0 +1,9 @@
+SSRF attack basically can cause the issue on the server and it can access the server by our website because our website has the access to the server 
+
+Q. when can happen this attack?
+>  - oninput validation
+   - lack of Whitelisting means authorization like if some pass url in the payload which can execute on the server and can try to access the our server credential if theres no proper authorization
+   - Insufficient access control - like what all can be access from database, what all can be access from database
+                                    axios, fetch control these library provide first class ssrf protection and they keep on enhancing 
+   - XML Enternal Entity (XEE) - proper deserialization
+   

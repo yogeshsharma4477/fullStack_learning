@@ -24,7 +24,7 @@ let colorIndexForImage = -1
 //         docid: "033PXX33.XX33.130326185229.W2M6",
 //         flv: "",
 //         thumbnail: "Kolkata_Mr.-Prem-Rohira_1695987101kolkata_mr.-prem-rohira_1695987101.png",
-//         youtube_link: "https://www.youtube.com/embed/jkdwYlZB1L0",
+//         youtube_link: "s://www.youtube.com/embed/jkdwYlZB1L0",
 //     },
 //     {
 //         area: "Bilekahalli",

@@ -1,0 +1,21 @@
+Q. Compliance and Regulations
+> Cookie Consent Compliance
+  Accessibility - WCAG (Web Content Accessibility Guidelines) this is global everyone should follow this
+                  ex. like alt tag in image, transcript in video and all of these things exists for some reasons
+                  when you grow, when you think of building something bigger or at a large scale you need to have understanding of all the Compliance else you end up paying huge amount of fines
+  Privacy - CCPA (California Consumer Privacy Act) USA - 
+            1. implement a mechanism for users to opt out of the sale of their personal information
+            2. update privacy policies in plain languages 
+  Web Application Security - OWASP Top Ten - global - highlights the most critical web application security risk
+            1. ensure Injection Attack ( e.g SQL Injection)
+            2. Cross-Site Scripting (XSS) 
+            3. Authentication and session Management
+            4. Security Misconfiguration
+            5. Sensitive Data Explosure
+            6. Insecure Deserialization
+            7. XML External Entity
+            8. Security Header - like pass http and get hit on https by setting Header
+            9. cross-site Request Forge
+   Data Protection - EU - Implement data encryption in transit and at rest using strong algorithm
+
+There are biggest data breach fines, penalties and settlements so far like Meta, Amazon, Instagram etc

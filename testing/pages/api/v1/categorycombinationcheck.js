@@ -19,7 +19,7 @@ async function badword(req, res) {
     try{
         const  { parentid, all_catidlist, city } = req.body;
         
-        let url = 'http://192.168.35.217:1010/services/category_restriction_check.php?';
+        let url = '';
         url+=`parentid=${parentid}`;
         url+=`&data_city=${encodeURIComponent(city)}`;
         url+='&ucode=';
@@ -41,7 +41,7 @@ async function badword(req, res) {
             }
             if(!responce?.data?.BLOCK?.message){
                 let temp_all_catidlist = all_catidlist.replace(/\s/g, '');
-                let urlCheck2 = `http://192.168.8.17:3000/web_services/CategoryDetails_v2.php?`;
+                let urlCheck2 = ``;
                 urlCheck2+=`national_catid=${encodeURIComponent(temp_all_catidlist)}`;
                 urlCheck2+=`&city=${encodeURIComponent(city)}`;
                 urlCheck2+='&rest_cat=1';   

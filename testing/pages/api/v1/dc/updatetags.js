@@ -17,7 +17,7 @@ export default async function updatetags(req, res) {
             return res.status(200).json({ results: [], message: "Tag is required", success: false });
         }
 
-        let compDetails = await axios(`http://192.168.20.24:9001/web_services/CompanyDetails.php?docid=${docid}&json=1`) 
+        let compDetails = await axios(``) 
         if(compDetails.data?.error?.code === 1){
             return res.status(200).json({ results: [], message: compDetails.data?.error?.msg, success: false });
         }

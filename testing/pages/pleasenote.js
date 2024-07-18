@@ -92,11 +92,11 @@ export async function getServerSideProps(ctx) {
         })
         }
 
-        let CompanyDetail = `http://192.168.8.12:9001/web_services/CompanyDetails.php?docid=${docid}`
+        let CompanyDetail = ''
         let shorturl = await axios.get(CompanyDetail);
         shorturl = shorturl.data[docid]?.shorturl || "";
         if(!shorturl) {
-            const compData = await axios.get(`http://192.168.20.59:4000/api/comp/get?mod=mongo&fields=shorturl_with_ctid,shorturl&debug=1&rsrc=iro&type=gen_info_id&docid=${docid}`)
+            const compData = await axios.get(``)
             try{
                 shorturl = compData?.data?.results?.data[docid]?.shorturl_with_ctid
             } catch(err) {}

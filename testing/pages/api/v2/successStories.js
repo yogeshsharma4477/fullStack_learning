@@ -5,7 +5,7 @@ import authenticateJWT from "@/utils/middleware";
 
 async function successStories(req, res) {
     try {
-        let url = `http://192.168.20.228/cms_api/cms/cms/successStories?limit=all`
+        let url = ``
         const response = await axios.post(url, { 'hname': "Success Videos" }, {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded ',

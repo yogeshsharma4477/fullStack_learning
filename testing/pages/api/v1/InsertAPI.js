@@ -166,7 +166,7 @@ async function InsertAPI(req, res) {
         try {
             if (currPage === 'Address') {
                 let autologinUrl = ""
-                let autoLoginApi = 'http://127.0.0.1:8384/Advertise/api/v1/autologin'
+                let autoLoginApi = ''
                 const buffer = Buffer.from(data?.mobile);
                 let encrypted_num = buffer.toString('base64');
                 let headers = { ask: `${encrypted_num}${process.env.AUTO_LOGIN_TOKEN}` }
@@ -190,7 +190,7 @@ async function InsertAPI(req, res) {
                         "URL": autologinUrl || "https://staging2.justdial.com/Advertise"
                     }
                 }
-                let url_sms = `http://192.168.131.12/communication/api/v1/send_communication`;
+                let url_sms = ``;
                 await axios.post(url_sms, payload)
             }
         } catch (error) {

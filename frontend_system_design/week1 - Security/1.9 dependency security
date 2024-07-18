@@ -1,0 +1,14 @@
+Q. so when you use any library you need verify that its internally packages are secure? you need to be aware of these 5 things when you are using any external library.
+> 1. we should have Regular Audit of dependencies.
+     how do we do it?
+     npm Audit, npm update
+  2. Enforce Auditing  
+    so genrally you don't keep checking that you dependencies are up todate  or npm Audit
+    so what you can do is : npm set audit true
+  3. code and dependency monitor -  using codegl CI
+  4. dependency locking - package-lock.json
+     - suppose you understood that this package is stable now you can just lock the version so every time you do npm i you will get the stable version of dependency
+  5. security penetration testing
+
+  Development is one part but enhancing that one part you remain stable even after 5 years makes you developer/engineer to the next level
+  I also take care of dependency security and management

@@ -76,12 +76,12 @@ export async function getServerSideProps(context) {
   //   redirectTo('/Free-Listing/');
   // }
   
-  let CompanyDetail = `http://192.168.8.12:9001/web_services/CompanyDetails.php?docid=${docid}`
+  let CompanyDetail = ''
   let shorturl = await axios.get(CompanyDetail);
   shorturl = shorturl.data[docid]?.shorturl || null;
   if(!shorturl) {
     let reqParamsList = 'docid,addinfo,national_catidlineage,national_catidlineage_block,shorturl,shorturl_with_ctid'
-    const url = 'http://192.168.20.59:4000/api/comp/get'
+    const url = ''
     let queryObj = {
         mod: 'mongo',
         fields: reqParamsList,
